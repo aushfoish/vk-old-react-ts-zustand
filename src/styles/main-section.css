@@ -1,0 +1,104 @@
+  /* Основная часть */
+  
+    
+    h2.name {
+      font-size: 13px;
+      margin: 0;
+      color: #2e4e6f
+    }
+
+    .account-title {
+      background-color: #E9ECF5;
+    }
+
+    .h2-title {
+      padding-left: 10.5px;
+      color: #546B87;
+      font-size: 11px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    
+
+    .app-work-space {
+      border-left: 1px solid;
+      border-right: 1px solid;
+      border-color: #d4d8e2;
+      width: 100%;
+      max-width: 599px;
+    }
+
+    
+    .main-section {
+      display: flex;
+      width: 100%;
+      margin: 0 auto;
+      max-width: 800px;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .side-navigation {
+      width: 150px;         
+      flex-shrink: 0;  
+      margin-top: 5px;    
+      margin-left: -5px; 
+    } 
+    
+    .navigation-main {
+      display: block;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 150px;
+    }
+    /* .navigation-main :first-child {
+      display: flex;
+    } */
+
+    .navigation-btn {
+      display: block;
+      padding: 4px 6px;
+      font-size: 13px;
+      color: #2B587A;
+      text-decoration: none;
+      
+    }
+
+    .navigation-btn:hover {
+      background-color: #DAE1E8;
+    }
+
+    .audio-nav {
+      font-size: 11px;
+      padding: 5px;
+    }
+
+    .audio-nav-friend {
+      display: flex;
+      flex-direction: row;
+      column-gap: 10px;
+      align-items: center;
+      width: 100%;
+      max-width: 100%;
+      padding: 0;
+      margin-top: 5px;
+    }
+
+
+    .main-page {
+      display: flex;
+      margin: 10px;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: row;
+      margin: 0 auto;
+      justify-self: center;
+    }

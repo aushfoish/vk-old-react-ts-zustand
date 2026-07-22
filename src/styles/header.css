@@ -1,0 +1,47 @@
+ /* Стили шапки сайта */
+    header {
+      display: flex;
+      background-color: #517398;
+      justify-content: center;
+      width: 100%;
+      max-width: 791px;
+      margin: 0 auto;
+      color: #ffffff;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .header-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 30px;
+    } 
+    
+    .header-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        font-size: 13px;
+        font-weight: bold;
+        height: 50px;
+        margin: 0 auto;
+    }
+    .header-options li {
+        display: flex;
+        height: 100%;
+        align-items: center;
+    }
+
+    .vklogo-input {
+      display: flex;
+      gap: 45px;
+      padding-left: 0;
+    }
+    .vklogo-input a {
+      font-size: 16;
+      color: #e5f2ff;
+      font-weight: bold;
+      gap: 2;
+      
+    }

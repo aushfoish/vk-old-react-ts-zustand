@@ -1,0 +1,110 @@
+    /* френдлист */
+
+
+
+    /* общий список друзей */
+
+    .friends-block {
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* шапка блока */
+    
+
+        /* счётчик друзей */
+
+    .friends-counter {
+      display: flex;
+      justify-content: space-between;
+      padding-inline: 7px;
+      background-color: #eef1f7;
+      padding-block: 5px;
+    }
+    .friends-counter a {
+      font-size: 12px;
+      color: rgb(105, 105, 105)
+    }
+
+    /* сам контейнер */
+
+    .friendlist {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding: 8px;
+      gap: 5px;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+
+    /* каждый друг по отдельности */
+    
+    .friend {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 50px;
+      margin-bottom: 8px;
+    }
+    .friend img {
+      width: 50px;
+      height: 50px;
+      border-radius: 0;
+    }
+    .friend a {
+      font-size: 10px;
+      text-align: center;
+      margin-top: 3px;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+
+    
+    /* контейнер "друзья онлайн" */
+
+    .friends-online {
+      display: flex;
+      justify-content: space-between;
+      padding-inline: 8px;
+      background-color: #DEE5EB;
+      padding-block: 5px;
+    }
+
+
+      /* шапка контейнера */
+
+    .friends-online a {
+      font-size: 12px;
+      font-weight: bold;
+      color: #4c617a
+    }
+
+        /* счётчик друзей онлайн */
+
+    .friends-online-counter {
+      display: flex;
+      justify-content: space-between;
+      padding-inline: 7px;
+      background-color: #eef1f7;
+      padding-block: 5px;
+    }
+    .friends-online-counter a {
+      font-size: 12px;
+      color: rgb(105, 105, 105)
+    }
+
+    /* сам контейнер */
+
+    .friendlist-online {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding: 8px;
+      gap: 5px;
+      justify-content: space-between;
+      margin-top: 5px;
+    }

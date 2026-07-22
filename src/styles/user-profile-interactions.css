@@ -1,0 +1,58 @@
+    /* аватарка и всё что под ней */
+
+    .user-iteractions {
+      width: 200px;
+    }
+
+    /* сам юзерпик */
+    .user-picture {
+      margin-bottom: 5px;
+    }
+
+    .user-profile-picture {
+      width: 200px;
+    }
+
+    /* взаимодействия с пользователем */
+    .follow-button {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      background-color: rgb(237, 237, 237);
+    }
+    
+    .followers-button {
+      display: flex;
+      justify-content: space-between;
+      margin-block: 5px;
+      padding-inline: 8px;
+      padding-block: 5px;
+      cursor: pointer;
+    }
+    .followers-button a {
+      display: block;
+      font-size: 12px;
+      color: #6383A9;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      background-color: transparent;
+    }
+    .followers-button:hover {
+      background-color: #DAE1E8;
+    }
+
+    .send-gift-button {
+      display: block;
+      font-size: 12px;
+      color: #6383A9;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 5px;
+      text-align: center;
+      background-color: #EBEEF3;
+      cursor: pointer;
+    }
+    .send-gift-button:hover {
+      background-color: #dfe5ee;
+
+    }
