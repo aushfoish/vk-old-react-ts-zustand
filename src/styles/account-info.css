@@ -1,0 +1,75 @@
+   /* Личная информация, галерея и записи на стене */
+    .user-info {
+      margin-left: 5px;
+      margin-right: 5px;
+      width: 100%;
+      max-width: 359px;
+    }
+    .info-row {
+      display: flex;
+      margin-bottom: 5px;
+      line-height: 1;
+      font-size: 11px;
+      flex-direction: row;
+      line-height: 1.4;
+    }
+    .label {
+      width: 120px;
+      flex-shrink: 0;
+      color: #867E7B;
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1px;
+      color: #13688c;
+      
+      margin: 0;
+      justify-content: start;
+    }
+    .content p {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1px;
+      color: #13688c;
+      line-height: 1.4;
+      margin: 0;
+      justify-content: start;
+    }
+
+    .account-name {
+      font-size: 14px;
+      margin: 0;
+    }
+    
+    .user-name {
+      display: grid;
+      border-bottom: 1px solid;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      border-color: #d4d8e2cd;
+    }
+    
+    .bio {
+      margin: 0;
+      padding: 0;
+      font-size: 11px;
+    }
+
+    .user-name h2 {
+      color: #325581;
+      margin-bottom: 5px;
+    }
+
+    .birthday {
+      display: flex;
+    }
+    
+    .job {
+      display: flex;
+    }
+
+    .languages {
+      display: flex;
+    }

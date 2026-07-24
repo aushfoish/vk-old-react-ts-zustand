@@ -1,0 +1,22 @@
+    .micro_header {
+      display: flex;
+      justify-content: space-between;
+      padding-inline: 6px;
+      background-color: #DEE5EB;
+      padding-block: 5px;
+      margin-top: 15px;
+    }
+
+    .header-link {
+      font-size: 12px;
+      font-weight: bold;
+      color: #4c617a
+    }
+
+    /* кнопка "новости" в шапке блока */
+
+    .optional-link {
+      font-size: 12px;
+      font-weight: bold;
+      color: #8396b6
+    }

@@ -1,0 +1,22 @@
+   .hidden {
+      display: none;
+    }
+
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      -webkit-font-smoothing: none;
+    }
+
+    .vk-com-main-page {
+      display: grid;
+      place-items: center;
+    }
+
+    ul {
+      list-style-type: none;
+      font-size: 14px;
+    }
+
+    a {
+      text-decoration: none;
+    }
