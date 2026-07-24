@@ -1,8 +1,7 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/react-refresh'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: '/vk-old-react-ts-zustand/',
+  base: '/vk-old-react-ts-zustand/', 
+  plugins: [react()]
 })
