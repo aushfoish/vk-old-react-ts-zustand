@@ -40,7 +40,7 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {index: true,
-        element: <Navigate to="/my-page" replace />
+        element: <Navigate to="my-page" replace />
       },
       { path: 'my-page', element: <UserPage /> },
       { path: 'my-feed', element: <FeedPage /> },
