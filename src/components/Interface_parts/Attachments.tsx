@@ -1,14 +1,19 @@
 
+import { userPostsFetch } from "../../UserPostsFetch"
 import Button from "./Button"
 
 
+
 const Attachments = () => {
+
+const {sendPost} = userPostsFetch()
 
     return (
         <div className="post-attachments-add-button">
                   <Button 
                     className="post" 
-                    children='Опубликовать'/>
+                    children='Опубликовать'
+                    onClick={sendPost}/>
 
                   <div className="post-attachments">
                     <a href="#" className="attachment-button">

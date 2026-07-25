@@ -15,7 +15,8 @@ const AccountWall = () => {
   }, [])
 
 
-    const [inputFocused, setInputFocused] = useState(false)
+    const [, setInputFocused] = useState(false)
+    const inputPost = userPostsFetch((state) => state.inputPost)
 
     return (
         <>
@@ -38,10 +39,12 @@ const AccountWall = () => {
                     label='Введите новый пост'
                     onFocus={() => setInputFocused(true)}
                     onBlur={() => setInputFocused(false)}
+                    onInput={inputPost}
+                    
                      />
                 </form>
                 
-                {inputFocused === true && <Attachments />}
+                <Attachments />
                   
                   
               </div>
@@ -57,7 +60,7 @@ const AccountWall = () => {
                 key={post.id}
                 id="id"
                 children={post.content}
-                label={`${post.username}${post.userlastname}`}
+                label={`${post.username}`}
                 date={post.date}
                 imgSrc={post.imageContentSrc}
               />

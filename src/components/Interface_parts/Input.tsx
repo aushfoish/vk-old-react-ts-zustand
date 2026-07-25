@@ -6,6 +6,7 @@ interface InputProps {
     type: string,
     onFocus?: () => void,
     onBlur?: () => void,
+    onInput: (e: React.InputEvent<HTMLInputElement>) => void,
     
 }
 
@@ -21,12 +22,14 @@ const Input = (props: InputProps) => {
         type,
         onFocus,
         onBlur,
+        onInput,
+        
     } = props
 
     return (
         <>
         <label className={`input-label ${className}`} htmlFor={id}>{label}</label>
-        <input className="input-post" type={type} id={id} placeholder={placeholder} onFocus={onFocus} onBlur={onBlur}></input>
+        <input className="input-post" type={type} id={id}  placeholder={placeholder} onFocus={onFocus} onBlur={onBlur} onInput={onInput}></input>
         </>
         
     )
