@@ -1,6 +1,4 @@
 import FeedPageNavBtn from "./FeedPageNavBtn"
-import Input from "./Interface_parts/Input"
-
 const FeedPageHeader = () => {
     return (
         <div className='feed-container-header-panel'>
@@ -20,12 +18,11 @@ const FeedPageHeader = () => {
 
               <div className="feed-header-input">
                 
-                  <Input 
-                    className="hidden"
-                    placeholder="Расскажите что-нибудь друзьям..."
-                    id='feed-header-input' 
-                    label='Расскажите что-нибудь друзьям...'
-                    type='text'/>
+                  
+                    <>
+                    <label className="input-label hidden" htmlFor="feed-header-input">Расскажите что-нибудь друзьям...</label>
+                    <input className="input-post" type='text' id='feed-header-input'  placeholder="Расскажите что-нибудь друзьям..."></input>
+                    </>
 
               </div>
         </div>

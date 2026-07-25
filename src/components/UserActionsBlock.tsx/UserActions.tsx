@@ -7,6 +7,17 @@ const UserActions = () => {
 
   const profile = userInfoFetch((state) => state.profile)
   const isLoading = userInfoFetch((state) => state.isLoading)
+  const subscribe = () => {
+    let isSubscribed = false
+
+    if (isSubscribed === false) {
+      console.log("вы подписались")
+      isSubscribed = true
+    } if (isSubscribed === true) {
+      console.log('вы отписались')
+    }
+    
+  }
 
   
 
@@ -44,6 +55,7 @@ const UserActions = () => {
               <Button 
                 className="follow"
                 children="Подписаться"
+                onClick={subscribe}
                />
             </div>
 
