@@ -1,0 +1,100 @@
+{
+    "username": {
+        "id": "1",
+        "firstname": "Павел",
+        "lastname": "Дуров",
+        "bio": "道德經"
+    },
+    "avatar": "https://sun9-13.userapi.com/s/v1/ig2/30NHGAoUCTE4fWPQXZ08dp_1G9_qA2RCkJcIknjhRwrTebzNIiY-7AeUaiWbvs976B6F4O53tY6wU_VZ_aLjb_Ho.jpg?quality=95&as=32x38,48x57,72x86,108x129,160x190,240x286,360x428,480x571,540x643,640x762,715x851&from=bu&u=rcFtQlA1g_HBi718EduV317U0KC90zCp4pdk_Cwkjpc&cs=715x0",
+    "birthday": {
+        "id": "1",
+        "year": "1984",
+        "month": "октября",
+        "day": "10"
+    },
+    "city": "Санкт-Петербург / Ленинград",
+    "workplace": "Telegram",
+    "languages": [
+        {"language": "Русский"},
+        {"language": "Английский"},
+        {"language": "Français"},
+        {"language": "Deutsch"},
+        {"language": "Español"},
+        {"language": "Italiano"},
+        {"language": "Lingua Latina"},
+        {"language": "فارسی"}
+    ],
+    "mobile": "информация скрыта",
+    "telegram": "durov01",
+    "activity": "Создание социальных сетей, программирование",
+    "friends": [
+        {"name": "Иоганн Бах", "userpic": "https://sun9-6.userapi.com/s/v1/ig2/Oj2tYHecqcy-MahPy_x7jX8i0MYI2BmFz3CAKjQ5ZGG-q46OJD7SBQheZXni5mw7b9MeQnmmjv306hs__nBkqPNU.jpg?quality=95&as=32x29,48x43,72x64,74x66&from=bu&u=fMq0Z7KplxByY1Fz2dIn7np_NDouXOdk36WvAoZeExI&cs=74x0" },
+        {"name": "Брэд Питт", "userpic": "https://sun9-19.userapi.com/s/v1/ig2/80WfUegWWObdX5UXPOpCLrtuN7P1KrGSQZtWVzxuHoZjDa6Qce3P_0LOBFMS7-ejLZsPNjDqbN0zhEuhhKBnxPpe.jpg?quality=95&as=32x32,48x48,72x71,108x107,136x135&from=bu&u=lqZkB1ilcL7CPQghx3IAdvmWeuzRgF9ii7_1277zadg&cs=136x0"},
+        {"name": "Павел Дуров", "userpic": "https://sun9-6.userapi.com/s/v1/ig2/EkYLTV9WSAVf4ceCBp-Qm8il56AjTs7Z9RET1LzXi-nXBrKePYYxSMyckm61h_FfUPSG5n5UbSIMCsWOMHlkCf5e.jpg?quality=95&as=32x45,48x68,72x102,108x153,160x226,240x339,249x352&from=bu&u=myw-ZWOkCOAVCGZtixGg0nfJ3e7OT5UyfHDBzJmYuww&cs=249x0"},
+        {"name": "Михаил Боярский", "userpic": "https://sun9-43.userapi.com/s/v1/ig2/T6rGr72wQCVccicw_CQOTy0SN6GxKxLmM1SQlodPOcScGGS9MEyny43haKnQfGkFulB-pAoTEdDExlMBfAR6go-k.jpg?quality=95&as=32x29,48x44,72x66,108x99,160x147,173x159&from=bu&u=OiBvVykQSrvnL0_Qpcrrjhd-2PV7TPvyaNFzjZ8gJEs&cs=173x0"},
+        {"name": "Martin Walker", "userpic": "https://sun9-64.userapi.com/s/v1/ig2/1nppKYRtvhU6fwkojwXZlMFKvHllYRksRkvWbYC09RRVjuKqDySml-Bv2jui8HyaWj8OBy4PVyai_U1tpMDRrlyP.jpg?quality=95&as=32x31,48x47,72x70,108x105,160x156,194x189&from=bu&u=h8GxCxWkjTIIZhqOwUPbFE_yZK8XCOJbbkRIPGIY7jQ&cs=194x0"},
+        {"name": "scp 106", "userpic": "https://sun9-88.userapi.com/s/v1/ig2/v8botrIFzntQBW4w86nP0oLpGtmbZ0K9llOjXHBCClwQxo4h0tOSxQoUTA868u4ZYJReeRnDE2DcryuXJSTVBQ6x.jpg?quality=95&as=32x33,48x50,72x74,108x112,144x149&from=bu&u=ldxJAO8K_J8Pk6GHBdmjLf6zYFiv_Pw7RBXzT00zIZ8&cs=144x0"},
+        {"name": "Опасный Поцык", "userpic": "https://sun9-2.userapi.com/s/v1/ig2/PozgiMeOYLto7y2hoOR1o8V9OMQGyIU9N9Vnxrv3fOnPKnkOwhY8qFxbagROlLXuba6lr6yOg11tKflPIkJX4z59.jpg?quality=95&as=32x31,48x46,72x69,108x104,160x154,173x166&from=bu&u=0WuvqosxMddlezGNANrEiz4Ujfow6Kr-3ICaQV894IY&cs=173x0"},
+        {"name": "Буйный Славик", "userpic": "https://sun9-79.userapi.com/s/v1/ig2/mpV74BMsQqlfSDEQHHTU0AE_OxyqEQ3rXtjOoU2S6oyLbi0ZZPnHN9U2hFGA7MKYD7LajefPg9uLqXIK6GbCDIhm.jpg?quality=95&as=32x31,48x47,72x70,108x105,154x150&from=bu&u=9gtik-S1G5qCKEFJ5mZNHBOKDIn7vjyF-HMnO3hugCU&cs=154x0"},
+        {"name": "Михаил Горбачёв", "userpic": "https://sun9-51.userapi.com/s/v1/ig2/yo7ka8H90agCwtI226A8o3k4YjQDjs4x3qS3m2SEWcLqwJLi3STLC2hbz95reFO2zRzZuP8iV7FDjhpuloJcMzGu.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,246x246&from=bu&u=MEe7dcX4_oIz77DGFD1tvHVD2x4cmld5SlLafr0200Q&cs=246x0"},
+        {"name": "Борат Сагдиев", "userpic": "https://sun9-27.userapi.com/s/v1/ig2/3dbUibyrimyo7ztS5DUmOsYiw0o0oU9YX67nM-f4yStUfBplFGAaOFtPZFrV3SEx_5GG1tG4ykroYmJcxB7Uc0VD.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,197x197&from=bu&u=_PEov9AMBcgTZOW2uj-KRoo2yZUESU0dluUXSmpEocs&cs=197x0"}
+    ],
+    "hobbies": "буддизм, саморазвитие, технологии",
+    "musicGenres": "Классика, минимал-техно",
+    "quotes": "люблю цитаты про стоякцизм и саморазвитие",
+    "movies": [
+        {"movie": "я люблю тебя филипп морис"},
+        {"movie": "горбатая гора"},
+        {"movie": "лунный свет"},
+        {"movie": "назови меня своим именем"},
+        {"movie": "бойцовский клуб"}
+    ],
+    "followers": [
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"},
+        {"id": "1"}
+    ],
+    "userMusic": [
+        {"id": 1, "band": "Blood Red Shoes", "title": "It's Getting Boring By The Sea", "src": "src/media/audios/Blood Red Shoes - It's Getting Boring By The Sea.mp3"},
+        {"id": 2, "band": "Crystal Castles", "title": "Kerosene", "src": "src/media/audios/Crystal Castles - Kerosene.mp3"},
+        {"id": 3, "band": "Crystal Castles", "title": "Not In Love (Robert Smith version)", "src": "src/media/audios/Crystal Castles - Not In Love (Robert Smith version).mp3"},
+        {"id": 4, "band": "Crystal Castles", "title": "Vietnam", "src": "src/media/audios/Crystal Castles - Vietnam.mp3"},
+        {"id": 5, "band": "Derek and The Dominoes", "title": "Layla", "src": "src/media/audios/Derek and The Dominoes - Layla.mp3"},
+        {"id": 6, "band": "DyE", "title": "Fantasy", "src": "src/media/audios/DyE - Fantasy.mp3"},
+        {"id": 7, "band": "El Huervo", "title": "Daisuke", "src": "src/media/audios/El Huervo - Daisuke.mp3"},
+        {"id": 8, "band": "Gorillaz", "title": "Stylo", "src": "src/media/audios/Gorillaz - Stylo.mp3"},
+        {"id": 9, "band": "GUF", "title": "Сплетни", "src": "src/media/audios/GUF - Сплетни.mp3"},
+        {"id": 10, "band": "Kasabian", "title": "Club Foot", "src": "src/media/audios/Kasabian - Club Foot.mp3"},
+        {"id": 11, "band": "Lady Gaga", "title": "Just Dance", "src": "src/media/audios/Lady Gaga - Just Dance.mp3"},
+        {"id": 12, "band": "Metric", "title": "Black Sheep", "src": "src/media/audios/Metric - Black Sheep.mp3"},
+        {"id": 13, "band": "Michael Gray", "title": "The Weekend", "src": "src/media/audios/Michael Gray - The Weekend.mp3"},
+        {"id": 14, "band": "The Black Angels", "title": "Bad Vibrations", "src": "src/media/audios/The Black Angels - Bad Vibrations.mp3"},
+        {"id": 15, "band": "The Black Angels", "title": "Young Man Dead", "src": "src/media/audios/The Black Angels - Young Man Dead.mp3"}
+    ],
+    "userCommunities": [
+        {"id": 0, "communityName": "Твои сохранёнки", "description": "Паблик с сохранёнками", "imgSrc": "https://sun76-2.userapi.com/s/v1/ig2/pulXvJ7HbagyRDjLWWL3f9sbiOz1XZVcTyPPUCKXjaeJ2zDBsda2pqtjRH1XZg152kMGJrOkFPsJGLwthiNFmXFx.jpg?quality=95&crop=607,508,521,521&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480&ava=1&u=hr2OZwyLCuzX-Up6Y9zD-QaeHO_oU0SVgms8oFLvGwk&cs=200x200", "textContent": "", "imgContent": "https://sun9-9.userapi.com/s/v1/ig2/iSSoej10f3Ryhm5WjD00TewX1gHm5VCbd-bR86XEzGYV9g60956gliMkFUvw8dahWqsd11E4DNxIynRVRW53V1qq.jpg?quality=96&as=32x17,48x25,72x38,108x57,160x84,240x126,360x189,480x252,540x283,640x336,720x378,1080x567,1200x630&from=bu&cs=1200x0"}, 
+        {"id": 1, "communityName": "Подслушано в Кислодрищенске", "description": "Слухи твоего родного города ;)", "textContent": "Сегодня на остановке возле ДК видел девочку с рыжими волосами в кепке и штанах Адидас, я был в пальто и сел на трамвай, не было времени подходить знакомиться, отзовись красавица )))))"},
+        {"id": 2, "communityName": "МХК", "description": "Не каждому дано понять.....", "imgSrc": "https://sun9-13.userapi.com/s/v1/ig2/v1_n9RZDkWA2sJsPybF39d7bM2NIOV4068fjh4c8kemt12JjB1q_aTuoGdjTIVkhD2Kty8ijHoAePG0-hjcyC1Qn.jpg?quality=95&as=32x27,48x41,72x61,108x91,160x135,240x203,247x209&from=bu&u=-lzcjTBOUXGrHQHYnZmy8rDH7zgS_ysUt1hRYjT8-3Y&cs=247x0", "textContent": "Даже котик уже понял эту жизнь.....", "imgContent": "https://sun9-20.userapi.com/s/v1/ig1/1iT99520DQgSQPgOV2BtgXxUpf9KJuQoEkXP9cWe5pPnJ4pna2Lz69G1aIpE4WBjkCg9nckh.jpg?quality=96&as=32x57,48x85,72x128,108x192,160x284,240x427,360x640,480x853,540x960,640x1138,720x1280&from=bu&cs=720x0"},
+        {"id": 3, "communityName": "Без кота и жизнь не та", "description": "Сообщество любителей котов", "imgSrc": "https://s.poembook.ru/theme/05/f5/5f/693d608ef6800fd12b8c144cdc2f8ebb54b83693.jpeg", "imgContent": "https://sun9-61.userapi.com/s/v1/ig1/w-iU4PmzIMthKFa3g6AM4cqRTBsVLwBnxMa3NKiKZiUK4W_0GJdN3PtR6TIxvz3Mj_O15Z9z.jpg?quality=96&as=32x31,48x46,72x69,108x103,160x153,240x230,360x345,480x459,540x517,640x613,720x689,726x695&from=bu&cs=726x0"},
+        {"id": 4, "communityName": "IGM", "description": "Паблик для настоящего ГЕЙмера", "imgSrc": "https://sun76-2.userapi.com/s/v1/ig2/KKW-2kbQsu4owwOQK7kbV7aqr9EmHs8mH-bfBBxO1kZG4vwA-SxKbFHVDGZ27nkDwpMeN2mOpoKNkRMeJu13HCQO.jpg?quality=95&crop=100,100,800,800&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=hQULDRqRE2HlPcJlvGfVKR1kzAG2hk7B6VkMFrOyo9Q&cs=200x200", "textContent": "Кастомного персонажа в катсцене ни с чем не спутаешь :DDDDDDD", "imgContent": "https://sun9-54.userapi.com/s/v1/ig1/YCPYyoHMwwT3r8Mia_CfemIQAwYZp9YkbEVOxjk-EN2GXzLTwujAwiWNlw0hQFTXACidCg.jpg?quality=96&as=32x20,48x30,72x45,108x67,160x100,240x150,360x225,480x300,540x337,640x400,720x450,1080x675,1280x800,1440x900&from=bu&cs=1440x0"},
+        {"id": 5, "communityName": "TrollFace", "description": "Весёлые картинки", "imgSrc": "https://sun9-36.userapi.com/s/v1/ig2/Xhxb2pToiz_mr9DZ0yVeynwJDnLwTdBerA1NfRFrA1GI40_SiI59WQjB8ddkCMPpRmbrsdUWNELEj3vE4tv6Ujus.jpg?quality=95&as=32x31,48x47,72x71,108x106,160x157,177x174&from=bu&u=gMC-YFGYU7XxTcFnIsflQZF_GL2L1P9XIisRA3pOgUo&cs=177x0", "imgContent": "https://sun9-79.userapi.com/s/v1/ig1/4Lm_4rLdBE9MW7UQCjfgWAropVeASVsJBNM_mkcrxWfdovX6lLNMgSBdA9sfqBbiWxIstDEP.jpg?quality=96&as=32x53,48x80,72x120,108x180,160x267,240x400,360x601,362x604&from=bu&cs=362x0"},
+        {"id": 6, "communityName": "MDK", "description": "Паблик для мудаков", "imgSrc": "https://sun9-1.userapi.com/s/v1/ig2/hs1EBe5_N9TZKy0GQA4libZavLr-comNjJFiyb_G5w3ibOhDZmxTxEMnj9wHGa1a3ofJOlKihF4j0a1H5hI7OJSS.jpg?quality=95&as=32x30,48x45,72x68,108x102,160x151,240x227,263x249&from=bu&u=IoUSgcJaVE7lmgkZnqrkmqdy_PxaBQr5HEttXI52hlg&cs=263x0", "imgContent": "https://sun9-7.userapi.com/s/v1/ig1/kMhgsfhsbML6Oc5WraB_Mt9dIJlVMRv1J53UgXEeL7y3YbxQAN9JnyI6vl_UQk5o1z9Qfw.jpg?quality=96&as=32x27,48x40,72x60,108x91,160x134,240x201,360x302,480x403,540x453,640x537,720x604,960x806&from=bu&cs=960x0"}
+    ],
+    "github": "https://github.com/aushfoish"
+}
+

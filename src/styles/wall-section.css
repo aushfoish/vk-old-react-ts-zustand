@@ -1,0 +1,85 @@
+    /* контейнер для постов (собственно стена) */
+    .wall-content {
+      display: grid;
+      
+      gap: 15px;
+      margin-block: 10px;
+    }
+
+    
+
+    /* сам пост */
+    .content-post {
+      display: grid;
+      flex-direction: column;
+      width: 100%;
+      gap: 10px;
+    }
+    .post-genuinely {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
+    }
+    .userpic-post {
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+    }
+    .userpic-post a {
+      box-sizing: border-box;
+    }
+    .username {
+      display: flex;
+      font-size: 12px;
+      font-weight: bold;
+      color: #325581;
+      justify-content: space-between;
+    }
+    .user-text-content {
+      display: grid;
+      font-size: 12px;
+      flex-wrap: wrap;
+      margin: 0 auto;
+    }
+
+    .content-picture {
+      max-width: 298px;
+    }
+
+    .like-share-date {
+      display: flex;
+      font-size: 10px;
+     align-items: center;
+     width: 100%;
+     justify-content: space-between;
+     color: #557aa8
+    }
+
+    .like-share-container {
+      display: flex;
+       gap: 15px;
+    }
+
+    .date-time {
+      color: rgb(148, 148, 148);
+      margin: 0;
+    }
+
+    .user-content {
+      text-align: left;
+      font-size: 12px;
+      flex-wrap: wrap;
+      margin: 0; 
+      gap: 10px;
+    }
+
+    .text-content {
+      display: flex;
+      
+      
+      font-size: 12px;
+      flex-direction: column;
+      gap: 10px;
+    }
