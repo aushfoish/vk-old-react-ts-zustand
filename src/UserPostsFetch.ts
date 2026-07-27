@@ -5,7 +5,7 @@ interface UserPosts {
     content: string,
     date: string
     username: string | null,
-    userPictureSrc: string | null,
+    userPictureSrc: string,
     imageContentSrc: string
 }
 

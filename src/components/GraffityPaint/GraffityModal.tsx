@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react"
+import Button from "../Interface_parts/Button"
 
 export const GraffityModal = () => {
+
 
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const isDrawing = useRef(false)
 
-    // const [strokeStyle, setStrokeStyle] = useState('red')
-    const [lineWidth, setLinewidth] = useState(20)
+    const [strokeStyle] = useState('red') 
+    const [lineWidth, setLinewidth] = useState(50)
     const [globalAlpha, setGlobalAlpha] = useState(1)
 
     useEffect(() => {
@@ -15,11 +17,11 @@ export const GraffityModal = () => {
         const ctx = canvas.getContext('2d')
         if (!ctx) return
 
-
         const start = (e: MouseEvent) => {
             isDrawing.current = true
             draw(e)
         }
+
 
         const stop = () => {
             isDrawing.current = false
@@ -43,6 +45,8 @@ export const GraffityModal = () => {
             }
         }
 
+        
+
         canvas.addEventListener('mousedown', start)
         canvas.addEventListener('mousemove', draw)
         window.addEventListener('mouseup', stop)
@@ -62,53 +66,86 @@ export const GraffityModal = () => {
         const ctx = canvas.getContext('2d')
         if (ctx === null) return
 
+
         ctx.lineWidth = lineWidth
         ctx.strokeStyle = 'red'
         
         ctx.globalAlpha = globalAlpha
     }, [lineWidth, globalAlpha])
 
+    const ctxClear = () => {
+        const canvas = canvasRef.current
+        if (canvas === null) return
+        const ctx = canvas.getContext('2d')
+        if (ctx === null) return
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+    }
+
+    const ctxSave = () => {
+        const canvas = canvasRef.current
+        if (canvas === null) return
+        const ctx = canvas.getContext('2d')
+        if (ctx === null) return
+
+        const drawData = canvas.toDataURL()
+        console.log('data saved', drawData)
+            
+            
+    }
+
     return (
         <>
-            <div>
-                <div className="dialog-ui">
-                    <div className="dialog-border">
-                        <div className="canvas-border-label">Нарисовать граффити</div>
-                        <button>X</button>
+            
+                <div className="canvas-ui">
+                    <div className="canvas-options">
+                        <button className="modal-close-button option" onClick={ctxClear}>Очистить холст</button>
                     </div>
-                    <canvas className='canvas-graffity-workspace' ref={canvasRef} width={600} height={300}>
-                    </canvas>
+                    <div className="canvas-container">
+                        <canvas className='canvas-graffity-workspace' ref={canvasRef} width={600} height={300}>
+                        </canvas>
+                    </div>
+                    
                     <div className="canvas-paint-settings">
                         {/* потом заменю на компоненты */}
+                        <div className="graffity-range-cnt">
+                            <label className="cavnas-settings-label">Цвет:</label>
+                            <button className="canvas-color">+</button>
+                            <div className="pen-round-container">
+                                    <span className="pen-print" style={{width: lineWidth, height: lineWidth, opacity: globalAlpha, backgroundColor: strokeStyle}}></span>
+                            </div>
+                        </div>
                         <div className="graffity-range-settings">
 
                             <div className="graffity-range-cnt">
-                                <label htmlFor="intencity" ></label>
-                                <input id="intencity" min={0}  max={1} step={0.01}  value={globalAlpha} onInput={(e) => setGlobalAlpha((Number(e.currentTarget.value)))} type='range'></input> 
+                                <label className="cavnas-settings-label" htmlFor="intencity" >Прозрачность:</label>
+                                <span className="slider-wrapper" id="intencity">
+                                    <div className="slider-ticks"></div>
+                                    <input className="canvas-slider" id="intencity" min={0}  max={1} step={0.01}  value={globalAlpha} onInput={(e) => setGlobalAlpha((Number(e.currentTarget.value)))} type='range'></input> 
+                                </span>
                             </div>
+
                             <div className="graffity-range-cnt">
-                                <label htmlFor="weight" ></label>
-                                <input id="weight" type='range' min={0.1} max={200} value={lineWidth} onInput={(e) => setLinewidth(Number(e.currentTarget.value))}></input> 
+                                <label className="cavnas-settings-label" htmlFor="weight" >Толщина:</label>
+                                <span className="slider-wrapper" id='weight'>
+                                    <div className="slider-ticks"></div>
+                                    <input className="canvas-slider" id="weight" type='range' min={1} max={50} step={0.5} value={lineWidth} onInput={(e) => setLinewidth(Number(e.currentTarget.value))}></input> 
+                                </span>
                             </div>
 
                         </div>
                         
-                        <div className="color">
-                            <label>Выбрать цвет...</label>
-                            <button className="canvas-color">+</button>
-                        </div>
+                        
                             
                     </div>
                     <div className="dialog-border">
-                        <>
-                            <button>Отправить</button>
-                            <button>Отмена</button>
-                        </>
-                        <button>Очистить</button>
+                        <Button className="button"
+                        children="отправить"
+                        onClick={ctxSave}/>
                         
                     </div>
                 </div>
-            </div>
+            
         </>
     )
 }

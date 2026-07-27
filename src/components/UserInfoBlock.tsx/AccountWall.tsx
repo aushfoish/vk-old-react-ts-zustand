@@ -57,6 +57,7 @@ const AccountWall = () => {
 
               {!isLoading && posts !== null && (posts.map((post) => 
               <AccountWallPost 
+                userPicSrc={post.userPictureSrc}
                 key={post.id}
                 id="id"
                 children={post.content}
