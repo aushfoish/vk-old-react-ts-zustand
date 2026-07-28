@@ -1,15 +1,22 @@
 import { useEffect, useRef, useState } from "react"
 import Button from "../Interface_parts/Button"
+import { GraffityColors } from "./GraffityColors"
+import { ModalFooter } from "../ModalWindow/ModalFooter"
+
+
 
 export const GraffityModal = () => {
+
+
+    
 
 
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const isDrawing = useRef(false)
 
-    const [strokeStyle] = useState('red') 
+    const [strokeStyle, setStrokeStyle] = useState("#3498db") 
     const [lineWidth, setLinewidth] = useState(50)
-    const [globalAlpha, setGlobalAlpha] = useState(1)
+    const [globalAlpha, setGlobalAlpha] = useState(0.7)
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -36,25 +43,20 @@ export const GraffityModal = () => {
                 const x = e.clientX - rect.left
                 const y = e.clientY - rect.top
 
-                
-
                 ctx.lineTo(x, y);
                 ctx.stroke();
                 ctx.beginPath();
                 ctx.moveTo(x, y)
             }
         }
-
-        
-
         canvas.addEventListener('mousedown', start)
         canvas.addEventListener('mousemove', draw)
         window.addEventListener('mouseup', stop)
 
         return () => { 
-            canvas.removeEventListener('mousedown', start),
-            canvas.removeEventListener('mousemove', draw),
-            window.removeEventListener('mouseup', stop)
+            canvas.removeEventListener('mousedown', start);
+            canvas.removeEventListener('mousemove', draw);
+            window.removeEventListener('mouseup', stop);
             }
         
         }, [])
@@ -68,10 +70,10 @@ export const GraffityModal = () => {
 
 
         ctx.lineWidth = lineWidth
-        ctx.strokeStyle = 'red'
+        ctx.strokeStyle = strokeStyle
         
         ctx.globalAlpha = globalAlpha
-    }, [lineWidth, globalAlpha])
+    }, [lineWidth, globalAlpha, strokeStyle])
 
     const ctxClear = () => {
         const canvas = canvasRef.current
@@ -103,14 +105,20 @@ export const GraffityModal = () => {
                     </div>
                     <div className="canvas-container">
                         <canvas className='canvas-graffity-workspace' ref={canvasRef} width={600} height={300}>
+                            
                         </canvas>
                     </div>
                     
                     <div className="canvas-paint-settings">
                         {/* потом заменю на компоненты */}
                         <div className="graffity-range-cnt">
-                            <label className="cavnas-settings-label">Цвет:</label>
-                            <button className="canvas-color">+</button>
+                            <div className="color-settings">
+                                <label id="color-label" className="cavnas-settings-label" htmlFor="colors">Цвет:</label>
+                                <GraffityColors 
+                                id='colors'
+                                changeColor={setStrokeStyle}/>
+                            </div>
+                            
                             <div className="pen-round-container">
                                     <span className="pen-print" style={{width: lineWidth, height: lineWidth, opacity: globalAlpha, backgroundColor: strokeStyle}}></span>
                             </div>
@@ -138,12 +146,7 @@ export const GraffityModal = () => {
                         
                             
                     </div>
-                    <div className="dialog-border">
-                        <Button className="button"
-                        children="отправить"
-                        onClick={ctxSave}/>
-                        
-                    </div>
+                    <ModalFooter footer={<Button className="post" children="Прикрепить" onClick={ctxSave}/>}/>
                 </div>
             
         </>

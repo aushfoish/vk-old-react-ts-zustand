@@ -4,6 +4,8 @@ import { userPostsFetch } from "../../UserPostsFetch"
 import Attachments from "../Interface_parts/Attachments"
 import { useEffect, useState } from "react"
 import { AccountWallPost } from "../PostItem/AccountWallPost"
+import { ModalWindow } from "../ModalWindow/ModalWindow"
+import { GraffityModal } from "../GraffityPaint/GraffityModal"
 
 
 
@@ -14,17 +16,21 @@ const AccountWall = () => {
     userFetch()
   }, [])
 
-
+    const [modalOpened, setModalOpened] = useState(false)
     const [, setInputFocused] = useState(false)
     const inputPost = userPostsFetch((state) => state.inputPost)
 
     return (
         <>
+        {modalOpened === true && 
+        (<ModalWindow onCloseModal={() => setModalOpened(false)} children={<GraffityModal />} 
+          id="canvas" label="Ваше граффити на стену Романа Саныча" 
+          />
+        )}
             <div className="user-wall">
 
               <Micro_header 
-                children='14 записей'
-                secondChildren="Очистить стену"
+                children={`${posts?.length} поста`}
               />
 
               <div className="add-post">
@@ -44,7 +50,7 @@ const AccountWall = () => {
                      />
                 </form>
                 
-                <Attachments />
+                <Attachments setCanvasOpen={() => setModalOpened(true)}/>
                   
                   
               </div>

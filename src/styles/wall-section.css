@@ -77,8 +77,6 @@
 
     .text-content {
       display: flex;
-      
-      
       font-size: 12px;
       flex-direction: column;
       gap: 10px;
