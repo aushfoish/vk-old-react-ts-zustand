@@ -22,7 +22,7 @@ interface userPostsState {
     userFetch: () => Promise<void>
     postsConsoleLog: (posts: UserPosts) => void
     sendPost: () => Promise<void>
-    inputPost: (e: React.InputEvent<HTMLInputElement>) => void
+    inputPost: (e: React.ChangeEvent<HTMLInputElement>) => void
     isSending: boolean,
     userName: string | null,
     userPic: null | string,
@@ -31,14 +31,15 @@ interface userPostsState {
     postIsEmpty: boolean
     isTyping: boolean
     inputState: string | null
+    authorization: (username: string, userpic: string) => void
 }
 
 export const userPostsFetch = create<userPostsState>((set, get) => ({
     posts: null,
     isLoading: false,
     isSending: false,
-    userName: "Роман Александрович",
-    userPic: "https://sun9-13.vkuserphoto.ru/s/v1/ig2/ono56hzBc6yurnXRaowVEk7j4q2KsrfLImzBg8024ugPBTeJTwTlkFQzbYUASX5C5uj7KEFyRthLBUjdAFppsyFc.jpg?quality=95&crop=150,109,357,357&as=32x32,48x48,72x72,108x108,160x160,240x240&ava=1&u=IuElQeStD_SsXfaohFE0ighha-xa26Ji4_lJ0me1iNE&cs=50x50",
+    userName: "Гнусный гомик без имени",
+    userPic: "https://sun9-6.vkuserphoto.ru/s/v1/ig2/54SR7msx6f58JZT2-i2wea5Mke8SYDKsnshqkvBhG-LtuhSP6IOw_KekysBOEXsknBnKaMhlllIgjQazCeSXSMxq.jpg?quality=95&as=32x32,48x48,50x50&from=bu&u=fU5yKYq-fDLNlmgDckVoeQgHZ9xBB2hOoFrj0FvN1_E&cs=50x0",
     contentText: null,
     contentPicture: null,
     postIsEmpty: true,
@@ -120,15 +121,20 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         }}
     },
 
-    inputPost: (e: React.InputEvent<HTMLInputElement>) => {
+    inputPost: (e: React.ChangeEvent<HTMLInputElement>) => {
         set({isTyping: true})
         const postText = (e.currentTarget.value).trim()
+        console.log(postText)
         set({contentText: postText, inputState: postText})
         // setTimeout(() => {
         //     console.log(postText)
         // }, 4000);
         
     },
+
+    authorization: (username, userpic) => {
+        set({userName:username, userPic:userpic})
+    }
 
 
 }))

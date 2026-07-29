@@ -45,7 +45,7 @@ const AccountWall = () => {
                     label='Введите новый пост'
                     onFocus={() => setInputFocused(true)}
                     onBlur={() => setInputFocused(false)}
-                    onInput={inputPost}
+                    onChange={inputPost}
                     
                      />
                 </form>
