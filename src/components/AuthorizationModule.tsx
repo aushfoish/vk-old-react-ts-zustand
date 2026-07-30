@@ -91,7 +91,7 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
             children="Зарегистрироваться"
             
             />
-            <button type='button' className="modal-close-button option" onClick={() => {anonymous(), onClose()} }>Не буду регаться, иди нахуй</button>
+            <button type='button' className="modal-close-button option" onClick={() => {anonymous(), onClose()} }>Не буду регаться</button>
         </form>
     )
 }
