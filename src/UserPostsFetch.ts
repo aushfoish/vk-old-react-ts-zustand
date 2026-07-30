@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
-interface UserPosts {
+export interface UserPosts {
     id: number,
     content: string,
     date: string
     username: string | null,
-    userPictureSrc: string | null,
+    userPictureSrc: string,
     imageContentSrc: string
 }
 
@@ -22,7 +22,7 @@ interface userPostsState {
     userFetch: () => Promise<void>
     postsConsoleLog: (posts: UserPosts) => void
     sendPost: () => Promise<void>
-    inputPost: (e: React.InputEvent<HTMLInputElement>) => void
+    inputPost: (e: React.ChangeEvent<HTMLInputElement>) => void
     isSending: boolean,
     userName: string | null,
     userPic: null | string,
@@ -31,24 +31,48 @@ interface userPostsState {
     postIsEmpty: boolean
     isTyping: boolean
     inputState: string | null
+    authorization: (username?: string, userpic?: string) => void,
+    authCheck: () => void
+    anonymous: () => void
+    userIsLogged: boolean,
 }
 
 export const userPostsFetch = create<userPostsState>((set, get) => ({
     posts: null,
     isLoading: false,
     isSending: false,
-    userName: "Роман Александрович",
-    userPic: "https://sun9-13.vkuserphoto.ru/s/v1/ig2/ono56hzBc6yurnXRaowVEk7j4q2KsrfLImzBg8024ugPBTeJTwTlkFQzbYUASX5C5uj7KEFyRthLBUjdAFppsyFc.jpg?quality=95&crop=150,109,357,357&as=32x32,48x48,72x72,108x108,160x160,240x240&ava=1&u=IuElQeStD_SsXfaohFE0ighha-xa26Ji4_lJ0me1iNE&cs=50x50",
+    userName: "я не залогинился",
+    userPic: "https://sun9-46.vkuserphoto.ru/s/v1/ig2/ujXhE-AqH4NX91xx7FKgWgJpuOvih28q-1QDO7lZL9PV1QLV_r8cRaBkt-6IyN1eEH_7WhCah_E2fcga2zeaG6WF.jpg?quality=95&as=32x33,40x41&from=bu&u=btLgeCMMxvOpDWSa8seGN6cvU620O6hB1rMCYTTNkm8&cs=40x0",
+    userIsLogged: false,
     contentText: null,
     contentPicture: null,
     postIsEmpty: true,
     isTyping: false,
     inputState: null,
 
+    
+    authorization: (username, userpic) => {
+            set({userName:username, userPic:userpic, userIsLogged: true})
+            const userAuthorization = {'userName': username, "userPic": userpic, "userIsLogged": true}
+            localStorage.setItem('userdata', JSON.stringify(userAuthorization))
+    },
+
+    authCheck: () => {
+        const savedData = localStorage.getItem('userdata')
+        if (savedData) {
+            const dataParse = JSON.parse(savedData)
+            set({userName: dataParse.userName, userPic: dataParse.userPic, userIsLogged: dataParse.userIsLogged})
+        }
+    },
+    
+    anonymous: () => {
+        set({userName: "я не залогинился", userPic: "https://sun9-46.vkuserphoto.ru/s/v1/ig2/ujXhE-AqH4NX91xx7FKgWgJpuOvih28q-1QDO7lZL9PV1QLV_r8cRaBkt-6IyN1eEH_7WhCah_E2fcga2zeaG6WF.jpg?quality=95&as=32x33,40x41&from=bu&u=btLgeCMMxvOpDWSa8seGN6cvU620O6hB1rMCYTTNkm8&cs=40x0", userIsLogged: false})
+    },
+
 
     userFetch: async() => {
         try {
-            const {postsConsoleLog} = get()
+            
             set ({isLoading: true})
             const response = await fetch('https://tyekwqioulapfagzpswr.supabase.co/rest/v1/posts?order=date.desc', {
                 method: 'GET',
@@ -62,7 +86,6 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
                 throw new Error('Ошибка: не удалось получить данные о постах')
             }
             const data = await response.json()
-            postsConsoleLog(data)
             set({posts: data, isLoading: false})
         } catch (error) {
             console.error('Ошибка при получении данных:', error)
@@ -120,9 +143,10 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         }}
     },
 
-    inputPost: (e: React.InputEvent<HTMLInputElement>) => {
+    inputPost: (e: React.ChangeEvent<HTMLInputElement>) => {
         set({isTyping: true})
         const postText = (e.currentTarget.value).trim()
+        console.log(postText)
         set({contentText: postText, inputState: postText})
         // setTimeout(() => {
         //     console.log(postText)

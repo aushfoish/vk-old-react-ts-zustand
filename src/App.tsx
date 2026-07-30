@@ -8,13 +8,12 @@ import AudioPage from './components/AudioPage'
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
 import { AudioMainpageVidget } from './components/Audioplayer/AudioMainpageVidget'
 import { GraffityModal } from './components/GraffityPaint/GraffityModal'
-import { ModalWindow } from './components/ModalWindow/ModalWindow'
-import Button from './components/Interface_parts/Button'
+
 
 
 const MainLayout = () => {
   const [vidgetOpened, setVidgetOpened] = useState(false)
-  const [modalOpened, setModalOpened] = useState(false)
+  // const [modalOpened, setModalOpened] = useState(false)
 
 
   
@@ -23,14 +22,7 @@ const MainLayout = () => {
     <>
       <AppHeader onClick={() => {vidgetOpened === false ? setVidgetOpened(true) : setVidgetOpened(false) }}/>
       {vidgetOpened === true && (<AudioMainpageVidget />)}
-      {modalOpened === true && 
-        (<ModalWindow onCloseModal={() => setModalOpened(false)} children={<GraffityModal />} 
-          id="canvas" label="Ваше граффити на стену Романа Саныча" 
-          footer={<Button className="button" children="Прикрепить" 
-                  onClick={() => {confirm('Вы действительно хотите очистить холст? Рисунок будет стёрт')}}
-                  />
-          }/>
-        )}
+      
 
       <div className='main-section'>
         <AppAside />

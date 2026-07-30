@@ -1,11 +1,13 @@
 import AccountSection from "./AccountPage"
 import AccountTitle from "./AccountTitle"
 import { userInfoFetch } from "../UserProfileFetch"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { MainPageAuthorization } from "./MainPageAuthorization"
 
 const UserPage = () => {
 
     const {profile, isLoading, fetchName} = userInfoFetch()
+    const [modalClosed, setModalClosed] = useState(false)
 
     
        useEffect(() => {
@@ -22,6 +24,7 @@ const UserPage = () => {
 
     return (
         <>
+            { modalClosed === false && (<MainPageAuthorization onCloseModal={() =>setModalClosed(true)}/>)}
             <AccountTitle />
 
             <AccountSection />

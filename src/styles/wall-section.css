@@ -10,17 +10,20 @@
 
     /* сам пост */
     .content-post {
-      display: grid;
+      display: flex;
       flex-direction: column;
       width: 100%;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .post-genuinely {
       display: flex;
+      flex-direction: row;
       align-items: flex-start;
       justify-content: space-between;
       gap: 10px;
       width: 100%;
+      max-width: 365px;
     }
     .userpic-post {
       width: 50px;
@@ -32,10 +35,12 @@
     }
     .username {
       display: flex;
+      width: 100%;
       font-size: 12px;
       font-weight: bold;
       color: #325581;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
     .user-text-content {
       display: grid;
@@ -51,6 +56,7 @@
     .like-share-date {
       display: flex;
       font-size: 10px;
+      flex-wrap: wrap;
      align-items: center;
      width: 100%;
      justify-content: space-between;
@@ -68,17 +74,17 @@
     }
 
     .user-content {
+      display: flex;
       text-align: left;
       font-size: 12px;
       flex-wrap: wrap;
+      max-width: 520px;
       margin: 0; 
       gap: 10px;
     }
 
     .text-content {
       display: flex;
-      
-      
       font-size: 12px;
       flex-direction: column;
       gap: 10px;

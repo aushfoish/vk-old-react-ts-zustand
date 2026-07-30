@@ -1,5 +1,4 @@
 import type React from "react"
-import { ModalFooter } from "./ModalFooter"
 
 interface ModalWindowProps {
     children: React.ReactNode
@@ -12,7 +11,7 @@ interface ModalWindowProps {
 export const ModalWindow = (props:ModalWindowProps) => {
 
     const {
-        children, label, id, footer, onCloseModal
+        children, label, id, onCloseModal
     } = props
 
     return (
@@ -24,8 +23,7 @@ export const ModalWindow = (props:ModalWindowProps) => {
                         <button className="modal-close-button" onClick={onCloseModal}>Закрыть</button>
                     </div>
                     {children}
-                    <ModalFooter 
-                    footer={footer}/>
+                    
                 </div>
             </div>
         </div>
