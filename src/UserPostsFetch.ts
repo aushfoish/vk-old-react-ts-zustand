@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface UserPosts {
+export interface UserPosts {
     id: number,
     content: string,
     date: string
@@ -31,7 +31,11 @@ interface userPostsState {
     postIsEmpty: boolean
     isTyping: boolean
     inputState: string | null
-    authorization: (username: string, userpic: string) => void
+    authorization: (username?: string, userpic?: string) => void,
+    authCheck: () => void
+    anonymous: () => void
+    userIsLogged: boolean,
+    uploadAndProceedPicture: (blob: Blob | null, bucket: string, extension: string) => Promise<void>
 }
 
 export const userPostsFetch = create<userPostsState>((set, get) => ({
@@ -40,16 +44,36 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
     isSending: false,
     userName: "я не залогинился",
     userPic: "https://sun9-46.vkuserphoto.ru/s/v1/ig2/ujXhE-AqH4NX91xx7FKgWgJpuOvih28q-1QDO7lZL9PV1QLV_r8cRaBkt-6IyN1eEH_7WhCah_E2fcga2zeaG6WF.jpg?quality=95&as=32x33,40x41&from=bu&u=btLgeCMMxvOpDWSa8seGN6cvU620O6hB1rMCYTTNkm8&cs=40x0",
+    userIsLogged: false,
     contentText: null,
     contentPicture: null,
     postIsEmpty: true,
     isTyping: false,
     inputState: null,
 
+    
+    authorization: (username, userpic) => {
+            set({userName:username, userPic:userpic, userIsLogged: true})
+            const userAuthorization = {'userName': username, "userPic": userpic, "userIsLogged": true}
+            localStorage.setItem('userdata', JSON.stringify(userAuthorization))
+    },
+
+    authCheck: () => {
+        const savedData = localStorage.getItem('userdata')
+        if (savedData) {
+            const dataParse = JSON.parse(savedData)
+            set({userName: dataParse.userName, userPic: dataParse.userPic, userIsLogged: dataParse.userIsLogged})
+        }
+    },
+    
+    anonymous: () => {
+        set({userName: "я не залогинился", userPic: "https://sun9-46.vkuserphoto.ru/s/v1/ig2/ujXhE-AqH4NX91xx7FKgWgJpuOvih28q-1QDO7lZL9PV1QLV_r8cRaBkt-6IyN1eEH_7WhCah_E2fcga2zeaG6WF.jpg?quality=95&as=32x33,40x41&from=bu&u=btLgeCMMxvOpDWSa8seGN6cvU620O6hB1rMCYTTNkm8&cs=40x0", userIsLogged: false})
+    },
+
 
     userFetch: async() => {
         try {
-            const {postsConsoleLog} = get()
+            
             set ({isLoading: true})
             const response = await fetch('https://tyekwqioulapfagzpswr.supabase.co/rest/v1/posts?order=date.desc', {
                 method: 'GET',
@@ -63,7 +87,6 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
                 throw new Error('Ошибка: не удалось получить данные о постах')
             }
             const data = await response.json()
-            postsConsoleLog(data)
             set({posts: data, isLoading: false})
         } catch (error) {
             console.error('Ошибка при получении данных:', error)
@@ -132,9 +155,33 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         
     },
 
-    authorization: (username, userpic) => {
-        set({userName:username, userPic:userpic})
+
+    uploadAndProceedPicture: async(blob, bucket, extension) => {
+        
+        if (blob !== null) {
+            try {
+                const mime = extension === 'jpg' ? 'image/jpeg' : 'image/png'
+                const blobName = `${crypto.randomUUID()}.${extension}`
+                const blobUrl = `${bucket}/${blobName}`
+                const response = await fetch(blobUrl, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': 'sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y',
+                        'Authorization': 'Bearer sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y',
+                        'Content-Type': mime,
+                    },
+                    body: blob
+                })
+                if (!response.ok) {
+                    throw new Error(`Ошибка загрузки изображения: ${response.status}`)
+                }
+                if (response.ok) {
+                    set({userPic: blobUrl})
+                } 
+                    
+            } catch {
+
+            }
+        }
     }
-
-
 }))

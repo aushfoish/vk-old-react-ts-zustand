@@ -25,7 +25,8 @@
       width: 100%;
       justify-content: space-between;
       box-sizing: border-box;
-      padding-block: 6px
+      padding-block: 6px;
+      flex-wrap: wrap;
     }
     
     .image-row img {

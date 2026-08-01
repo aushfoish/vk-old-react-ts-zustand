@@ -1,5 +1,5 @@
-import { AuthorizationModule } from "./AuthorizationModule"
-import { ModalWindow } from "./ModalWindow/ModalWindow"
+import { AuthModal } from "./Auth.tsx/AuthModal"
+
 
 interface MainPageAuthorizationProps {
     onCloseModal: () => void
@@ -14,11 +14,6 @@ export const MainPageAuthorization = (props:MainPageAuthorizationProps) => {
     } = props
 
     return (
-        <ModalWindow 
-            id='authorization'
-            children={<AuthorizationModule />}
-            label="Регистрация"
-            onCloseModal={onCloseModal}
-        />
+        <AuthModal onClose={onCloseModal} />
     )
 }

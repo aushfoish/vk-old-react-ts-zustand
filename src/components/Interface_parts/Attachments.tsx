@@ -1,5 +1,4 @@
 
-import { userPostsFetch } from "../../UserPostsFetch"
 import AudioButton from "../Audioplayer/AudioButton"
 import Button from "./Button"
 
@@ -13,14 +12,16 @@ const {
   setCanvasOpen
 } = props
 
-const {sendPost} = userPostsFetch()
+
+    
 
     return (
         <div className="post-attachments-add-button">
                   <Button 
+                    type="submit"
                     className="post" 
                     children='Опубликовать'
-                    onClick={sendPost}/>
+                    />
 
                   <div className="post-attachments">
                     
