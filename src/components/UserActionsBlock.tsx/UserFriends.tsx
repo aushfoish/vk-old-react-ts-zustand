@@ -1,5 +1,5 @@
 
-import { FriendsOnlineBlock } from "./FriendsOnlineBlock"
+// import { FriendsOnlineBlock } from "./FriendsOnlineBlock"
 import { UserFriendsOnline } from "./UserFriendsOnline"
 
 const UserFriends = () => {
@@ -9,7 +9,7 @@ const UserFriends = () => {
               <UserFriendsOnline 
               />
 
-            <FriendsOnlineBlock />
+            {/* <FriendsOnlineBlock /> */}
             
     
 
