@@ -13,8 +13,7 @@ export const AuthModal = (props:AuthModalProps) => {
             <div className="modal-wrapper">
                 <div className="modal-content">
                     <div className="window-upper-border">
-                        <p className="window-label"></p>
-                        <button className="modal-close-button" onClick={onClose}>Закрыть</button>
+                        <p className="window-label">Добровольная авторизация</p>
                     </div>
                     <AuthorizationModule onClose={onClose}/>
                     
