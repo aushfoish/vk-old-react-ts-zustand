@@ -35,7 +35,7 @@ interface userPostsState {
     authCheck: () => void
     anonymous: () => void
     userIsLogged: boolean,
-    uploadAndProceedPicture: (blob: Blob | null, bucket: string, extension: string) => Promise<void>
+    uploadAndProceedPicture: (blob: Blob | null, bucket: string, extension: string, scenario: string) => Promise<void>
 }
 
 export const userPostsFetch = create<userPostsState>((set, get) => ({
@@ -147,7 +147,6 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
     inputPost: (e: React.ChangeEvent<HTMLInputElement>) => {
         set({isTyping: true})
         const postText = (e.currentTarget.value).trim()
-        console.log(postText)
         set({contentText: postText, inputState: postText})
         // setTimeout(() => {
         //     console.log(postText)
@@ -156,8 +155,8 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
     },
 
 
-    uploadAndProceedPicture: async(blob, bucket, extension) => {
-        
+    uploadAndProceedPicture: async(blob, bucket, extension, scenario) => {
+        const {sendPost} = get()
         if (blob !== null) {
             try {
                 const mime = extension === 'jpg' ? 'image/jpeg' : 'image/png'
@@ -176,7 +175,14 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
                     throw new Error(`Ошибка загрузки изображения: ${response.status}`)
                 }
                 if (response.ok) {
-                    set({userPic: blobUrl})
+                    if (scenario === 'userpic') {
+                        set({userPic: blobUrl})
+                    }
+                    if (scenario === 'graffity') {
+                        set({contentPicture: blobUrl})
+                        sendPost()
+                    }
+                     
                 } 
                     
             } catch {

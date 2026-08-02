@@ -12,7 +12,8 @@ const Mp3Aside = () => {
     ]
 
     return (
-        <div className="mp3-track-list-aside">
+        <div className="hidden">
+            <div className="mp3-track-list-aside">
 
                   <ul className="navigation-main">
                     {audio_nav.map((item) => 
@@ -34,7 +35,9 @@ const Mp3Aside = () => {
                     </div>
                   </div>
 
+            </div>
         </div>
+       
     )
 }
 

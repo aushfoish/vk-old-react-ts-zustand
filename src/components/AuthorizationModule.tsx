@@ -74,9 +74,10 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
 
             img.onload = () => {
                 ctx?.drawImage(img, 0, 0, 40, 40)
+                const scenario = 'userpic'
                 const imageExt = 'jpg'
                 const bucket = 'https://tyekwqioulapfagzpswr.supabase.co/storage/v1/object/pictures'
-                canvas.toBlob((readyBlob) => {uploadAndProceedPicture(readyBlob, bucket, imageExt)}, 'image/jpeg', 0.8)
+                canvas.toBlob((readyBlob) => {uploadAndProceedPicture(readyBlob, bucket, imageExt, scenario)}, 'image/jpeg', 0.8)
                 
             }
         }

@@ -2,17 +2,18 @@ import { useEffect, useRef, useState } from "react"
 import Button from "../Interface_parts/Button"
 import { GraffityColors } from "./GraffityColors"
 import { ModalFooter } from "../ModalWindow/ModalFooter"
+import { userPostsFetch } from "../../UserPostsFetch"
 
 
 
 export const GraffityModal = () => {
 
 
-    
 
 
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const isDrawing = useRef(false)
+    const uploadAndProceedPicture = userPostsFetch((state) => state.uploadAndProceedPicture)
 
     const [strokeStyle, setStrokeStyle] = useState("#3498db") 
     const [lineWidth, setLinewidth] = useState(50)
@@ -90,11 +91,13 @@ export const GraffityModal = () => {
         const ctx = canvas.getContext('2d')
         if (ctx === null) return
 
-        const drawData = canvas.toDataURL()
-        console.log('data saved', drawData)
-            
+        const scenario = 'graffity'
+        const imageExt = 'png'
+        const bucket = 'https://tyekwqioulapfagzpswr.supabase.co/storage/v1/object/pictures'
+        canvas.toBlob((readyBlob) => {uploadAndProceedPicture(readyBlob, bucket, imageExt, scenario)}, 'image/png', 1.0)
             
     }
+    
 
     return (
         <>
@@ -146,7 +149,7 @@ export const GraffityModal = () => {
                         
                             
                     </div>
-                    <ModalFooter footer={<Button className="post" children="Прикрепить" onClick={ctxSave}/>}/>
+                    <ModalFooter footer={<Button className="post" children="Отправить" onClick={ctxSave}/>}/>
                 </div>
             
         </>

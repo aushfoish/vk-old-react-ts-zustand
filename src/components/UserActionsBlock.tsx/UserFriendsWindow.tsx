@@ -1,31 +1,24 @@
-import FriendsWindowFriends from "./FriendsWindowFriends"
+import { useEffect } from "react"
+import { userInfoFetch } from "../../UserProfileFetch"
 import FriendsWindowHeader from "./FriendsWindowHeader"
+import { FriendsWindowFriendsOnline } from "./FriendsWindowFriendsOnline"
 
-interface UserFriendsWindow {
-    friendsLength: string,
-    label: string,
-    id: string,
-    secondChildren: string,
-}
 
-const UserFriendsWindow = (props:UserFriendsWindow) => {
+export const UserFriendsWindow = () => {
 
-    const {
-        friendsLength,
-        label,
-        id,
-        secondChildren
-    } = props
+    const {fetchFriendsOnline, friendsOnlineCount} = userInfoFetch()
+
+    useEffect(() => {
+        fetchFriendsOnline()
+    }, [])
 
     return (
         <>
             <FriendsWindowHeader 
-                friendsLength={friendsLength}
-                children={label}
-                id={id}
-                secondChildren={secondChildren}/>
+                label='Друзья онлайн'
+                children={`${friendsOnlineCount} друзей онлайн`}/>
 
-            <FriendsWindowFriends />
+            <FriendsWindowFriendsOnline />
         </>
         
     )

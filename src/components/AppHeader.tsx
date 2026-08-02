@@ -1,10 +1,11 @@
 interface AppHeaderProps {
   onClick: (isShowed: boolean) => void
+  onUnauthorize: () => void
 }
 
 const AppHeader = (props:AppHeaderProps) => {
 
-  const {onClick} = props
+  const {onClick, onUnauthorize} = props
 
     return (
     <header className="header-panel">
@@ -15,7 +16,7 @@ const AppHeader = (props:AppHeaderProps) => {
        <nav className="header-buttons">
         <ul className="header-options">
           <li onClick={() => onClick(false)}>музыка</li>
-          <li>выйти</li>
+          <li onClick={() => onUnauthorize()}>выйти</li>
         </ul>
        </nav>
           
