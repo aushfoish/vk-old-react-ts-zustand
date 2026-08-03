@@ -27,14 +27,14 @@ const Input = (props: InputProps) => {
         onFocus,
         onBlur,
         onChange,
-        maxLength
-        
+        maxLength,
+        value
     } = props
 
     return (
         <>
           <label className={`input-label ${className}`} htmlFor={id}>{label}</label>
-          <input className={`input-post ${classInput}`} type={type} id={id}  placeholder={placeholder} maxLength={maxLength} onFocus={onFocus} onBlur={onBlur} onChange={onChange}></input>
+          <input className={`input-post ${classInput}`} type={type} id={id}  placeholder={placeholder} maxLength={maxLength} onFocus={onFocus} onBlur={onBlur} onChange={onChange} value={value}></input>
         </>
         
     )

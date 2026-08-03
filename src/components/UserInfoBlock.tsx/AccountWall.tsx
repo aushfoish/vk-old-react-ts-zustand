@@ -18,6 +18,7 @@ const AccountWall = () => {
 
     const [modalOpened, setModalOpened] = useState(false)
     const [inputFocused, setInputFocused] = useState(false)
+    const setInputPost = userPostsFetch((state) => state.setInputPost)
     const inputPost = userPostsFetch((state) => state.inputPost)
 
     
@@ -46,6 +47,7 @@ const AccountWall = () => {
             const handleSubmit = (e: React.SubmitEvent) => {
               e.preventDefault()
               sendPost()
+              inputPost
             }
 
     return (
@@ -75,8 +77,8 @@ const AccountWall = () => {
                     placeholder="Что у вас нового?"
                     label='Введите новый пост'
                     onFocus={() => setInputFocused(true)}
-                    value=''
-                    onChange={inputPost}
+                    value={inputPost}
+                    onChange={setInputPost}
                      />
                      {inputFocused &&(<Attachments setCanvasOpen={() => setModalOpened(true)}/>)}
                       

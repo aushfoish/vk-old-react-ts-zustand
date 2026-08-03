@@ -22,7 +22,7 @@ interface userPostsState {
     userFetch: () => Promise<void>
     postsConsoleLog: (posts: UserPosts) => void
     sendPost: () => Promise<boolean>
-    inputPost: (e: React.ChangeEvent<HTMLInputElement>) => void
+    setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => void
     isSending: boolean,
     isPostSend: boolean
     userName: string,
@@ -31,7 +31,7 @@ interface userPostsState {
     contentPicture: string
     postIsEmpty: boolean
     isTyping: boolean
-    inputState: string | null
+    inputPost: string
     authorization: (username?: string, userpic?: string) => void,
     authCheck: () => void
     anonymous: () => void
@@ -52,7 +52,7 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
     contentPicture: '',
     postIsEmpty: true,
     isTyping: false,
-    inputState: '',
+    inputPost: '',
 
     
     authorization: (username, userpic) => {
@@ -104,17 +104,17 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
     },
 
     sendPost: async() => {
-        const {userName, userPic, userFetch, contentPicture, inputState} = get()
+        const {userName, userPic, userFetch, contentPicture, inputPost} = get()
         
         const newPost:PostToSend = {
-            content: inputState, 
+            content: inputPost, 
             username: userName, 
             userPictureSrc: userPic,
             imageContentSrc: contentPicture
         }
-        const textOnly = ((inputState !== '') && !contentPicture)
-        const pictureOnly = ((!inputState) && contentPicture !== '')
-        const noContent = (inputState === '' && contentPicture === '')
+        const textOnly = ((inputPost !== '') && !contentPicture)
+        const pictureOnly = ((!inputPost) && contentPicture !== '')
+        const noContent = (inputPost === '' && contentPicture === '')
         if (noContent) {
             console.log('ты ни пост не чирканул, ни мемчик не забодяжил, ни граффити не намазал, но пост пытаешься отправить, ты ок вообще?')
             return false;
@@ -135,7 +135,7 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
             })
             if (response.ok) {
                 const result = await response.json()
-                set({isSending: false, isPostSend: true, inputState: '', contentPicture: ''});
+                set({isSending: false, isPostSend: true, inputPost: '', contentPicture: ''});
                 console.log("пост отправлен:", result)
                 await userFetch()
                 return true
@@ -157,15 +157,10 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         set({isPostSend: false})
     },
 
-    inputPost: (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {isPostSend} = get()
-        let postText = e.currentTarget.value.trim()
-
-        set({contentText: postText, inputState: postText})
-        if (isPostSend === true) {
-            postText = ''
-            set({inputState: postText})
-        }
+    setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => {
+        const postText = e.target.value
+        set({contentText: postText, inputPost: postText})
+        
         // setTimeout(() => {
         //     console.log(postText)
         // }, 4000);
