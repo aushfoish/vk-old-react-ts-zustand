@@ -1,11 +1,9 @@
 import type React from "react"
-import Micro_header from "../Interface_parts/Micro_header"
+import { ActionsMicroHeader } from "./ActionsMicroHeader"
 
 interface FriendsWindowHeaderProps {
     children: React.ReactNode,
-    friendsLength: string,
-    id: string,
-    secondChildren: string,
+    label: string
     
 }
 
@@ -13,20 +11,18 @@ const FriendsWindowHeader = (props:FriendsWindowHeaderProps) => {
 
     const {
         children,
-        friendsLength,
-        id,
-        secondChildren
+        label
     } = props
 
     return (
-        <div className="friendlist-header" id={id}>
+        <div className="friendlist-header">
 
-                <Micro_header 
-                    children={children}
-                    secondChildren={secondChildren}/>
+                <ActionsMicroHeader
+                    label={label}
+/>
 
                 <div className="friends-counter">
-                    <a href="#" className="friendlist-counter" id="friends-count">{friendsLength}</a>
+                    <a href="#" className="friendlist-counter" id="friends-count">{children}</a>
                 </div>
 
         </div>

@@ -35,14 +35,23 @@
     transition: opacity 0.3s, transform 0.3s;
 }
 
+
+
+.authorization-inputs-container {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
 .window-upper-border {
     display: flex;
     background-color: #517398;
     max-height: 50px;
     max-width: 600px;
+    width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    padding: 8px 12px 8px 12px;
+    padding: 8px 9px 8px 12px;
 }
 .window-upper-border p{
     color: white;

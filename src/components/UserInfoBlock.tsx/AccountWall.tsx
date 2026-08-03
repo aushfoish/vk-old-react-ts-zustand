@@ -18,7 +18,6 @@ const AccountWall = () => {
 
     const [modalOpened, setModalOpened] = useState(false)
     const [inputFocused, setInputFocused] = useState(false)
-    // const [text, setText] = useState('')
     const inputPost = userPostsFetch((state) => state.inputPost)
 
     
@@ -52,7 +51,7 @@ const AccountWall = () => {
     return (
         <>
         {modalOpened === true && 
-        (<ModalWindow onCloseModal={() => setModalOpened(false)} children={<GraffityModal />} 
+        (<ModalWindow onCloseModal={() => setModalOpened(false)} children={<GraffityModal onCloseModal={() => setModalOpened(false)}/>} 
           id="canvas" label="Ваше граффити на стену Романа Саныча" 
           />
         )}

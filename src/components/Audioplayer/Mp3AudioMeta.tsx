@@ -9,7 +9,7 @@ const Mp3AudioMeta = () => {
                   <AudioInput
                     id='chrono'
                     type='range'
-                    label='Громкость воспроизведения'
+                    label='Хронометраж аудиокомпозиции'
                   />
         </div>
     )

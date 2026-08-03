@@ -9,4 +9,5 @@
 @import "user-profile-interactions.css";
 @import "user-profile-friends-block.css";
 @import "modal.css";
-@import "graffity-window.css"
+@import "graffity-window.css";
+@import "auth-window.css"

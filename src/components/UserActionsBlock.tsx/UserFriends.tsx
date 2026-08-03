@@ -1,20 +1,18 @@
-import UserFriendsWindow from "./UserFriendsWindow"
+
+// import { FriendsOnlineBlock } from "./FriendsOnlineBlock"
+import { UserFriendsOnline } from "./UserFriendsOnline"
 
 const UserFriends = () => {
     return (
         <div className="friends-block">
 
-              <UserFriendsWindow 
-              label="Друзья"
-              secondChildren="новости"
-              friendsLength={`${25} друзей`}
-              id='friends-in-common'/>
+              <UserFriendsOnline 
+              />
 
-              <UserFriendsWindow 
-              label='Друзья онлайн'
-              secondChildren=""
-              friendsLength={`${14} друзей онлайн`}
-              id='friends-online'/>
+            {/* <FriendsOnlineBlock /> */}
+            
+    
+
         </div>
     )
 }

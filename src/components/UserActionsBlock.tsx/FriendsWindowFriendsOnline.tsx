@@ -2,19 +2,19 @@ import { useEffect } from "react"
 import { userInfoFetch } from "../../UserProfileFetch"
 import FriendItem from "./FriendItem"
 
-const FriendsWindowFriends = () => {
+export const FriendsWindowFriendsOnline = () => {
 
-    const { fetchFriends, friendsArray} = userInfoFetch()
+    const {fetchFriendsOnline, friendsOnlineArray} = userInfoFetch()
 
     useEffect(() => {
-        fetchFriends()
+        fetchFriendsOnline()
     }, [])
 
 
 
     return (
         <div className="friendlist">
-            {friendsArray?.map((friend) => (
+            {friendsOnlineArray?.map((friend) => (
                 <FriendItem
                     key={friend.id} 
                     name={friend.name}
@@ -27,4 +27,3 @@ const FriendsWindowFriends = () => {
     )
 }
 
-export default FriendsWindowFriends

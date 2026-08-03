@@ -8,6 +8,8 @@ interface InputProps {
     onBlur?: (e: React.FocusEvent) => void,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     value?: string
+    classInput?: string
+    maxLength?: number
     
 }
 
@@ -20,17 +22,19 @@ const Input = (props: InputProps) => {
         id,
         label,
         className,
+        classInput,
         type,
         onFocus,
         onBlur,
         onChange,
+        maxLength
         
     } = props
 
     return (
         <>
-        <label className={`input-label ${className}`} htmlFor={id}>{label}</label>
-        <input className="input-post" type={type} id={id}  placeholder={placeholder} onFocus={onFocus} onBlur={onBlur} onChange={onChange}></input>
+          <label className={`input-label ${className}`} htmlFor={id}>{label}</label>
+          <input className={`input-post ${classInput}`} type={type} id={id}  placeholder={placeholder} maxLength={maxLength} onFocus={onFocus} onBlur={onBlur} onChange={onChange}></input>
         </>
         
     )

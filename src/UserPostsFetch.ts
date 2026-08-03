@@ -21,13 +21,14 @@ interface userPostsState {
     isLoading: boolean,
     userFetch: () => Promise<void>
     postsConsoleLog: (posts: UserPosts) => void
-    sendPost: () => Promise<void>
+    sendPost: () => Promise<boolean>
     inputPost: (e: React.ChangeEvent<HTMLInputElement>) => void
     isSending: boolean,
-    userName: string | null,
-    userPic: null | string,
-    contentText: string | null
-    contentPicture: string | null
+    isPostSend: boolean
+    userName: string,
+    userPic: string,
+    contentText: string
+    contentPicture: string
     postIsEmpty: boolean
     isTyping: boolean
     inputState: string | null
@@ -35,20 +36,23 @@ interface userPostsState {
     authCheck: () => void
     anonymous: () => void
     userIsLogged: boolean,
+    uploadAndProceedPicture: (blob: Blob | null, bucket: string, extension: string, scenario: string) => Promise<boolean>
+    resetSendStatus: () => void
 }
 
 export const userPostsFetch = create<userPostsState>((set, get) => ({
-    posts: null,
+    posts: [],
     isLoading: false,
     isSending: false,
-    userName: "я не залогинился",
-    userPic: "https://sun9-46.vkuserphoto.ru/s/v1/ig2/ujXhE-AqH4NX91xx7FKgWgJpuOvih28q-1QDO7lZL9PV1QLV_r8cRaBkt-6IyN1eEH_7WhCah_E2fcga2zeaG6WF.jpg?quality=95&as=32x33,40x41&from=bu&u=btLgeCMMxvOpDWSa8seGN6cvU620O6hB1rMCYTTNkm8&cs=40x0",
+    isPostSend: false,
+    userName: 'Я не залогинился',
+    userPic: '',
     userIsLogged: false,
-    contentText: null,
-    contentPicture: null,
+    contentText: '',
+    contentPicture: '',
     postIsEmpty: true,
     isTyping: false,
-    inputState: null,
+    inputState: '',
 
     
     authorization: (username, userpic) => {
@@ -100,18 +104,20 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
     },
 
     sendPost: async() => {
-        const {userName, userPic, userFetch, contentText, contentPicture, inputState} = get()
+        const {userName, userPic, userFetch, contentPicture, inputState} = get()
+        
         const newPost:PostToSend = {
             content: inputState, 
             username: userName, 
             userPictureSrc: userPic,
             imageContentSrc: contentPicture
         }
-        const textOnly = ((contentText) && !contentPicture)
-        const pictureOnly = ((!contentText) && contentPicture !== null)
-        const noContent = (!contentText && !contentPicture)
+        const textOnly = ((inputState !== '') && !contentPicture)
+        const pictureOnly = ((!inputState) && contentPicture !== '')
+        const noContent = (inputState === '' && contentPicture === '')
         if (noContent) {
             console.log('ты ни пост не чирканул, ни мемчик не забодяжил, ни граффити не намазал, но пост пытаешься отправить, ты ок вообще?')
+            return false;
         }
         if (textOnly || pictureOnly) {
             try {
@@ -129,9 +135,10 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
             })
             if (response.ok) {
                 const result = await response.json()
-                console.log("пост отправлен, ты хоть видал чё ты там из себя выдавил? на, полюбуйся ещё раз:", result)
-                set({isSending: false, inputState: ''});
-                userFetch()
+                set({isSending: false, isPostSend: true, inputState: '', contentPicture: ''});
+                console.log("пост отправлен:", result)
+                await userFetch()
+                return true
             }
             
             if (!response.ok) {
@@ -140,14 +147,25 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
             
         } catch (error) {
             console.error('Иосиф Виссарионович, произошла ЧУДОВИЩНАЯ ошибка!!!:', error)
+            set({isSending: false})
+            return false
         }}
+        return false
+    },
+
+    resetSendStatus: () => {
+        set({isPostSend: false})
     },
 
     inputPost: (e: React.ChangeEvent<HTMLInputElement>) => {
-        set({isTyping: true})
-        const postText = (e.currentTarget.value).trim()
-        console.log(postText)
+        const {isPostSend} = get()
+        let postText = e.currentTarget.value.trim()
+
         set({contentText: postText, inputState: postText})
+        if (isPostSend === true) {
+            postText = ''
+            set({inputState: postText})
+        }
         // setTimeout(() => {
         //     console.log(postText)
         // }, 4000);
@@ -155,4 +173,43 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
     },
 
 
+    uploadAndProceedPicture: async(blob, bucket, extension, scenario) => {
+        const {sendPost} = get()
+        if (blob !== null) {
+            try {
+                const mime = extension === 'jpg' ? 'image/jpeg' : 'image/png'
+                const blobName = `${crypto.randomUUID()}.${extension}`
+                const blobUrl = `${bucket}/${blobName}`
+                const response = await fetch(blobUrl, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': 'sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y',
+                        'Authorization': 'Bearer sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y',
+                        'Content-Type': mime,
+                    },
+                    body: blob
+                })
+                if (!response.ok) {
+                    throw new Error(`Ошибка загрузки изображения: ${response.status}`)
+                }
+                if (response.ok) {
+                    if (scenario === 'userpic') {
+                        set({userPic: blobUrl})
+                        return true
+                    }
+                    if (scenario === 'graffity') {
+                        set({contentPicture: blobUrl})
+                        const isPostCreated = await sendPost()
+                        return isPostCreated
+                    }
+                     
+                } 
+                    
+            } catch (error) {
+                console.error('Ошибка в uploadAndProceedPicture:', error)
+                return false;   
+            }
+        }
+        return false
+    }
 }))

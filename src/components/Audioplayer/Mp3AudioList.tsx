@@ -27,7 +27,7 @@ const Mp3AudioList = () => {
                             band={track.band}
                             audioSrc={track.src}
                             playOnClick={() => trackPlay(track)}
-                            time={track.duration ?? '0'}/>)))}
+                            time={track.duration ?? '--/--'}/>)))}
                             
                         
                 </div>

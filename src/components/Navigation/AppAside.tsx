@@ -16,7 +16,7 @@ const AppAside = () => {
   { id: 'my-page', label: 'Моя Страница' },
   { id: 'my-audio', label: 'Мои Аудиозаписи' },
 //   { id: 'my-communities', label: 'Мои Группы' },
-  { id: 'my-feed', label: 'Мои Новости' },
+//   { id: 'my-feed', label: 'Мои Новости' },
 //   { id: 'my-applications', label: 'Приложения' },
   
 
