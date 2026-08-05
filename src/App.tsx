@@ -53,9 +53,7 @@ const router = createHashRouter([
       { path: 'my-audio', element: <AudioPage /> },
     ]
   }
-], {
-  basename: '/vk-old-react-ts-zustand'
-});
+], );
 
 
 function App() {
