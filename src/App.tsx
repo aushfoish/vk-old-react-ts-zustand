@@ -4,7 +4,7 @@ import AppAside from './components/Navigation/AppAside'
 import AppHeader from './components/AppHeader'
 import UserPage from './components/UserPage'
 import AudioPage from './components/AudioPage'
-import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
+import { createHashRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
 import { AudioMainpageVidget } from './components/Audioplayer/AudioMainpageVidget'
 
 
@@ -41,7 +41,7 @@ const MainLayout = () => {
   )
 }
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: <MainLayout />,
