@@ -20,36 +20,39 @@ interface userPostsState {
     posts: UserPosts[] | null,
     isLoading: boolean,
     userFetch: () => Promise<void>
-    postsConsoleLog: (posts: UserPosts) => void
-    sendPost: () => Promise<void>
-    inputPost: (e: React.ChangeEvent<HTMLInputElement>) => void
+    sendPost: () => Promise<boolean>
+    setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => void
     isSending: boolean,
-    userName: string | null,
-    userPic: null | string,
-    contentText: string | null
-    contentPicture: string | null
+    isPostSend: boolean
+    userName: string,
+    userPic: string,
+    contentText: string
+    contentPicture: string
     postIsEmpty: boolean
     isTyping: boolean
-    inputState: string | null
+    inputPost: string
     authorization: (username?: string, userpic?: string) => void,
     authCheck: () => void
     anonymous: () => void
     userIsLogged: boolean,
-    uploadAndProceedPicture: (blob: Blob | null, bucket: string, extension: string, scenario: string) => Promise<void>
+    uploadAndProceedPicture: (blob: Blob | null, bucket: string, extension: string, scenario: string) => Promise<boolean>
+    resetSendStatus: () => void
 }
 
+
 export const userPostsFetch = create<userPostsState>((set, get) => ({
-    posts: null,
+    posts: [],
     isLoading: false,
     isSending: false,
-    userName: null,
-    userPic: null,
+    isPostSend: false,
+    userName: 'Я не залогинился',
+    userPic: '',
     userIsLogged: false,
-    contentText: null,
-    contentPicture: null,
+    contentText: '',
+    contentPicture: '',
     postIsEmpty: true,
     isTyping: false,
-    inputState: null,
+    inputPost: '',
 
     
     authorization: (username, userpic) => {
@@ -94,25 +97,23 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         }
     },
 
-    postsConsoleLog: (posts) => {
-        if (posts !== null) {
-            console.log(posts)
-        }
-    },
+    
 
     sendPost: async() => {
-        const {userName, userPic, userFetch, contentText, contentPicture, inputState} = get()
+        const {userName, userPic, userFetch, contentPicture, inputPost} = get()
+        
         const newPost:PostToSend = {
-            content: inputState, 
+            content: inputPost, 
             username: userName, 
             userPictureSrc: userPic,
             imageContentSrc: contentPicture
         }
-        const textOnly = ((contentText) && !contentPicture)
-        const pictureOnly = ((!contentText) && contentPicture !== null)
-        const noContent = (!contentText && !contentPicture)
+        const textOnly = ((inputPost !== '') && !contentPicture)
+        const pictureOnly = ((!inputPost) && contentPicture !== '')
+        const noContent = (inputPost === '' && contentPicture === '')
         if (noContent) {
             console.log('ты ни пост не чирканул, ни мемчик не забодяжил, ни граффити не намазал, но пост пытаешься отправить, ты ок вообще?')
+            return false;
         }
         if (textOnly || pictureOnly) {
             try {
@@ -130,9 +131,10 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
             })
             if (response.ok) {
                 const result = await response.json()
-                console.log("пост отправлен, ты хоть видал чё ты там из себя выдавил? на, полюбуйся ещё раз:", result)
-                set({isSending: false, inputState: ''});
-                userFetch()
+                set({isSending: false, isPostSend: true, inputPost: '', contentPicture: ''});
+                console.log("пост отправлен:", result)
+                await userFetch()
+                return true
             }
             
             if (!response.ok) {
@@ -141,13 +143,20 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
             
         } catch (error) {
             console.error('Иосиф Виссарионович, произошла ЧУДОВИЩНАЯ ошибка!!!:', error)
+            set({isSending: false})
+            return false
         }}
+        return false
     },
 
-    inputPost: (e: React.ChangeEvent<HTMLInputElement>) => {
-        set({isTyping: true})
-        const postText = (e.currentTarget.value).trim()
-        set({contentText: postText, inputState: postText})
+    resetSendStatus: () => {
+        set({isPostSend: false})
+    },
+
+    setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => {
+        const postText = e.target.value
+        set({contentText: postText, inputPost: postText})
+        
         // setTimeout(() => {
         //     console.log(postText)
         // }, 4000);
@@ -177,17 +186,25 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
                 if (response.ok) {
                     if (scenario === 'userpic') {
                         set({userPic: blobUrl})
+                        return true
                     }
                     if (scenario === 'graffity') {
                         set({contentPicture: blobUrl})
-                        sendPost()
+                        const isPostCreated = await sendPost()
+                        return isPostCreated
                     }
                      
                 } 
                     
-            } catch {
-
+            } catch (error) {
+                console.error('Ошибка в uploadAndProceedPicture:', error)
+                return false;   
             }
         }
-    }
+        return false
+    },
+
+    
+
+    
 }))

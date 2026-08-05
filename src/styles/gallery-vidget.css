@@ -22,15 +22,16 @@
 
     .image-row {
       display: flex;
+      flex-direction: row;
+      column-gap: 6px;
       width: 100%;
-      justify-content: space-between;
       box-sizing: border-box;
       padding-block: 6px;
       flex-wrap: wrap;
     }
     
     .image-row img {
-      width: 80px;
+      width: 85px;
       height: 60px;
       margin: 0;
       object-fit: cover;

@@ -4,10 +4,16 @@ import { GraffityColors } from "./GraffityColors"
 import { ModalFooter } from "../ModalWindow/ModalFooter"
 import { userPostsFetch } from "../../UserPostsFetch"
 
+interface GraffityModalProps {
+    onCloseModal: (value: boolean) => void
+}
 
 
-export const GraffityModal = () => {
+export const GraffityModal = (props:GraffityModalProps) => {
 
+    const {onCloseModal} = props
+
+    const {resetSendStatus} = userPostsFetch()
 
 
 
@@ -94,9 +100,21 @@ export const GraffityModal = () => {
         const scenario = 'graffity'
         const imageExt = 'png'
         const bucket = 'https://tyekwqioulapfagzpswr.supabase.co/storage/v1/object/pictures'
-        canvas.toBlob((readyBlob) => {uploadAndProceedPicture(readyBlob, bucket, imageExt, scenario)}, 'image/png', 1.0)
+        canvas.toBlob(async (readyBlob) => {
+            const success = await uploadAndProceedPicture(readyBlob, bucket, imageExt, scenario)
+            if (success) {
+                ctxClear()
+                onCloseModal(false)
+                resetSendStatus()
+            } else {
+                alert('ошибка при отправке граффити')
+            }
+        }, 'image/png', 1.0)
+        
+
             
     }
+
     
 
     return (
@@ -149,7 +167,9 @@ export const GraffityModal = () => {
                         
                             
                     </div>
-                    <ModalFooter footer={<Button className="post" children="Отправить" onClick={ctxSave}/>}/>
+                    <ModalFooter footer={<Button className="post" children="Отправить" onClick={() => {
+                        ctxSave()               
+                        }}/>}/>
                 </div>
             
         </>

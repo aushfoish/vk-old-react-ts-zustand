@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import Button from "./Interface_parts/Button"
 import Input from "./Interface_parts/Input"
 import { userPostsFetch } from "../UserPostsFetch"
+import { ErrorMessage } from "./Interface_parts/ErrorMessage"
 
 interface AuthorizationModuleProps {
     onClose: () => void
@@ -20,8 +21,9 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
 
     
 
-    const [username, setUsername] = useState('Меня уронили в детстве и я не вписал имя при авторизации')
-    const [userpic, setUserpic] = useState('https://sun9-47.vkuserphoto.ru/s/v1/ig2/rfOjqk1a0iYxtEfAKCjOo4kI1knPODAoOqdFTAb4_0a-vICXkOqqXgbrsLfre6tKt-A7G1EXkprYNnd1uFyyZ27k.jpg?quality=95&as=32x32,40x40&from=bu&u=lex3t8vsnVkGp_wqpU2osc52wlXoJXzLoeZaL0IPAMo&cs=40x0')
+    const [username, setUsername] = useState('')
+    const [userpic, setUserpic] = useState('')
+    const [error, setError] = useState(false)
 
     const authorization = userPostsFetch((state) => state.authorization)
     const userPic = userPostsFetch((state) => state.userPic)
@@ -40,7 +42,7 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
     }, [])
 
     useEffect(() => {
-        if (userPic !== null) {
+        if (userPic !== '') {
             setUserpic(userPic)
         }
     }, [userPic])
@@ -89,9 +91,12 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
 
     const handleSubmit = (e: React.ChangeEvent<HTMLElement>) => {
         e.preventDefault()
-        const inputsCheck = (username.length > 0 || userpic.length > 0)
+        const inputsCheck = (username !== '' && userpic !== '')
         if (inputsCheck === false) {
-            console.log('либо вводи данные, либо жми другую кнопку')
+            setError(true)
+            setTimeout(() => {
+                setError(false)
+            }, 3000);
         } else if (inputsCheck === true) {
             authorization(username, userpic)
             console.log('шнурки в стакане', username, userpic)
@@ -101,31 +106,47 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
     }
 
     return (
-        <form className="authorization-inputs-container" onSubmit={handleSubmit}>
-            <canvas className='hidden' width={40} height={40} ref={canvasRef}></canvas>
-            <Input 
-                id="username"
-                placeholder="введите ваше имя.."
-                type='text'
-                label='поле ввода имени'
-                className="hidden"
-                value={username}
-                onChange={(e) => setUsername(e.currentTarget.value)}
-                />
-            <Input
-                id="userpic"
-                placeholder="добавьте ваше фото.."
-                type="file"
-                label='поле добавления фото пользователя'
-                className="hidden"
-                onChange={handleFileReader}
-                />
-            <Button type='submit'
-            className="post"
-            children="Зарегистрироваться"
-            
-            />
-            <button type='button' className="modal-close-button option" onClick={() => {anonymous(), onClose()} }>Не буду регаться</button>
-        </form>
+        <>
+            <div className="window-upper-border">Добровольная авторизация</div>
+            <form className="authorization-inputs-container" onSubmit={handleSubmit}>
+                <canvas className='hidden' width={40} height={40} ref={canvasRef}></canvas>
+                <Input 
+                    maxLength={15}
+                    id="username"
+                    placeholder="введите ваше имя.."
+                    type='text'
+                    label='Введите имя'
+                    className="default-label"
+                    value={username}
+                    classInput="auth-input"
+                    onChange={(e) => setUsername(e.currentTarget.value)}
+                    />
+                
+                    <ErrorMessage 
+                        classname={error === true ? 'is-error' : ''}
+                        children='Добавьте имя и фото, либо нажмите в самый низ'
+                        id="auth-error"
+                    />
+                <Input
+                    id="userpic"
+                    placeholder="добавьте ваше фото.."
+                    type="file"
+                    label='Добавьте ваше фото'
+                    className="default-label"
+                    classInput="auth-file"
+                    onChange={handleFileReader}
+                    />
+                <div className="auth-buttons">
+                    <Button type='submit'
+                    className="post"
+                    children="Зарегистрироваться"
+                    />
+
+                    <button type='button' className="modal-close-button option" onClick={() => {anonymous(), onClose()} }>Не буду регаться</button>
+                </div>
+                    
+            </form>
+        </>
+        
     )
 }
