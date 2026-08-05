@@ -110,9 +110,9 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         }
         const textOnly = ((inputPost !== '') && !contentPicture)
         const pictureOnly = ((!inputPost) && contentPicture !== '')
-        const noContent = (inputPost === '' && contentPicture === '')
+        const noContent = (!inputPost.trim() && contentPicture === '')
         if (noContent) {
-            console.log('ты ни пост не чирканул, ни мемчик не забодяжил, ни граффити не намазал, но пост пытаешься отправить, ты ок вообще?')
+            alert('ты ни пост не чирканул, ни мемчик не забодяжил, ни граффити не намазал, но пост пытаешься отправить, ты ок вообще?')
             return false;
         }
         if (textOnly || pictureOnly) {

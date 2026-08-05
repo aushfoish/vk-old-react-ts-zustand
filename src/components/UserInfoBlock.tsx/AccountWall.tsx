@@ -99,7 +99,7 @@ const AccountWall = () => {
 
         const {sendPost} = userPostsFetch()
         
-            const handleSubmit = (e: React.SubmitEvent) => {
+            const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
               e.preventDefault()
               sendPost()
               inputPost
@@ -121,7 +121,7 @@ const AccountWall = () => {
               <div className="add-post">
 
 
-                <form className="post-add-form" onSubmit={handleSubmit} onBlur={(e) => {if (!e.currentTarget.contains(e.relatedTarget)) {
+                <form className="post-add-form" autoComplete="off" onSubmit={handleSubmit} onBlur={(e) => {if (!e.currentTarget.contains(e.relatedTarget)) {
                       e.preventDefault()
                       setInputFocused(false)
                     } }}>
