@@ -6,6 +6,7 @@ import AccountPersonalSpoilerButton from "./AccountPersonalSpoilerButton"
 import AccountWall from "./AccountWall"
 import { useState } from "react"
 import { userInfoFetch } from "../../UserProfileFetch"
+import { AnimatePresence } from "framer-motion"
 
 
 
@@ -30,8 +31,10 @@ const UserInfo = () => {
             
 
             
-                
-            {infoHidden === false && (<AccountPersonalHidden />)}
+            <AnimatePresence>
+                {infoHidden === false && (<AccountPersonalHidden />)}
+            </AnimatePresence>  
+            
             
             <AccountGallery />
 

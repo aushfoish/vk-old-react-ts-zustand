@@ -6,14 +6,18 @@ import { useEffect, useState } from "react"
 import { AccountWallPost } from "../PostItem/AccountWallPost"
 import { ModalWindow } from "../ModalWindow/ModalWindow"
 import { GraffityModal } from "../GraffityPaint/GraffityModal"
+import { AnimatePresence, motion } from "framer-motion"
+
 
 
 
 const AccountWall = () => {
 
   const {posts, userFetch, isLoading} = userPostsFetch()
+  useEffect(()=> {
+    userFetch()
+  }, [userFetch])
   useEffect(() => {
-        userFetch();
 
         // Флаг, который скажет сокету: "Эй, этот рендер уже отменили, ничего не делай!"
         let isCancelled = false; 
@@ -68,7 +72,7 @@ const AccountWall = () => {
                 }
             }
         };
-    }, [userFetch]);
+    }, );
 
 
     const [modalOpened, setModalOpened] = useState(false)
@@ -121,7 +125,7 @@ const AccountWall = () => {
               <div className="add-post">
 
 
-                <form className="post-add-form" autoComplete="off" onSubmit={handleSubmit} onBlur={(e) => {if (!e.currentTarget.contains(e.relatedTarget)) {
+                <motion.form  className="post-add-form" autoComplete="off" onSubmit={handleSubmit} onBlur={(e) => {if (!e.currentTarget.contains(e.relatedTarget)) {
                       e.preventDefault()
                       setInputFocused(false)
                     } }}>
@@ -135,10 +139,14 @@ const AccountWall = () => {
                     value={inputPost}
                     onChange={setInputPost}
                      />
-                     {inputFocused &&(<Attachments setCanvasOpen={() => setModalOpened(true)}/>)}
-                      
-
-                </form>
+                    <AnimatePresence>
+                      {inputFocused &&  (
+                        <Attachments 
+                          setCanvasOpen={() => setModalOpened(true)}
+                        />
+                        )}
+                    </AnimatePresence>
+                </motion.form>
                 
                
                   
@@ -151,16 +159,28 @@ const AccountWall = () => {
             <div className="wall-content">
 
 
-              {!isLoading && posts !== null && (posts.map((post) => 
-              <AccountWallPost 
-                userPicSrc={post.userPictureSrc}
-                key={post.id}
-                id="id"
-                children={post.content}
-                label={`${post.username}`}
-                date={post.date}
-                imgSrc={post.imageContentSrc}
-              />
+              {!isLoading && posts !== null && (posts.map((post) => (
+              <motion.div
+                  key={post.id}
+                  initial={{opacity: 0, y: -40, scale: 0.95}}
+                  animate={{opacity: 1, y: 0, scale: 1}}
+                  transition={{
+                      type: "spring",
+                      stiffness: 120,
+                      damping: 14
+                  }}
+                >
+                <AccountWallPost 
+                  userPicSrc={post.userPictureSrc}
+                  id="id"
+                  children={post.content}
+                  label={`${post.username}`}
+                  date={post.date}
+                  imgSrc={post.imageContentSrc}
+                  />
+              </motion.div>
+              
+            )
               ))
               }
             
