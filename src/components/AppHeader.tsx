@@ -15,7 +15,7 @@ const AppHeader = (props:AppHeaderProps) => {
     <header className="header-panel">
 
        <div className="vklogo-input">
-        <a><span className="header-logo">В</span>КОНТАКТЕ</a>
+        <a><span className="header-logo">В</span>КОННЕКТЕ</a>
         {userIsLogged && (
           <div className="current-user">
             <img className="header-userpic" src={userPic}></img>
