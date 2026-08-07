@@ -1,6 +1,6 @@
-import UserActions from "./UserActionsBlock.tsx/UserActions"
-import UserFriends from "./UserActionsBlock.tsx/UserFriends"
-import UserPicture from "./UserActionsBlock.tsx/UserPicture"
+import {UserActions} from "./UserActionsBlock.tsx/UserActions"
+import {UserFriends} from "./UserActionsBlock.tsx/UserFriends"
+import {UserPicture} from "./UserActionsBlock.tsx/MainPagePicture/UserPicture"
 
 const UserIteractions = () => {
     return (

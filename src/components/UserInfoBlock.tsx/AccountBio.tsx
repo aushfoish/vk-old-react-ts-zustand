@@ -1,24 +1,28 @@
-import { useEffect } from "react"
-import { userInfoFetch } from "../../UserProfileFetch"
+import { selectBio, selectFirstname, selectLastname, userInfoFetch } from "../../UserProfileFetch"
 
 
 
 
 const AccountBio = () => {
 
-    const {profile, isLoading, fetchName} = userInfoFetch()
+    const firstname = userInfoFetch(selectFirstname)
+    const lastname = userInfoFetch(selectLastname)
+    const bioSelector = userInfoFetch(selectBio)
 
-    useEffect(() => {
-        fetchName()
-    }, [fetchName])
+    const fname = firstname || ''
+    const lname = lastname || ''
+    const combinedName = `${fname} ${lname}`.trim()
 
-    const fullName = `${profile?.firstname} ${profile?.lastname}`
+    const fullname = combinedName || "пользователь этой страницы"
+    const bio = bioSelector || "является полным бездарем"
+    
+
     
     return (
         
         <div className="user-name">
-              <h2 className="account-name">{isLoading && !profile ? 'Вот вот узнаем имя пользоватея..' : fullName}</h2>
-              <p className="bio">{isLoading && !profile ? 'щас щас...' : profile?.bio}</p>
+              <h2 className="account-name">{fullname}</h2>
+              <p className="bio">{bio}</p>
         </div>
         
         

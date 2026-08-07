@@ -2,7 +2,7 @@
 // import { FriendsOnlineBlock } from "./FriendsOnlineBlock"
 import { UserFriendsOnline } from "./UserFriendsOnline"
 
-const UserFriends = () => {
+export const UserFriends = () => {
     return (
         <div className="friends-block">
 
@@ -17,4 +17,3 @@ const UserFriends = () => {
     )
 }
 
-export default UserFriends

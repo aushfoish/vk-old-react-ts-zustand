@@ -3,7 +3,7 @@ import Button from "../Interface_parts/Button"
 
 
 
-const UserActions = () => {
+export const UserActions = () => {
 
   const profile = userInfoFetch((state) => state.profile)
   const isLoading = userInfoFetch((state) => state.isLoading)
@@ -74,4 +74,3 @@ const UserActions = () => {
   
 }
 
-export default UserActions

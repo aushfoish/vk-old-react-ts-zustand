@@ -1,18 +1,16 @@
 import PersonalInfo from "./PersonalInfo"
-import { userInfoFetch } from "../../UserProfileFetch"
+import { selectContacts, selectPersonal, userInfoFetch } from "../../UserProfileFetch"
 import { motion } from "framer-motion"
 
 
 export const AccountHiddenBlock = () => {
 
-    const profile = userInfoFetch((state) => state.profile)
-    const isLoading = userInfoFetch((state) => state.isLoading)
-    const profileReady = profile !== null
-    const contactsCheck = profileReady ? profile.contacts.length > 0 : null
-    const personalCheck = profileReady ? profile.personal.length > 0 : null
+    const personalInfo = userInfoFetch(selectPersonal)
+    const contactsInfo = userInfoFetch(selectContacts)
+    
     
 
-    if (profileReady) {
+    if (personalInfo) {
         return (
             <motion.div 
                 className="user-info"
@@ -27,7 +25,7 @@ export const AccountHiddenBlock = () => {
 
                     <h3 className="info-header">Контактная информация</h3>
 
-                    {!isLoading && contactsCheck && (profile.contacts.map((item) => 
+                    {(contactsInfo?.map((item) => 
                         <PersonalInfo 
                             key={item.id}
                             children={item.value}
@@ -46,7 +44,7 @@ export const AccountHiddenBlock = () => {
 
                     <h3 className="info-header">Личная информация</h3>
 
-                        {!isLoading && personalCheck && (profile.personal.map((item) => 
+                        {(personalInfo?.map((item) => 
                         <PersonalInfo 
                             key={item.id}
                             children={item.value}
