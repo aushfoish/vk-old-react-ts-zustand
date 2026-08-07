@@ -112,7 +112,7 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
             <form className="authorization-inputs-container" onSubmit={handleSubmit}>
                 <canvas className='hidden' width={40} height={40} ref={canvasRef}></canvas>
                 <Input 
-                    maxLength={15}
+                    maxLength={25}
                     id="username"
                     placeholder="введите ваше имя.."
                     type='text'
