@@ -1,5 +1,7 @@
 import PersonalInfo from "./PersonalInfo"
 import { userInfoFetch } from "../../UserProfileFetch"
+import { motion } from "framer-motion"
+
 
 export const AccountHiddenBlock = () => {
 
@@ -12,7 +14,13 @@ export const AccountHiddenBlock = () => {
 
     if (profileReady) {
         return (
-            <div className="user-info">
+            <motion.div 
+                className="user-info"
+                initial={{opacity: 0, height: 0}}
+                animate={{opacity: 1, height: 'auto'}}
+                exit={{opacity: 0, height: 0}}
+                style={{overflow: 'hidden'}}
+            >
                 
                 <div className="contacts-info">
 
@@ -52,7 +60,7 @@ export const AccountHiddenBlock = () => {
 
                 </div>
 
-            </div>
+            </motion.div>
             )}
             
 }

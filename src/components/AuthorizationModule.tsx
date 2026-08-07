@@ -66,8 +66,9 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
         }
 
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const canvas = canvasRef.current
     const imageCompression = (userpic: string) => {
+        const canvas = canvasRef.current
+
         if (!canvas) return 
         if (canvas) {
             const ctx = canvas.getContext('2d')
@@ -89,7 +90,7 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
 
     
 
-    const handleSubmit = (e: React.ChangeEvent<HTMLElement>) => {
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         const inputsCheck = (username !== '' && userpic !== '')
         if (inputsCheck === false) {

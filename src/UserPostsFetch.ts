@@ -4,23 +4,22 @@ export interface UserPosts {
     id: number,
     content: string,
     date: string
-    username: string | null,
+    username: string,
     userPictureSrc: string,
     imageContentSrc: string
 }
 
 interface PostToSend {
-    content: string | null,
-    username: string | null,
-    userPictureSrc: string | null,
-    imageContentSrc: string | null
+    content: string,
+    username: string,
+    userPictureSrc: string,
+    imageContentSrc: string
 }
 
 interface userPostsState {
-    posts: UserPosts[] | null,
+    posts: UserPosts[] | [],
     isLoading: boolean,
     userFetch: () => Promise<void>
-    postsConsoleLog: (posts: UserPosts) => void
     sendPost: () => Promise<boolean>
     setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => void
     isSending: boolean,
@@ -38,7 +37,10 @@ interface userPostsState {
     userIsLogged: boolean,
     uploadAndProceedPicture: (blob: Blob | null, bucket: string, extension: string, scenario: string) => Promise<boolean>
     resetSendStatus: () => void
+    updatedPosts: (newPost: UserPosts) => void
+    filterUpdatedPosts: (oldPost: number) => void
 }
+
 
 export const userPostsFetch = create<userPostsState>((set, get) => ({
     posts: [],
@@ -97,14 +99,10 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         }
     },
 
-    postsConsoleLog: (posts) => {
-        if (posts !== null) {
-            console.log(posts)
-        }
-    },
+    
 
     sendPost: async() => {
-        const {userName, userPic, userFetch, contentPicture, inputPost} = get()
+        const {userName, userPic, contentPicture, inputPost} = get()
         
         const newPost:PostToSend = {
             content: inputPost, 
@@ -114,9 +112,9 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         }
         const textOnly = ((inputPost !== '') && !contentPicture)
         const pictureOnly = ((!inputPost) && contentPicture !== '')
-        const noContent = (inputPost === '' && contentPicture === '')
+        const noContent = (!inputPost.trim() && contentPicture === '')
         if (noContent) {
-            console.log('ты ни пост не чирканул, ни мемчик не забодяжил, ни граффити не намазал, но пост пытаешься отправить, ты ок вообще?')
+            alert('ты ни пост не чирканул, ни мемчик не забодяжил, ни граффити не намазал, но пост пытаешься отправить, ты ок вообще?')
             return false;
         }
         if (textOnly || pictureOnly) {
@@ -137,7 +135,6 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
                 const result = await response.json()
                 set({isSending: false, isPostSend: true, inputPost: '', contentPicture: ''});
                 console.log("пост отправлен:", result)
-                await userFetch()
                 return true
             }
             
@@ -206,5 +203,17 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
             }
         }
         return false
-    }
+    },
+
+    updatedPosts: (newPost) => set((state) => ({
+        posts: [newPost, ...state.posts]
+    })),
+
+    filterUpdatedPosts: (id) => set((state) => ({
+        posts: state.posts.filter((post) => post.id !== id)
+    }))
+
+    
+
+    
 }))

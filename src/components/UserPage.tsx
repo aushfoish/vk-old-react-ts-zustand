@@ -3,6 +3,7 @@ import AccountTitle from "./AccountTitle"
 import { userInfoFetch } from "../UserProfileFetch"
 import { useEffect, useState } from "react"
 import { MainPageAuthorization } from "./MainPageAuthorization"
+import { AnimatePresence } from "framer-motion"
 
 const UserPage = () => {
 
@@ -24,7 +25,12 @@ const UserPage = () => {
 
     return (
         <>
-            { modalClosed === false && (<MainPageAuthorization onCloseModal={() =>setModalClosed(true)}/>)}
+        <AnimatePresence>
+            { modalClosed === false && (
+                <MainPageAuthorization onCloseModal={() =>setModalClosed(true)}/>
+            )}
+        </AnimatePresence>
+            
             <AccountTitle />
 
             <AccountSection />

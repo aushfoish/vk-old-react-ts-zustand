@@ -15,7 +15,7 @@ const AudioButton = (props:AudioButton) => {
     } = props
 
     return (
-        <button className="mp3-control" id={id} onClick={onClick}>
+        <button className="mp3-control" id={id} onClick={onClick} type='button'>
                       {children}
         </button> 
     )
