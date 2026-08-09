@@ -1,13 +1,15 @@
-import AccountSection from "./AccountPage"
-import AccountTitle from "./AccountTitle"
+import{ AccountSection } from "./AccountPage"
+import{ AccountTitle } from "./AccountTitle"
 import { userInfoFetch } from "../UserProfileFetch"
 import { useEffect, useState } from "react"
 import { MainPageAuthorization } from "./MainPageAuthorization"
 import { AnimatePresence } from "framer-motion"
 
-const UserPage = () => {
+export const UserPage = () => {
 
-    const {profile, isLoading, fetchName} = userInfoFetch()
+    const profile = userInfoFetch((state) => state.profile)
+    const isLoading = userInfoFetch((state) => state.isLoading)
+    const fetchName = userInfoFetch((state) => state.fetchName)
     const [modalClosed, setModalClosed] = useState(false)
 
     
@@ -44,4 +46,3 @@ const UserPage = () => {
     
 }
 
-export default UserPage

@@ -8,7 +8,7 @@ interface NavItem {
 
 
 
-const AppAside = () => {
+export const AppAside = () => {
 
 
 
@@ -42,4 +42,3 @@ const AppAside = () => {
     )
 }
 
-export default AppAside

@@ -2,7 +2,7 @@ import { userMusicFetch } from "../../UserMusicFetch"
 
 
 
-const PlayerOptions = () => {
+export const PlayerOptions = () => {
  
 
         const setVolume = userMusicFetch((state) => state.setVolume)

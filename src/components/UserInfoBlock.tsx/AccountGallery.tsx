@@ -1,4 +1,4 @@
-import Micro_header from "../Interface_parts/Micro_header"
+import {Micro_header} from "../../shared/ui//Micro_header"
 
 const AccountGallery = () => {
     return (

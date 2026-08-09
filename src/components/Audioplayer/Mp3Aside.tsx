@@ -1,6 +1,6 @@
 import AsideNavBtn from "../Navigation/AsideNavBtn"
 
-const Mp3Aside = () => {
+export const Mp3Aside = () => {
 
     const audio_nav = [
         {label: "Мои аудиозаписи", id: 'my-audios'},
@@ -41,4 +41,3 @@ const Mp3Aside = () => {
     )
 }
 
-export default Mp3Aside

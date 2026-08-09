@@ -1,9 +1,10 @@
-// import { userPostsFetch } from "../UserPostsFetch"
+// import { useAppStore } from "../useAppStore"
 import { useEffect, useRef, useState } from "react"
-import Button from "./Interface_parts/Button"
-import Input from "./Interface_parts/Input"
-import { userPostsFetch } from "../UserPostsFetch"
-import { ErrorMessage } from "./Interface_parts/ErrorMessage"
+import {Button }from "../shared/ui/Button"
+import { Input } from "../shared/ui/Input"
+import { useAppStore } from "../app/store/useAppStore"
+import { ErrorMessage } from "../shared/ui/ErrorMessage"
+
 
 interface AuthorizationModuleProps {
     onClose: () => void
@@ -13,23 +14,17 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
 
     const {
         onClose
-    } = props
-
-    // const onSubmitRegistrationData = () => {
-    //     console.log('данные отправлены:', username, userpic)
-    // }
-
-    
+    } = props  
 
     const [username, setUsername] = useState('')
     const [userpic, setUserpic] = useState('')
     const [error, setError] = useState(false)
 
-    const authorization = userPostsFetch((state) => state.authorization)
-    const userPic = userPostsFetch((state) => state.userPic)
-    const authCheck = userPostsFetch((state) => state.authCheck)
-    const anonymous = userPostsFetch((state) => state.anonymous)
-    const uploadAndProceedPicture = userPostsFetch((state) => state.uploadAndProceedPicture)
+    const authorization = useAppStore((state) => state.authorization)
+    const userPic = useAppStore((state) => state.userPic)
+    const authCheck = useAppStore((state) => state.authCheck)
+    const anonymous = useAppStore((state) => state.anonymous)
+    const uploadAndProceedPicture = useAppStore((state) => state.uploadAndProceedPicture)
 
     useEffect(() => {
         const loginData = localStorage.getItem('userdata')
@@ -48,22 +43,20 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
     }, [userPic])
     
     const handleFileReader = (e: React.ChangeEvent<HTMLInputElement>) => {
-            
-                        const files = e.currentTarget.files
-                        if (files && files.length > 0) {
-                            const file = files[0]
-                            const reader = new FileReader()
+        const files = e.currentTarget.files
+        if (files && files.length > 0) {
+            const file = files[0]
+            const reader = new FileReader()
 
-                            reader.onloadend = () => {
-                                if (typeof reader.result === 'string') {
-                                    const picToCompress = reader.result
-                                    imageCompression(picToCompress)
-                                }
-                            }
-                            reader.readAsDataURL(file)
-                        }
-                    
+            reader.onloadend = () => {
+                if (typeof reader.result === 'string') {
+                    const picToCompress = reader.result
+                    imageCompression(picToCompress)
+                }
+            }
+            reader.readAsDataURL(file)
         }
+    }
 
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const imageCompression = (userpic: string) => {
@@ -112,7 +105,7 @@ export const AuthorizationModule = (props:AuthorizationModuleProps) => {
             <form className="authorization-inputs-container" onSubmit={handleSubmit}>
                 <canvas className='hidden' width={40} height={40} ref={canvasRef}></canvas>
                 <Input 
-                    maxLength={15}
+                    maxLength={25}
                     id="username"
                     placeholder="введите ваше имя.."
                     type='text'

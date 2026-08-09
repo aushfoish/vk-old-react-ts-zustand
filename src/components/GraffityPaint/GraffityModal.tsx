@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react"
-import Button from "../Interface_parts/Button"
+import {Button} from "../../shared/ui/Button"
 import { GraffityColors } from "./GraffityColors"
-import { ModalFooter } from "../ModalWindow/ModalFooter"
-import { userPostsFetch } from "../../UserPostsFetch"
+import { ModalFooter } from "../../shared/ui/ModalFooter"
+import { useAppStore } from "../../app/store/useAppStore"
 
 interface GraffityModalProps {
     onCloseModal: (value: boolean) => void
@@ -13,13 +13,13 @@ export const GraffityModal = (props:GraffityModalProps) => {
 
     const {onCloseModal} = props
 
-    const {resetSendStatus} = userPostsFetch()
+    const {resetSendStatus} = useAppStore()
 
 
 
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const isDrawing = useRef(false)
-    const uploadAndProceedPicture = userPostsFetch((state) => state.uploadAndProceedPicture)
+    const uploadAndProceedPicture = useAppStore((state) => state.uploadAndProceedPicture)
 
     const [strokeStyle, setStrokeStyle] = useState("#3498db") 
     const [lineWidth, setLinewidth] = useState(50)

@@ -5,7 +5,7 @@ interface Micro_headerProps {
     secondChildren?: string,
 }
 
-const Micro_header = (props:Micro_headerProps) => {
+export const Micro_header = (props:Micro_headerProps) => {
 
     const {
         children,
@@ -22,4 +22,3 @@ const Micro_header = (props:Micro_headerProps) => {
     )
 }
 
-export default Micro_header

@@ -1,7 +1,7 @@
 import UserInfo from "./UserInfoBlock.tsx/UserInfo"
 import UserIteractions from "./UserIteractions"
 
-const AccountSection = () => {
+export const AccountSection = () => {
     return (
         <div className="main-page">
 
@@ -13,4 +13,3 @@ const AccountSection = () => {
     )
 }
 
-export default AccountSection

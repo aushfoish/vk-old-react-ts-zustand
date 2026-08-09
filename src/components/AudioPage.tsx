@@ -4,7 +4,7 @@ import { userMusicFetch } from "../UserMusicFetch"
 import { useEffect } from "react"
 
 
-const AudioPage = () => {
+export const AudioPage = () => {
 
     const {playlist, isLoading, fetchPlaylist} = userMusicFetch()
 
@@ -31,4 +31,3 @@ const AudioPage = () => {
     )
 }
 
-export default AudioPage

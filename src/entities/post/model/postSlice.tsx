@@ -1,77 +1,56 @@
-import { create } from "zustand";
+import { type StateCreator } from "zustand"
+import  { type RootStoreState } from "../../../app/store/useAppStore"
+
+export interface PostToSend {
+    content: string,
+    username: string,
+    userPictureSrc: string,
+    imageContentSrc: string
+}
 
 export interface UserPosts {
     id: number,
     content: string,
     date: string
-    username: string | null,
+    username: string,
     userPictureSrc: string,
     imageContentSrc: string
 }
 
-interface PostToSend {
-    content: string | null,
-    username: string | null,
-    userPictureSrc: string | null,
-    imageContentSrc: string | null
-}
-
-interface userPostsState {
-    posts: UserPosts[] | null,
-    isLoading: boolean,
+export interface PostSlice {
     userFetch: () => Promise<void>
     sendPost: () => Promise<boolean>
+    resetSendStatus: () => void
     setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => void
-    isSending: boolean,
+    uploadAndProceedPicture: (blob: Blob | null, bucket: string, extension: string, scenario: string) => Promise<boolean>
+    updatedPosts: (newPost: UserPosts) => void
+    filterUpdatedPosts: (oldPost: number) => void
+    
+    posts: UserPosts[] | []
+    isLoading: boolean
+    isSending: boolean
     isPostSend: boolean
-    userName: string,
-    userPic: string,
     contentText: string
     contentPicture: string
     postIsEmpty: boolean
     isTyping: boolean
     inputPost: string
-    authorization: (username?: string, userpic?: string) => void,
-    authCheck: () => void
-    anonymous: () => void
-    userIsLogged: boolean,
-    uploadAndProceedPicture: (blob: Blob | null, bucket: string, extension: string, scenario: string) => Promise<boolean>
-    resetSendStatus: () => void
+    
+
 }
 
-
-export const userPostsFetch = create<userPostsState>((set, get) => ({
+export const createPostSlice: StateCreator<RootStoreState, [], [], PostSlice> = (set, get) => ({
     posts: [],
     isLoading: false,
     isSending: false,
     isPostSend: false,
-    userName: 'Я не залогинился',
-    userPic: '',
-    userIsLogged: false,
     contentText: '',
     contentPicture: '',
     postIsEmpty: true,
     isTyping: false,
     inputPost: '',
-
     
-    authorization: (username, userpic) => {
-            set({userName:username, userPic:userpic, userIsLogged: true})
-            const userAuthorization = {'userName': username, "userPic": userpic, "userIsLogged": true}
-            localStorage.setItem('userdata', JSON.stringify(userAuthorization))
-    },
-
-    authCheck: () => {
-        const savedData = localStorage.getItem('userdata')
-        if (savedData) {
-            const dataParse = JSON.parse(savedData)
-            set({userName: dataParse.userName, userPic: dataParse.userPic, userIsLogged: dataParse.userIsLogged})
-        }
-    },
     
-    anonymous: () => {
-        set({userName: "я не залогинился", userPic: "https://sun9-46.vkuserphoto.ru/s/v1/ig2/ujXhE-AqH4NX91xx7FKgWgJpuOvih28q-1QDO7lZL9PV1QLV_r8cRaBkt-6IyN1eEH_7WhCah_E2fcga2zeaG6WF.jpg?quality=95&as=32x33,40x41&from=bu&u=btLgeCMMxvOpDWSa8seGN6cvU620O6hB1rMCYTTNkm8&cs=40x0", userIsLogged: false})
-    },
 
 
     userFetch: async() => {
@@ -97,10 +76,8 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         }
     },
 
-    
-
     sendPost: async() => {
-        const {userName, userPic, userFetch, contentPicture, inputPost} = get()
+        const {userName, userPic, contentPicture, inputPost} = get()
         
         const newPost:PostToSend = {
             content: inputPost, 
@@ -133,7 +110,6 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
                 const result = await response.json()
                 set({isSending: false, isPostSend: true, inputPost: '', contentPicture: ''});
                 console.log("пост отправлен:", result)
-                await userFetch()
                 return true
             }
             
@@ -156,11 +132,6 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
     setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => {
         const postText = e.target.value
         set({contentText: postText, inputPost: postText})
-        
-        // setTimeout(() => {
-        //     console.log(postText)
-        // }, 4000);
-        
     },
 
 
@@ -204,7 +175,11 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         return false
     },
 
-    
+    updatedPosts: (newPost) => set((state) => ({
+        posts: [newPost, ...state.posts]
+    })),
 
-    
-}))
+    filterUpdatedPosts: (id) => set((state) => ({
+        posts: state.posts.filter((post) => post.id !== id)
+    }))
+})

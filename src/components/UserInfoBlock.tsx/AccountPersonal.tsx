@@ -1,39 +1,47 @@
 import React from "react"
-import { userInfoFetch } from "../../UserProfileFetch"
+import { birthDay, birthMonth, birthYear, selectLanguages, selectWorkplace, userInfoFetch } from "../../UserProfileFetch"
 import AccountPersonalItem from "./AccoutPersonalItem"
 import InfoItem from "./InfoItem"
 
 const AccountPersonal = () => {
 
-  const profile = userInfoFetch((state) => state.profile)
-  const isLoading = userInfoFetch((state) => state.profile)
+  const birthday = userInfoFetch(birthDay)
+  const birthmonth = userInfoFetch(birthMonth)
+  const birthyear = userInfoFetch(birthYear)
+  const workplace = userInfoFetch(selectWorkplace)
+  const languages = userInfoFetch(selectLanguages)
 
-  const birthday = `${profile?.birthday.day} ${profile?.birthday.month} ${profile?.birthday.year}`
-  const languages = profile ? (profile?.languages).map((lang, index) =>  (
+  const hasFullBirthday = birthday && birthmonth && birthyear
+  const formatedBirthday = hasFullBirthday
+      ? `${birthday} ${birthmonth} ${birthyear}`
+      : "очень старый"
+
+  const formatedWorkplace = workplace || "вероятно, ещё и безработный"
+
+  const languagesList = languages?.map((lang, index) =>  (
   <React.Fragment key={lang.id}>
     <InfoItem  
       children={lang.language}></InfoItem>
-      {index < profile.languages.length && (', ')}
+      {index !== languages.length && (', ')}
   </React.Fragment>
   
-)
-  ) : 'языки не найдены ёпта'
+)) || "поди и языков никаких не знает"
 
     return (
         <div className="info-place">
 
               <AccountPersonalItem 
-                label={isLoading && !profile ? "надо..." : "Дно рождения"}
-                children={birthday}/>
+                label='Дно рождения'
+                children={formatedBirthday}/>
 
 
               <AccountPersonalItem 
                 label='Место рабства'
-                children={`${profile?.workplace}`}/>
+                children={formatedWorkplace}/>
 
               <AccountPersonalItem 
                 label='Языки (типо на каких говоришь)'
-                children={languages} /> 
+                children={languagesList} /> 
 
 
             </div>

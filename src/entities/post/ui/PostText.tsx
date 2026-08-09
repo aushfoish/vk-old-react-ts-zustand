@@ -1,19 +1,17 @@
-import type React from "react"
-
 interface PostTextProps {
-    children: React.ReactNode
-    id: string
+    text: string
+    id: number
 }
 
 export const PostText = (props:PostTextProps) => {
 
     const {
-        children, id
+        text, id
     } = props
     return (
-        <div className="text-content" id={id}>
+        <div className="text-content" id={String(id)}>
                     <p className="user-content">
-                      {children}
+                      {text}
                     </p>
         </div>
     )

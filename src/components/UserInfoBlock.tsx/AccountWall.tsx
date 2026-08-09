@@ -1,25 +1,32 @@
-import Input from "../Interface_parts/Input"
-import Micro_header from "../Interface_parts/Micro_header"
-import { userPostsFetch, type UserPosts } from "../../UserPostsFetch"
-import Attachments from "../Interface_parts/Attachments"
+import {Input} from "../../shared/ui/Input"
+import {Micro_header} from "../../shared/ui/Micro_header"
+import {Attachments} from "../../features/create-post/ui/Attachments"
 import { useEffect, useState } from "react"
-import { AccountWallPost } from "../PostItem/AccountWallPost"
-import { ModalWindow } from "../ModalWindow/ModalWindow"
+import { AccountWallPost } from "../../entities/post/ui/AccountWallPost"
+import { ModalWindow } from "../../shared/ui/ModalWindow"
 import { GraffityModal } from "../GraffityPaint/GraffityModal"
 import { AnimatePresence, motion } from "framer-motion"
+import { useAppStore} from "../../app/store/useAppStore"
+import { type UserPosts } from "../../entities/post/model/postSlice"
 
 
 
 
 const AccountWall = () => {
 
-  const {posts, userFetch, isLoading} = userPostsFetch()
+  const isLoading = useAppStore((state) => state.isLoading)
+  const userFetch = useAppStore((state) => state.userFetch)
+  const posts = useAppStore((state) => state.posts)
+  const updatedPosts = useAppStore((state) => state.updatedPosts)
+  const filterUpdatedPosts = useAppStore((state) => state.filterUpdatedPosts)
+  
+
   useEffect(()=> {
     userFetch()
   }, [userFetch])
+
   useEffect(() => {
 
-        // Флаг, который скажет сокету: "Эй, этот рендер уже отменили, ничего не делай!"
         let isCancelled = false; 
         let ws: WebSocket | null = null;
         let heartbeatInterval: ReturnType<typeof setInterval> | undefined;
@@ -50,10 +57,18 @@ const AccountWall = () => {
         ws.onmessage = (event) => {
             if (isCancelled) return; 
             const response = JSON.parse(event.data);
+            const payload = response.payload
             if (response.event === 'postgres_changes') {
                 const type = response.payload?.data?.type || response.payload?.type;
-                if (type === 'INSERT' || type === 'DELETE') {
-                    userFetch()
+                if (type === 'INSERT' && payload?.data?.record) {
+                  updatedPosts(payload.data.record)
+                } else if (type === 'DELETE') {
+                  const oldRecordID = payload?.data?.old_record.id
+                  if (oldRecordID !== null) {
+                  filterUpdatedPosts(oldRecordID)
+                  }
+                  
+                  
                 }
             }
         };
@@ -72,22 +87,25 @@ const AccountWall = () => {
                 }
             }
         };
-    }, );
+    }, []);
 
 
     const [modalOpened, setModalOpened] = useState(false)
     const [inputFocused, setInputFocused] = useState(false)
-    const setInputPost = userPostsFetch((state) => state.setInputPost)
-    const inputPost = userPostsFetch((state) => state.inputPost)
+    const setInputPost = useAppStore((state) => state.setInputPost)
+    const inputPost = useAppStore((state) => state.inputPost)
 
     
-    const lastSignCheck = (posts:UserPosts[]|null) => {
+    const lastSignCheck = (posts:UserPosts[]|[]) => {
         if (posts !== null) {
             const arrayLengthLastsign = String(posts.length).slice(-1)
             const forA = ['2', '3', '4']
             const toA = forA.includes(arrayLengthLastsign)
             const forOv = ['5', '6', '7', '8', '9', '0']
             const toOv = forOv.includes(arrayLengthLastsign)
+            if (posts.length === 0) {
+              return `Стена пуста`
+            }
             
             if (toA) {
               return `${posts.length} поста`
@@ -99,9 +117,9 @@ const AccountWall = () => {
               return `${posts.length} пост`
             }
             }
-        }
+    }
 
-        const {sendPost} = userPostsFetch()
+        const {sendPost} = useAppStore()
         
             const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
               e.preventDefault()
@@ -161,6 +179,7 @@ const AccountWall = () => {
 
               {!isLoading && posts !== null && (posts.map((post) => (
               <motion.div
+                  layout
                   key={post.id}
                   initial={{opacity: 0, y: -40, scale: 0.95}}
                   animate={{opacity: 1, y: 0, scale: 1}}
@@ -171,12 +190,12 @@ const AccountWall = () => {
                   }}
                 >
                 <AccountWallPost 
-                  userPicSrc={post.userPictureSrc}
-                  id="id"
-                  children={post.content}
-                  label={`${post.username}`}
-                  date={post.date}
-                  imgSrc={post.imageContentSrc}
+                  userPicSrc={post?.userPictureSrc}
+                  id={post.id}
+                  text={post?.content}
+                  label={post?.username}
+                  date={post?.date}
+                  imgSrc={post?.imageContentSrc}
                   />
               </motion.div>
               

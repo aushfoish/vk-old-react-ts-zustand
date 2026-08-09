@@ -1,14 +1,14 @@
 
 import { motion } from "framer-motion"
-import AudioButton from "../Audioplayer/AudioButton"
-import Button from "./Button"
+import { AudioButton }from "../../../components/Audioplayer/AudioButton"
+import {Button} from "../../../shared/ui/Button"
 
 
 interface AttachmentsProps {
   setCanvasOpen: () => void
 }
 
-const Attachments = (props:AttachmentsProps) => {
+export const Attachments = (props:AttachmentsProps) => {
 
 const {
   setCanvasOpen
@@ -58,4 +58,3 @@ const {
     )
 }
 
-export default Attachments

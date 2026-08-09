@@ -6,7 +6,7 @@ interface AudioInputProps {
     label: string
 }
 
-const AudioInput = (props:AudioInputProps) => {
+export const AudioInput = (props:AudioInputProps) => {
 
     const currentTimeChanger = userMusicFetch((state) => state.currentTimeChanger)
     const currentTotalSeconds = userMusicFetch((state) => state.currentTotalSeconds)
@@ -27,4 +27,3 @@ const AudioInput = (props:AudioInputProps) => {
     )
 }
 
-export default AudioInput

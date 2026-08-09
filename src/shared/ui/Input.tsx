@@ -13,7 +13,7 @@ interface InputProps {
     
 }
 
-const Input = (props: InputProps) => {
+export const Input = (props: InputProps) => {
 
     
 
@@ -40,4 +40,3 @@ const Input = (props: InputProps) => {
     )
 }
 
-export default Input

@@ -8,7 +8,7 @@ interface ButtonProps {
 
 }
 
-const Button = (props:ButtonProps) => {
+export const Button = (props:ButtonProps) => {
 
     
 
@@ -30,4 +30,3 @@ const Button = (props:ButtonProps) => {
     )
 }
 
-export default Button

@@ -1,32 +1,33 @@
-import type React from "react"
-import { PostAuthor } from "./PostAuthor"
+import React from "react"
 import { PostAuthorPic } from "./PostAuthorPic"
-import { PostShareAndDate } from "./PostShareDate"
+import { PostAuthor } from "./PostAuthor"
 import { PostText } from "./PostText"
+import { PostShareAndDate } from "./PostShareDate"
+
 
 
 interface AccountWallPostProps {
-  id: string,
-  children: React.ReactNode,
+  id: number,
   label: string,
   date: string
   imgSrc: string
   userPicSrc: string
+  text: string
 }
 
-export const AccountWallPost = (props:AccountWallPostProps) => {
+export const AccountWallPost = React.memo((props:AccountWallPostProps) => {
 
     const {
       id,
       label,
-      children,
+      text,
       date,
       imgSrc,
       userPicSrc
     } = props
 
     return (
-        <div className="post-genuinely" id={id}>
+        <div className="post-genuinely" id={String(id)}>
 
                 <PostAuthorPic src={userPicSrc}/>
 
@@ -35,8 +36,8 @@ export const AccountWallPost = (props:AccountWallPostProps) => {
                   <PostAuthor 
                   label={label}/>
 
-                  {children && (<PostText 
-                  children={children}
+                  {text && (<PostText 
+                  text={text}
                   id={id}
                   />)}
                   
@@ -52,4 +53,6 @@ export const AccountWallPost = (props:AccountWallPostProps) => {
             
         </div>
     )
-}
+})
+
+AccountWallPost.displayName = "post-genuinely"

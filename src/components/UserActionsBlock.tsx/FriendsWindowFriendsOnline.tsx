@@ -3,7 +3,7 @@ import { userInfoFetch } from "../../UserProfileFetch"
 import FriendItem from "./FriendItem"
 
 export const FriendsWindowFriendsOnline = () => {
-
+    // срочно написать нормальные селекторы, это говно никуда не годится
     const {fetchFriendsOnline, friendsOnlineArray} = userInfoFetch()
 
     useEffect(() => {
@@ -11,7 +11,7 @@ export const FriendsWindowFriendsOnline = () => {
     }, [])
 
 
-
+    
     return (
         <div className="friendlist">
             {friendsOnlineArray?.map((friend) => (
@@ -19,11 +19,8 @@ export const FriendsWindowFriendsOnline = () => {
                     key={friend.id} 
                     name={friend.name}
                     src={friend.userpic}/>
-            ))
-                
-
-                }
-            </div>
+            ))}
+        </div>
     )
 }
 

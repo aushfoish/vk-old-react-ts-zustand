@@ -6,7 +6,7 @@ interface AudioButton {
     onClick?: () => void
 }
 
-const AudioButton = (props:AudioButton) => {
+export const AudioButton = (props:AudioButton) => {
 
     const {
         children,
@@ -20,5 +20,3 @@ const AudioButton = (props:AudioButton) => {
         </button> 
     )
 }
-
-export default AudioButton

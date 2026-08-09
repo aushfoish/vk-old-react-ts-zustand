@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import './App.css'
-import AppAside from './components/Navigation/AppAside'
-import AppHeader from './components/AppHeader'
-import UserPage from './components/UserPage'
-import AudioPage from './components/AudioPage'
+import {AppAside} from './components/Navigation/AppAside'
+import {AppHeader} from './components/AppHeader'
+import {UserPage} from './components/UserPage'
+import {AudioPage} from './components/AudioPage'
 import { createHashRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
 import { AudioMainpageVidget } from './components/Audioplayer/AudioMainpageVidget'
 
@@ -31,7 +31,6 @@ const MainLayout = () => {
         <AppAside />
         <main className="app-work-space">
 
-          
           <Outlet />
 
         </main>

@@ -1,7 +1,7 @@
-import AudioInput from "./AudioInput"
-import Mp3AudioMetaInfo from "./Mp3AudioMetaInfo"
+import {AudioInput} from "./AudioInput"
+import {Mp3AudioMetaInfo} from "./Mp3AudioMetaInfo"
 
-const Mp3AudioMeta = () => {
+export const Mp3AudioMeta = () => {
 
     return (
         <div className="audio-meta-data">
@@ -15,4 +15,3 @@ const Mp3AudioMeta = () => {
     )
 }
 
-export default Mp3AudioMeta
