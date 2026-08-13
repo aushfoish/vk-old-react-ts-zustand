@@ -15,7 +15,6 @@ export const AccountGallery = () => {
 
               <Micro_header 
                 children={`${nyanCatArray.length} фотографии`}
-                secondChildren="все"
                />
 
               <div className="image-row">

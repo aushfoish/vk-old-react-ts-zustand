@@ -3,7 +3,7 @@ import type React from "react"
 interface Micro_headerProps {
     children: React.ReactNode,
     secondChildren?: string,
-    count: string
+    count?: string
 }
 
 export const Micro_header = (props:Micro_headerProps) => {
