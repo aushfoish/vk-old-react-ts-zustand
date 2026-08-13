@@ -13,7 +13,7 @@ interface Mp3ListItemProps {
     time: string
 }
 
-const Mp3ListItem = (props:Mp3ListItemProps) => {
+export const Mp3ListItem = (props:Mp3ListItemProps) => {
 
     const {
         children,
@@ -49,4 +49,3 @@ const Mp3ListItem = (props:Mp3ListItemProps) => {
     )
 }
 
-export default Mp3ListItem

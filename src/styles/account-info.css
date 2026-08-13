@@ -12,6 +12,7 @@
       font-size: 11px;
       flex-direction: row;
       line-height: 1.4;
+      justify-content: flex-start;
     }
     .label {
       width: 120px;

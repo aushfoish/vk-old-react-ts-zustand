@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { userMusicFetch } from "../../UserMusicFetch"
-import Mp3AudioHeader from "./Mp3AudioHeader"
-import Mp3AudioList from "./Mp3AudioList"
+import {Mp3AudioHeader} from "./Mp3AudioHeader"
+import {Mp3AudioList} from "./Mp3AudioList"
 
 export const AudioMainpageVidget = () => {
 
@@ -9,7 +9,7 @@ export const AudioMainpageVidget = () => {
 
     useEffect(() => {
         fetchPlaylist()
-    }, [])
+    }, [fetchPlaylist])
 
     return (
         <div className="mp3-vidget">

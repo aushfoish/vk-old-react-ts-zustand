@@ -22,7 +22,6 @@
     }
 
     .post-add-form {
-      border: 1px solid rgb(224, 224, 224);
       vertical-align: top;
       text-align: left;
     }
@@ -52,6 +51,8 @@
       transition: 500ms;
     }
 
+    
+
     .post-attachments-add-button {
       display: flex;
       justify-content: space-between;
@@ -59,16 +60,17 @@
       margin-top: 10px;
     }
 
-    .post-button {
-      width: 100px;
-      max-height: 100%;
-      font-size: 11px;
-      border-style: none;
-      color: white;
-      background-color: #6383A9;
+    .post-attachments {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      column-gap: 10px;
+      
     }
 
-    .attachment-button {
-      border-style: none;
-      font-size: 11px;
+    .post {
+      font-size: 10px;
+      
     }
+
+    

@@ -1,8 +1,8 @@
-import Mp3Aside from "./Mp3Aside"
-import Mp3ListItem from "./Mp3ListItem"
+import {Mp3Aside} from "./Mp3Aside"
+import {Mp3ListItem} from "./Mp3ListItem"
 import { userMusicFetch } from "../../UserMusicFetch"
 
-const Mp3AudioList = () => {
+export const Mp3AudioList = () => {
 
     const playlist = userMusicFetch((state) => state.playlist)
     const isLoading = userMusicFetch((state) => state.isLoading)
@@ -27,7 +27,7 @@ const Mp3AudioList = () => {
                             band={track.band}
                             audioSrc={track.src}
                             playOnClick={() => trackPlay(track)}
-                            time={track.duration ?? '0'}/>)))}
+                            time={track.duration ?? '--/--'}/>)))}
                             
                         
                 </div>
@@ -38,4 +38,3 @@ const Mp3AudioList = () => {
     )
 }
 
-export default Mp3AudioList

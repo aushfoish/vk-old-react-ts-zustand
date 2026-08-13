@@ -1,54 +1,85 @@
 import { create } from "zustand";
+import placeholder from './entities/user/ui/assets/comrade-major-placeholder.jpg'
 
-interface UserPosts {
+export interface UserPosts {
     id: number,
     content: string,
     date: string
-    username: string | null,
+    username: string,
     userPictureSrc: string,
     imageContentSrc: string
 }
 
 interface PostToSend {
-    content: string | null,
-    username: string | null,
-    userPictureSrc: string | null,
-    imageContentSrc: string | null
+    content: string,
+    username: string,
+    userPictureSrc: string,
+    imageContentSrc: string
 }
 
 interface userPostsState {
-    posts: UserPosts[] | null,
+    posts: UserPosts[] | [],
     isLoading: boolean,
     userFetch: () => Promise<void>
-    postsConsoleLog: (posts: UserPosts) => void
-    sendPost: () => Promise<void>
-    inputPost: (e: React.InputEvent<HTMLInputElement>) => void
+    sendPost: () => Promise<boolean>
+    setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => void
     isSending: boolean,
-    userName: string | null,
-    userPic: null | string,
-    contentText: string | null
-    contentPicture: string | null
+    isPostSend: boolean
+    userName: string,
+    userPic: string,
+    contentText: string
+    contentPicture: string
     postIsEmpty: boolean
     isTyping: boolean
-    inputState: string | null
+    inputPost: string
+    authorization: (username?: string, userpic?: string) => void,
+    authCheck: () => void
+    anonymous: () => void
+    userIsLogged: boolean,
+    uploadAndProceedPicture: (blob: Blob | null, bucket: string, extension: string, scenario: string) => Promise<boolean>
+    resetSendStatus: () => void
+    updatedPosts: (newPost: UserPosts) => void
+    filterUpdatedPosts: (oldPost: number) => void
 }
 
+
 export const userPostsFetch = create<userPostsState>((set, get) => ({
-    posts: null,
+    posts: [],
     isLoading: false,
     isSending: false,
-    userName: "Роман Александрович",
-    userPic: "https://sun9-13.vkuserphoto.ru/s/v1/ig2/ono56hzBc6yurnXRaowVEk7j4q2KsrfLImzBg8024ugPBTeJTwTlkFQzbYUASX5C5uj7KEFyRthLBUjdAFppsyFc.jpg?quality=95&crop=150,109,357,357&as=32x32,48x48,72x72,108x108,160x160,240x240&ava=1&u=IuElQeStD_SsXfaohFE0ighha-xa26Ji4_lJ0me1iNE&cs=50x50",
-    contentText: null,
-    contentPicture: null,
+    isPostSend: false,
+    userName: '',
+    userPic: '',
+    userIsLogged: false,
+    contentText: '',
+    contentPicture: '',
     postIsEmpty: true,
     isTyping: false,
-    inputState: null,
+    inputPost: '',
+
+    
+    authorization: (username, userpic) => {
+            set({userName:username, userPic:userpic, userIsLogged: true})
+            const userAuthorization = {'userName': username, "userPic": userpic, "userIsLogged": true}
+            localStorage.setItem('userdata', JSON.stringify(userAuthorization))
+    },
+
+    authCheck: () => {
+        const savedData = localStorage.getItem('userdata')
+        if (savedData) {
+            const dataParse = JSON.parse(savedData)
+            set({userName: dataParse.userName, userPic: dataParse.userPic, userIsLogged: dataParse.userIsLogged})
+        }
+    },
+    
+    anonymous: () => {
+        set({userName: "не авторизовался", userPic: placeholder, userIsLogged: false})
+    },
 
 
     userFetch: async() => {
         try {
-            const {postsConsoleLog} = get()
+            
             set ({isLoading: true})
             const response = await fetch('https://tyekwqioulapfagzpswr.supabase.co/rest/v1/posts?order=date.desc', {
                 method: 'GET',
@@ -62,7 +93,6 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
                 throw new Error('Ошибка: не удалось получить данные о постах')
             }
             const data = await response.json()
-            postsConsoleLog(data)
             set({posts: data, isLoading: false})
         } catch (error) {
             console.error('Ошибка при получении данных:', error)
@@ -70,25 +100,23 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
         }
     },
 
-    postsConsoleLog: (posts) => {
-        if (posts !== null) {
-            console.log(posts)
-        }
-    },
+    
 
     sendPost: async() => {
-        const {userName, userPic, userFetch, contentText, contentPicture, inputState} = get()
+        const {userName, userPic, contentPicture, inputPost} = get()
+        
         const newPost:PostToSend = {
-            content: inputState, 
+            content: inputPost, 
             username: userName, 
             userPictureSrc: userPic,
             imageContentSrc: contentPicture
         }
-        const textOnly = ((contentText) && !contentPicture)
-        const pictureOnly = ((!contentText) && contentPicture !== null)
-        const noContent = (!contentText && !contentPicture)
+        const textOnly = ((inputPost !== '') && !contentPicture)
+        const pictureOnly = ((!inputPost) && contentPicture !== '')
+        const noContent = (!inputPost.trim() && contentPicture === '')
         if (noContent) {
-            console.log('ты ни пост не чирканул, ни мемчик не забодяжил, ни граффити не намазал, но пост пытаешься отправить, ты ок вообще?')
+            alert('ты ни пост не чирканул, ни мемчик не забодяжил, ни граффити не намазал, но пост пытаешься отправить, ты ок вообще?')
+            return false;
         }
         if (textOnly || pictureOnly) {
             try {
@@ -106,9 +134,9 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
             })
             if (response.ok) {
                 const result = await response.json()
-                console.log("пост отправлен, ты хоть видал чё ты там из себя выдавил? на, полюбуйся ещё раз:", result)
-                set({isSending: false, inputState: ''});
-                userFetch()
+                set({isSending: false, isPostSend: true, inputPost: '', contentPicture: ''});
+                console.log("пост отправлен:", result)
+                return true
             }
             
             if (!response.ok) {
@@ -117,18 +145,71 @@ export const userPostsFetch = create<userPostsState>((set, get) => ({
             
         } catch (error) {
             console.error('Иосиф Виссарионович, произошла ЧУДОВИЩНАЯ ошибка!!!:', error)
+            set({isSending: false})
+            return false
         }}
+        return false
     },
 
-    inputPost: (e: React.InputEvent<HTMLInputElement>) => {
-        set({isTyping: true})
-        const postText = (e.currentTarget.value).trim()
-        set({contentText: postText, inputState: postText})
-        // setTimeout(() => {
-        //     console.log(postText)
-        // }, 4000);
-        
+    resetSendStatus: () => {
+        set({isPostSend: false})
+    },
+
+    setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => {
+        const postText = e.target.value
+        set({contentText: postText, inputPost: postText})
     },
 
 
+    uploadAndProceedPicture: async(blob, bucket, extension, scenario) => {
+        const {sendPost} = get()
+        if (blob !== null) {
+            try {
+                const mime = extension === 'jpg' ? 'image/jpeg' : 'image/png'
+                const blobName = `${crypto.randomUUID()}.${extension}`
+                const blobUrl = `${bucket}/${blobName}`
+                const response = await fetch(blobUrl, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': 'sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y',
+                        'Authorization': 'Bearer sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y',
+                        'Content-Type': mime,
+                    },
+                    body: blob
+                })
+                if (!response.ok) {
+                    throw new Error(`Ошибка загрузки изображения: ${response.status}`)
+                }
+                if (response.ok) {
+                    if (scenario === 'userpic') {
+                        set({userPic: blobUrl})
+                        return true
+                    }
+                    if (scenario === 'graffity') {
+                        set({contentPicture: blobUrl})
+                        const isPostCreated = await sendPost()
+                        return isPostCreated
+                    }
+                     
+                } 
+                    
+            } catch (error) {
+                console.error('Ошибка в uploadAndProceedPicture:', error)
+                return false;   
+            }
+        }
+        return false
+    },
+
+    updatedPosts: (newPost) => set((state) => ({
+        posts: [newPost, ...state.posts]
+    })),
+
+    filterUpdatedPosts: (id) => set((state) => ({
+        posts: state.posts.filter((post) => post.id !== id)
+    }))
+
+    
+
+    
 }))

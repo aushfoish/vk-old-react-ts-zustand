@@ -83,8 +83,9 @@
 
 .graffity-range-settings {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     column-gap: 50px;
+    justify-content: center;
 }
 
 .graffity-range-cnt {
@@ -92,6 +93,7 @@
     flex-direction: row;
     align-items: center;
     column-gap: 15px;
+    justify-content: space-between;
 }
 
 .cavnas-settings-label {
@@ -125,4 +127,34 @@
     border-radius: 50%;
     background-color: black;
     
+}
+
+.color-settings {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+
+.colors-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    column-gap: 10px;
+    width: 150px;
+    height: 50px;
+    gap: 10px;
+}
+
+.cavnas-settings-label {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    text-align: center;
+}
+
+#color-label {
+    margin-top: 18px;
 }

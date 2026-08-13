@@ -1,7 +1,10 @@
 import { userMusicFetch } from "../../UserMusicFetch"
 
 
-const Mp3AudioMetaInfo = () => {
+
+
+export const Mp3AudioMetaInfo = () => {
+
 
   const currentTrack = userMusicFetch((state) => state.currentTrack)
   const currentTimeFormat = userMusicFetch((state) => state.currentTimeFormat)
@@ -20,6 +23,8 @@ const Mp3AudioMetaInfo = () => {
                         {currentTrack.duration}
                       </div>
                     </div>
+
+                    
         </div>
         )
   }
@@ -27,4 +32,3 @@ const Mp3AudioMetaInfo = () => {
     
 }
 
-export default Mp3AudioMetaInfo

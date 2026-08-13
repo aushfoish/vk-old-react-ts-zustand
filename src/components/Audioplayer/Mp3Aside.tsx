@@ -1,6 +1,6 @@
-import AsideNavBtn from "../Navigation/AsideNavBtn"
+import {AsideNavBtn} from "../../shared/ui/AsideNavBtn/AsideNavBtn"
 
-const Mp3Aside = () => {
+export const Mp3Aside = () => {
 
     const audio_nav = [
         {label: "Мои аудиозаписи", id: 'my-audios'},
@@ -12,7 +12,8 @@ const Mp3Aside = () => {
     ]
 
     return (
-        <div className="mp3-track-list-aside">
+        <div className="hidden">
+            <div className="mp3-track-list-aside">
 
                   <ul className="navigation-main">
                     {audio_nav.map((item) => 
@@ -34,7 +35,9 @@ const Mp3Aside = () => {
                     </div>
                   </div>
 
+            </div>
         </div>
+       
     )
 }
 

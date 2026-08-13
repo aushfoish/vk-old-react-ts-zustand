@@ -10,7 +10,7 @@ export const ModalFooter = (props:modalFooterProps) => {
 
     return (
         <div className="dialog-footer">
-                        {footer}
+            {footer}
         </div>
     )
 }

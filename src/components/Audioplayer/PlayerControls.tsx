@@ -1,9 +1,9 @@
-import AudioButton from "./AudioButton"
+import {AudioButton} from "../../shared/ui/IconBtn/AudioButton"
 import { userMusicFetch } from "../../UserMusicFetch"
 
-const PlayerControls = () => {
+export const PlayerControls = () => {
 
-  const nextTrack = userMusicFetch((state) => state.nextTrack)
+    const nextTrack = userMusicFetch((state) => state.nextTrack)
 
     return (
         <div className="mp3-control-buttons"> 
@@ -49,4 +49,3 @@ const PlayerControls = () => {
     )
 }
 
-export default PlayerControls
