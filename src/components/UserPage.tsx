@@ -1,28 +1,16 @@
 import { AccountSection } from "./AccountSection";
-import { userInfoFetch } from "../UserProfileFetch";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MainPageAuthorization } from "./MainPageAuthorization";
 import { AnimatePresence } from "framer-motion";
 import { AccountTitle } from "@/entities/user";
+import { useFetchProfile } from "@/entities/user/model/useFetchProfile";
 
 export const UserPage = () => {
-  const profile = userInfoFetch((state) => state.profile);
-  const isLoading = userInfoFetch((state) => state.isLoading);
-  const fetchName = userInfoFetch((state) => state.fetchName);
+  const {isLoading, profile} = useFetchProfile()
   const [modalClosed, setModalClosed] = useState(false);
 
-  useEffect(() => {
-    fetchName();
-  }, [fetchName]);
-
-  if (isLoading === true) {
-    console.log("контент загружается");
-  } else if (profile === null) {
-    return <div className="account-title">данные не найдены</div>;
-  } else if (isLoading === false) {
-    console.log("контент загружен");
-  }
-
+  if (isLoading) return <div>загрузка</div>
+  if (!profile) return <div>данные не найдены</div>
   return (
     <>
       <AnimatePresence>

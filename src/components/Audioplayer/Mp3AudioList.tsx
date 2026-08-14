@@ -1,40 +1,33 @@
-import {Mp3Aside} from "./Mp3Aside"
-import {Mp3ListItem} from "./Mp3ListItem"
-import { userMusicFetch } from "../../UserMusicFetch"
+import { Mp3ListItem } from "@/entities/mp3-player/ui/Mp3ListItem/Mp3ListItem";
+import { Mp3Aside } from "./Mp3Aside";
+import { userMusicFetch } from "@/UserMusicFetch";
 
 export const Mp3AudioList = () => {
+  const playlist = userMusicFetch((state) => state.playlist);
+  const isPlaying = userMusicFetch((state) => state.isPlaying);
+  const currentTrack = userMusicFetch((state) => state.currentTrack);
+  const trackPlay = userMusicFetch((state) => state.trackPlay);
 
-    const playlist = userMusicFetch((state) => state.playlist)
-    const isLoading = userMusicFetch((state) => state.isLoading)
-    const isPlaying = userMusicFetch((state) => state.isPlaying)
-    const currentTrack = userMusicFetch((state) => state.currentTrack)
-    const trackPlay = userMusicFetch((state) => state.trackPlay)
-    
-    
+  return (
+    <div className="mp3-track-list">
+      <div className="mp3-track-list-items">
+        {
+          playlist?.map((track, index) => (
+            <Mp3ListItem
+              index={index}
+              id={track.id}
+              key={track.id}
+              children={currentTrack?.id === track.id && isPlaying ? "❚❚" : "▶"}
+              title={track.title}
+              band={track.band}
+              audioSrc={track.src}
+              playOnClick={() => trackPlay(track)}
+              time={track.duration ?? "--/--"}
+            />
+          ))}
+      </div>
 
-    
-
-    return (
-        <div className="mp3-track-list">
-                <div className="mp3-track-list-items">
-                    {isLoading === false && playlist !== null && (playlist?.map((track, index) => (
-                        <Mp3ListItem 
-                            index={index}
-                            id={track.id}
-                            key={track.id}
-                            children={ currentTrack?.id === track.id && isPlaying ? '❚❚' : '▶'}
-                            title={track.title}
-                            band={track.band}
-                            audioSrc={track.src}
-                            playOnClick={() => trackPlay(track)}
-                            time={track.duration ?? '--/--'}/>)))}
-                            
-                        
-                </div>
-
-                  <Mp3Aside />
-                  
-        </div>
-    )
-}
-
+      <Mp3Aside />
+    </div>
+  );
+};

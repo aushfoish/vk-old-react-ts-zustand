@@ -1,5 +1,5 @@
-import {AudioButton} from "../../shared/ui/IconBtn/AudioButton"
-import { userMusicFetch } from "../../UserMusicFetch"
+import {AudioButton} from "../../../shared/ui/IconBtn/AudioButton"
+import { userMusicFetch } from "../../../UserMusicFetch"
 
 export const PlayerControls = () => {
 

@@ -5,7 +5,7 @@ import {Mp3AudioList} from "./Mp3AudioList"
 
 export const AudioMainpageVidget = () => {
 
-    const {playlist, isLoading, fetchPlaylist} = userMusicFetch()
+    const fetchPlaylist = userMusicFetch((state) => state.fetchPlaylist)
 
     useEffect(() => {
         fetchPlaylist()
@@ -13,13 +13,10 @@ export const AudioMainpageVidget = () => {
 
     return (
         <div className="mp3-vidget">
-            { isLoading === false && playlist !== null && (
             <>
                 <Mp3AudioHeader />
                 <Mp3AudioList />
             </>
-                
-            )}
         </div>
     )
 }

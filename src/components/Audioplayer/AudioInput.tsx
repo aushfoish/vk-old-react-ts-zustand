@@ -13,6 +13,7 @@ export const AudioInput = () => {
   return (
     <div className="mp3-track-line">
       <Input
+        containerClass="mp3-chrono-input"
         className="hidden"
         classInput="chrono"
         id="mp3-chrono"
