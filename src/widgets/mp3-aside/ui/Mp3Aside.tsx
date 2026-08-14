@@ -1,4 +1,4 @@
-import {AsideNavBtn} from "../../shared/ui/AsideNavBtn/AsideNavBtn"
+import {AsideNavBtn} from "../../../shared/ui/AsideNavBtn/AsideNavBtn"
 
 export const Mp3Aside = () => {
 

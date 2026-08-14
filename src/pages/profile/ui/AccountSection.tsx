@@ -1,5 +1,5 @@
+import { UserInfo } from "@/widgets/user-info";
 import { UserIteractions } from "@/widgets/user-iteractions";
-import { UserInfo } from "../widgets/user-info/ui/UserInfo";
 
 export const AccountSection = () => {
   return (

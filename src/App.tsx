@@ -1,16 +1,16 @@
 import { useState } from "react";
 import "./App.css";
 import {AppAside} from "./widgets/app-aside/ui/AppAside";
-import {UserPage} from "./components/UserPage";
-import {AudioPage} from "./components/AudioPage";
+import {UserPage} from "./pages/profile/ui/UserPage";
 import {
   createHashRouter,
   RouterProvider,
   Outlet,
   Navigate,
 } from "react-router-dom";
-import { AudioMainpageVidget } from "./components/Audioplayer/AudioMainpageVidget";
+import { AudioMainpageVidget } from "./pages/music/ui/AudioMainpageVidget";
 import {AppHeader} from "./widgets/app-header/ui/AppHeader";
+import { AudioPage } from "./pages/music";
 
 const MainLayout = () => {
   const [vidgetOpened, setVidgetOpened] = useState(false);

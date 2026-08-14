@@ -1,6 +1,7 @@
-import { Mp3AudioHeader } from "./Audioplayer/Mp3AudioHeader";
-import { Mp3AudioList } from "./Audioplayer/Mp3AudioList";
-import { userMusicFetch } from "../UserMusicFetch";
+
+import { userMusicFetch } from "@/UserMusicFetch";
+import { Mp3AudioList } from "@/widgets/mp3-audio-list";
+import { Mp3AudioHeader } from "@/widgets/mp3-player-header";
 import { useEffect } from "react";
 
 export const AudioPage = () => {

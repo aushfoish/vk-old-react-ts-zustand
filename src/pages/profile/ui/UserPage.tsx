@@ -1,6 +1,6 @@
 import { AccountSection } from "./AccountSection";
 import { useState } from "react";
-import { MainPageAuthorization } from "./MainPageAuthorization";
+import { MainPageAuthorization } from "../../../components/MainPageAuthorization";
 import { AnimatePresence } from "framer-motion";
 import { AccountTitle } from "@/entities/user";
 import { useFetchProfile } from "@/entities/user/model/useFetchProfile";

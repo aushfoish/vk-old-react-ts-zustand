@@ -1,5 +1,5 @@
 import type React from "react";
-import { Mp3ItemTime } from "../../../../components/Audioplayer/Mp3ItemTime";
+import { Mp3ItemTime } from "../../../../shared/ui/Mp3ItemTime/Mp3ItemTime";
 
 interface Mp3ListItemProps {
   children: React.ReactNode;

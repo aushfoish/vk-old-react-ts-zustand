@@ -1,5 +1,5 @@
-import { Input } from "../../shared/ui/Input/Input";
-import { userMusicFetch } from "../../UserMusicFetch";
+import { Input } from "../../../../shared/ui/Input/Input";
+import { userMusicFetch } from "../../../../UserMusicFetch";
 
 export const AudioInput = () => {
   const currentTimeChanger = userMusicFetch(
