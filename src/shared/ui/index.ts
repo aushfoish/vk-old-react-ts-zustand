@@ -1,6 +1,17 @@
-export {Button} from "./Button"
-export {Input} from "./Input"
-export {ErrorMessage } from "./ErrorMessage"
-export {ModalWindow } from "./ModalWindow"
-export {ModalFooter } from "./ModalFooter"
-export {Micro_header} from "./Micro_header"
+export * from "./Button";
+export * from "./ModalButton";
+export * from "./Input";
+export * from "./ErrorMessage";
+export * from "./CanvasItself";
+export * from "./ColorItem";
+export * from "./AsideNavBtn";
+export * from "./PersonalInfo";
+export * from "./InfoItem";
+export * from "./AccountSpoilerBtn"
+export * from "./ContainerPlaceholder"
+export * from "./IconBtn"
+export * from "./GalleryImgItem"
+export * from "./PersonalInfoMain"
+export * from "./ModalFooter"
+export * from "./ModalWindow"
+export * from "./Mp3ItemTime"

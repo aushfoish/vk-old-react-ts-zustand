@@ -1,8 +1,8 @@
 .button {
-    
     background-color: #6383A9;
     color: white;
     border-style: none;
+    user-select: none;
 }
 
 .button:hover {
@@ -18,5 +18,15 @@
     width: 100%;
     font-size: 12px;
     padding: 12px 10px 12px 10px;
+}
+
+.send-gift {
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+    color: #13688c
+}
+.send-gift:hover {
+    background-color: transparent;
 }
 

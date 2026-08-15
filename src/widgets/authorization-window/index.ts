@@ -1,0 +1,1 @@
+export { MainPageAuthorization } from "@/widgets/authorization-window/ui/MainPageAuthorization";

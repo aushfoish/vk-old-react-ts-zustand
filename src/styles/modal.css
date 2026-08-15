@@ -46,17 +46,15 @@
 .window-upper-border {
     display: flex;
     background-color: #517398;
-    max-height: 50px;
-    max-width: 600px;
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    padding: 8px 9px 8px 12px;
 }
 .window-upper-border p{
     color: white;
     font-weight: bold;
     font-size: 11px;
+    padding: 5px 5px 5px 12px;
 }
 
 .modal-close-button {
@@ -64,7 +62,7 @@
     background: transparent;
     color: rgba(255, 255, 255, 0.595);
     font-size: 10px;
-    padding: 0;
+    padding-right: 10px;
     cursor: pointer;
     transition: ease-out 0.2s;
 
