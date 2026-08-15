@@ -4,9 +4,9 @@ import { Mp3AudioHeader } from "@/widgets/mp3-player-header";
 import { useEffect } from "react";
 
 export const AudioPage = () => {
-  const playlist = userMusicFetch((state) => state.playlist)
-  const isLoading = userMusicFetch((state) => state.isLoading)
-  const fetchPlaylist = userMusicFetch((state) => state.fetchPlaylist)
+  const playlist = userMusicFetch((state) => state.playlist);
+  const isLoading = userMusicFetch((state) => state.isLoading);
+  const fetchPlaylist = userMusicFetch((state) => state.fetchPlaylist);
 
   useEffect(() => {
     fetchPlaylist();
