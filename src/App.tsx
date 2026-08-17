@@ -14,7 +14,6 @@ import { AudioPage } from "./pages/music";
 
 const MainLayout = () => {
   const [vidgetOpened, setVidgetOpened] = useState(false);
-  // const [modalOpened, setModalOpened] = useState(false)
   
   return (
     <>

@@ -1,4 +1,4 @@
-import { userMusicFetch } from "@/UserMusicFetch"
+import { userMusicFetch } from "@/entities/mp3-player/model/useMusicStore"
 import { Mp3AudioList } from "@/widgets/mp3-audio-list"
 import { Mp3AudioHeader } from "@/widgets/mp3-player-header"
 import { useEffect } from "react"

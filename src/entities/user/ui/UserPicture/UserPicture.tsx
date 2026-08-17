@@ -1,5 +1,5 @@
-import { selectAvatar, selectFirstname, selectLastname, userInfoFetch } from "@/UserProfileFetch"
-import placeholder from "@/entities/user/ui/assets/avatar-placeholder.jpg"
+import { selectAvatar, selectFirstname, selectLastname, userInfoFetch } from "@/entities/user/model/useFetchPage"
+import placeholder from "@/shared/assets/currentuser-placeholders-array/exited.png"
 
 
 export const UserPicture = () => {

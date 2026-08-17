@@ -1,13 +1,13 @@
 import { postsHeaderLastSignCheck } from "@/entities/posts/lib/WallHeaderLastSignCheck";
 import { motion } from "framer-motion";
 import { useWallWebsocket } from "../model/useWallWebsocket";
-import { userPostsFetch } from "@/UserPostsFetch";
 import { AddPostForm } from "@/features/create-post/ui/AddPostForm";
 import { AccountWallPost, Micro_header } from "@/entities/posts";
 import { ContainerPlaceholder } from "@/shared/ui/ContainerPlaceholder/ContainerPlaceholder";
+import { useWallStore } from "@/entities/posts/model/useWallStore";
 
 export const AccountWall = () => {
-  const posts = userPostsFetch((state) => state.posts);
+  const posts = useWallStore((state) => state.posts);
 
   useWallWebsocket();
 

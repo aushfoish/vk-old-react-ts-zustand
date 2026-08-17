@@ -1,0 +1,1 @@
+export { ModalWindow } from "@/shared/ui/ModalWindow/ModalWindow";

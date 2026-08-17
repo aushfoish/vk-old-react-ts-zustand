@@ -4,7 +4,7 @@ import {
   selectContacts,
   selectPersonal,
   userInfoFetch,
-} from "../../../UserProfileFetch";
+} from "../../../entities/user/model/useFetchPage";
 import { AnimatePresence } from "framer-motion";
 import { AccountBio, AccountGallery, AccountPersonal, AccountPersonalHidden } from "@/entities/user";
 import { AccountWall } from "@/widgets/account-wall";

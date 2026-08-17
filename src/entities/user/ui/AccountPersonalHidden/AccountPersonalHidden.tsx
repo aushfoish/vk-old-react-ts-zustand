@@ -3,7 +3,7 @@ import {
   selectContacts,
   selectPersonal,
   userInfoFetch,
-} from "../../../../UserProfileFetch";
+} from "../../model/useFetchPage";
 import { motion } from "framer-motion";
 
 export const AccountPersonalHidden = () => {

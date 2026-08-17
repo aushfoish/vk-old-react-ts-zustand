@@ -6,7 +6,7 @@ import {
   selectLanguages,
   selectWorkplace,
   userInfoFetch,
-} from "../../../../UserProfileFetch";
+} from "../../model/useFetchPage";
 import { InfoItem } from "@/shared/ui";
 import { AccountPersonalItem } from "@/shared/ui/PersonalInfoMain";
 

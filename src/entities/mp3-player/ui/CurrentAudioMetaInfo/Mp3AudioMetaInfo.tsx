@@ -1,4 +1,4 @@
-import { userMusicFetch } from "@/UserMusicFetch";
+import { userMusicFetch } from "@/entities/mp3-player/model/useMusicStore";
 
 export const Mp3AudioMetaInfo = () => {
   const currentTrack = userMusicFetch((state) => state.currentTrack);

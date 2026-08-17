@@ -1,3 +1,6 @@
+// этот блок не видно на сайте, но он всё равно используется, я его оставил для дальнейшего расширения
+// удалять нельзя
+
 import {AsideNavBtn} from "../../../shared/ui/AsideNavBtn/AsideNavBtn"
 
 export const Mp3Aside = () => {

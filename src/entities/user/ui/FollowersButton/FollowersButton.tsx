@@ -1,5 +1,5 @@
 import { nameDeclension } from "@/entities/user/lib/nameDeclesion"
-import { selectFirstname, userInfoFetch } from "@/UserProfileFetch"
+import { selectFirstname, userInfoFetch } from "@/entities/user/model/useFetchPage"
 
 export const FollowersButton = () => {
 

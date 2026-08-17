@@ -1,16 +1,16 @@
-import { userPostsFetch } from "@/UserPostsFetch";
+import { useWallStore } from "@/entities/posts/model/useWallStore";
 import { useEffect } from "react";
 
 export const useWallWebsocket = () => {
-  const userFetch = userPostsFetch((state) => state.userFetch);
-  const updatedPosts = userPostsFetch((state) => state.updatedPosts);
-  const filterUpdatedPosts = userPostsFetch(
+  const pagePostsFetch = useWallStore((state) => state.pagePostsFetch);
+  const updatedPosts = useWallStore((state) => state.updatedPosts);
+  const filterUpdatedPosts = useWallStore(
     (state) => state.filterUpdatedPosts,
   );
 
   useEffect(() => {
-    userFetch();
-  }, [userFetch]);
+    pagePostsFetch();
+  }, [pagePostsFetch]);
 
   useEffect(() => {
     let isCancelled = false;

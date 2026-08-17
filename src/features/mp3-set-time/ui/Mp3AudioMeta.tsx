@@ -1,8 +1,6 @@
-// import { title } from "framer-motion/client";
-
 import { Mp3AudioMetaInfo } from "@/entities/mp3-player/ui/CurrentAudioMetaInfo/Mp3AudioMetaInfo";
 import { Input } from "@/shared/ui";
-import { userMusicFetch } from "@/UserMusicFetch";
+import { userMusicFetch } from "@/entities/mp3-player/model/useMusicStore";
 
 export const Mp3AudioMeta = () => {
   const currentTimeChanger = userMusicFetch(

@@ -1,5 +1,5 @@
 import { Input } from "@/shared/ui";
-import { userMusicFetch } from "@/UserMusicFetch";
+import { userMusicFetch } from "@/entities/mp3-player/model/useMusicStore";
 
 export const PlayerOptions = () => {
   const setVolume = userMusicFetch((state) => state.setVolume);

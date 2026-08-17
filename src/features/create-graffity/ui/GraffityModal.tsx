@@ -1,11 +1,12 @@
+import { useWallStore } from "@/entities/posts/model/useWallStore";
+import { CanvasBrushSettings } from "@/features/create-graffity/ui/CanvasBrushSettings";
+import { CanvasItselfContainer } from "@/features/create-graffity/ui/CanvasItselfContainer";
+import { CanvasOptionsBlock } from "@/features/create-graffity/ui/CanvasOptionsBlock";
+import { uploadPicture } from "@/shared/api/uploadPicture";
+import { useCanvasDrawing } from "@/shared/lib/hooks/useCanvasDrawing";
+import { Button, ModalFooter } from "@/shared/ui";
 import { useState } from "react";
-import { Button } from "../../../shared/ui/Button/Button";
-import { ModalFooter } from "../../../components/ModalWindow/ModalFooter";
-import { userPostsFetch } from "../../../UserPostsFetch";
-import { CanvasOptionsBlock } from "./CanvasOptionsBlock";
-import { CanvasItselfContainer } from "./CanvasItselfContainer";
-import { CanvasBrushSettings } from "./CanvasBrushSettings";
-import { useCanvasDrawing } from "../../../shared/lib/hooks/useCanvasDrawing";
+
 
 interface GraffityModalProps {
   onCloseModal: (value: boolean) => void;
@@ -14,12 +15,9 @@ interface GraffityModalProps {
 export const GraffityModal = (props: GraffityModalProps) => {
   const { onCloseModal } = props;
 
-  const { resetSendStatus } = userPostsFetch();
+  const resetSendStatus = useWallStore((state) => state.resetSendStatus)
 
-  const uploadAndProceedPicture = userPostsFetch(
-    (state) => state.uploadAndProceedPicture,
-  );
-
+  const [sending, setSending] = useState(false)
   const [strokeStyle, setStrokeStyle] = useState("#3498db");
   const [lineWidth, setLinewidth] = useState(50);
   const [globalAlpha, setGlobalAlpha] = useState(0.7);
@@ -42,7 +40,8 @@ export const GraffityModal = (props: GraffityModalProps) => {
       "https://tyekwqioulapfagzpswr.supabase.co/storage/v1/object/pictures";
     canvas.toBlob(
       async (readyBlob) => {
-        const success = await uploadAndProceedPicture(
+        setSending(true)
+        const success = await uploadPicture(
           readyBlob,
           bucket,
           imageExt,
@@ -52,6 +51,7 @@ export const GraffityModal = (props: GraffityModalProps) => {
           ctxClear();
           onCloseModal(false);
           resetSendStatus();
+          setSending(false)
         } else {
           alert("ошибка при отправке граффити");
         }
@@ -80,6 +80,7 @@ export const GraffityModal = (props: GraffityModalProps) => {
         <ModalFooter
           footer={
             <Button
+              isLoading={sending}
               className="post"
               children="Отправить"
               onClick={() => {

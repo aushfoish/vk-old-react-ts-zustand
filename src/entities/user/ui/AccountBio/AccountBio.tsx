@@ -1,4 +1,4 @@
-import { selectBio, selectFirstname, selectLastname, userInfoFetch } from "@/UserProfileFetch"
+import { selectBio, selectFirstname, selectLastname, userInfoFetch } from "@/entities/user/model/useFetchPage"
 
 export const AccountBio = () => {
 

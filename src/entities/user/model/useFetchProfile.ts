@@ -1,4 +1,4 @@
-import { userInfoFetch } from "@/UserProfileFetch";
+import { userInfoFetch } from "@/entities/user/model/useFetchPage";
 import { useEffect } from "react";
 
 export const useFetchProfile = () => {

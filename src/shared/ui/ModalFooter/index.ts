@@ -1,0 +1,1 @@
+export { ModalFooter } from "@/shared/ui/ModalFooter/ModalFooter";

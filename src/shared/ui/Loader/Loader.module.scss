@@ -1,0 +1,41 @@
+// 1. Локальная анимация (Vite сам свяжет её со спанами ниже)
+@keyframes vkPulse {
+  0%,
+  100% {
+    transform: scaleY(0.6);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+
+.loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px; 
+  height: 14px; 
+
+  span {
+    display: inline-block;
+    width: 9px; 
+    height: 5px; 
+    background-color: #a9bcd2; 
+    border-radius: 1px;
+
+    animation: vkPulse 0.9s infinite ease-in-out;
+
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0s;
+    }
+  }
+}

@@ -1,23 +1,17 @@
+import { MainPageAuthorization } from "@/widgets/authorization-window/ui/MainPageAuthorization";
 import { AccountSection } from "./AccountSection";
-import { useState } from "react";
-import { MainPageAuthorization } from "../../../components/MainPageAuthorization";
-import { AnimatePresence } from "framer-motion";
 import { AccountTitle } from "@/entities/user";
 import { useFetchProfile } from "@/entities/user/model/useFetchProfile";
+import { SkeletonMainPage } from "@/shared/ui/SkeletonMainPage";
 
 export const UserPage = () => {
-  const {isLoading, profile} = useFetchProfile()
-  const [modalClosed, setModalClosed] = useState(false);
+  const { isLoading, profile } = useFetchProfile();
 
-  if (isLoading) return <div>загрузка</div>
-  if (!profile) return <div>данные не найдены</div>
+  if (isLoading) return <SkeletonMainPage />;
+  if (!profile) return <div></div>;
   return (
     <>
-      <AnimatePresence>
-        {modalClosed === false && (
-          <MainPageAuthorization onCloseModal={() => setModalClosed(true)} />
-        )}
-      </AnimatePresence>
+      <MainPageAuthorization />
 
       <AccountTitle />
 
@@ -25,4 +19,3 @@ export const UserPage = () => {
     </>
   );
 };
-

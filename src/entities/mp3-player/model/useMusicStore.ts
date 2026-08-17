@@ -183,7 +183,9 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
   },
 }));
 
-export const band = ((state: userPlaylistState) => state.currentTrack?.band)
-export const title = ((state: userMusic) => state.title)
-export const currentTime = ((state: userPlaylistState) => state.currentTimeFormat)
-export const duration = ((state: userPlaylistState) => state.currentTrack?.duration)
+export const band = (state: userPlaylistState) => state.currentTrack?.band;
+export const title = (state: userMusic) => state.title;
+export const currentTime = (state: userPlaylistState) =>
+  state.currentTimeFormat;
+export const duration = (state: userPlaylistState) =>
+  state.currentTrack?.duration;
