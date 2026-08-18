@@ -7,8 +7,7 @@ import { SkeletonMainPage } from "@/shared/ui/SkeletonMainPage";
 export const UserPage = () => {
   const { isLoading, profile } = useFetchProfile();
 
-  if (isLoading) return <SkeletonMainPage />;
-  if (!profile) return <div></div>;
+  if (isLoading || !profile) return <SkeletonMainPage />;
   return (
     <>
       <MainPageAuthorization />
