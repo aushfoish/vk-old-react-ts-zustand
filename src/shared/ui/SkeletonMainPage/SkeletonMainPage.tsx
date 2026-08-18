@@ -1,4 +1,4 @@
-import '@/shared/ui/SkeletonMainPage/SkeletonMainPage.module.scss'
+import '@/shared/ui/SkeletonMainPage/SkeletonMainPage.scss'
 
 export const SkeletonMainPage = () => {
   return (

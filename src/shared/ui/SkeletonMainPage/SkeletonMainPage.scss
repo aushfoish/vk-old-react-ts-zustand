@@ -8,11 +8,9 @@
   }
 }
 
-// Пишем без :global. Этот селектор применится ко всем твоим модульным классам
 [class*="skeleton-shimmer"] {
   border-radius: 4px;
   background: linear-gradient(90deg, #e1e4e6 25%, #f0f2f5 50%, #e1e4e6 75%);
   background-size: 200% 100%;
   animation: running-shimmer 1.5s infinite linear;
-  // НИКАКИХ !important здесь больше нет!
 }
