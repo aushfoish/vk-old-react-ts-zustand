@@ -1,9 +1,10 @@
 import type React from "react";
+import styles from './Button.module.scss'
 import { Loader } from "../Loader";
 import type { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className: string;
+  className?: string;
   children: React.ReactNode;
   onClick?: () => void;
   type?: "submit" | "reset" | "button" | undefined;
@@ -16,7 +17,7 @@ export const Button = (props: ButtonProps) => {
   return (
     <button
       type={type}
-      className={`button ${className}`}
+      className={`${styles.button} ${className}`.trim()}
       onClick={onClick}
       disabled={disabled || isLoading}
     >

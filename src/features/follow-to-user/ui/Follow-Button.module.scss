@@ -1,0 +1,11 @@
+.followButton {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgb(237, 237, 237);
+    .follow {
+        font-size: 12px;
+        padding: 12px 10px 12px 10px;
+        width: 100%;
+    }
+}

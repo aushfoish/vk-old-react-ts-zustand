@@ -1,0 +1,26 @@
+:root {
+  --color-black: #1a1a1a;
+  --color-white: #ffffff;
+  --color-gray-100: #efefef;
+  --color-blue-300: #4c617a;
+  --color-blue-100: #13688c;
+  --color-gray-500: #546B87;
+  --color-primary: #6383A9;
+  --color-primary-hover: #6d8fb9;
+  ;
+
+  /* 1. Для текста */
+  --text-header: var(--color-blue);
+  --text-muted: var(--color-blue-100);
+  --text-inverse: var(--color-black);
+  --text-button: var(--color-white);
+
+  /* 2. Для UI элементов */
+  --ui-bg-main: var(--color-white);
+  --ui-bg-accent: var(--color-gray-100);
+  --ui-border: var(--color-gray-100);
+  
+  /* 3. Интерактивные элементы (кнопки, ссылки) */
+  --ui-accent: var(--color-primary);
+  --ui-accent-hover: var(--color-primary-hover);
+}

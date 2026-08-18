@@ -1,0 +1,10 @@
+.button {
+    background-color: var(--color-primary);
+    color: var(--text-button);
+    border-style: none;
+    user-select: none;
+    &:hover {
+        background-color: var(--color-primary-hover);
+    }
+
+}
