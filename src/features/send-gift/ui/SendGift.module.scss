@@ -1,0 +1,15 @@
+.sendGift {
+  display: block;
+  font-size: 12px;
+  color: var(--color-primary);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  text-align: center;
+  background-color: #ebeef3;
+  cursor: pointer;
+  width: 100%;
+  &:hover {
+    background-color: #DAE1E8;
+  }
+}

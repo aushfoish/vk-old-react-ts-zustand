@@ -1,0 +1,24 @@
+.infoRow {
+  display: flex;
+  margin: 5px 0px 0px 0px;
+  line-height: 1;
+  font-size: 11px;
+  flex-direction: row;
+  line-height: 1.4;
+  justify-content: flex-start;
+}
+
+.label {
+  width: 120px;
+  flex-shrink: 0;
+  color: var(--color-info-label);
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  color: var(--color-blue-100);
+  margin: 0;
+  justify-content: start;
+}

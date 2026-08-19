@@ -4,10 +4,9 @@ import path from 'path'; // Импортируем встроенный моду
 
 export default defineConfig({
   plugins: [react()],
-  base: '',
+  base: '/vk-old-react-ts-zustand/',
   resolve: {
     alias: {
-      // Маппим символ '@' на реальную физическую папку './src' на диске
       '@': path.resolve(__dirname, './src'), 
     },
   },

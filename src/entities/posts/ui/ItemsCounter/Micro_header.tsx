@@ -1,4 +1,5 @@
 import type React from "react"
+import styles from './MicroHeader.module.scss'
 
 interface Micro_headerProps {
     children: React.ReactNode,
@@ -15,8 +16,8 @@ export const Micro_header = (props:Micro_headerProps) => {
     } = props
 
     return (
-        <div className="micro_header">
-                    <a href="#" className="header-link">{children}</a>
+        <div className={styles.microHeader}>
+                    <a href="#" className={styles.headerLink}>{children}</a>
                     {secondChildren && secondChildren?.length > 0 && (
                         <a href="#" className="optional-link">{secondChildren}</a>
                         )}

@@ -1,0 +1,26 @@
+.currentUser {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+  .headerUserpic {
+    width: 40px;
+    height: 40px;
+  }
+  .headerUsername {
+    display: flex;
+    color: white;
+    margin: 0;
+    width: 190px;
+    flex-wrap: wrap;
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .headerSubscriptio {
+    margin: 0;
+    opacity: 1;
+    color: rgb(187, 187, 187);
+    font-weight: 100;
+}
+}

@@ -8,7 +8,6 @@ import { useWallStore } from "@/entities/posts/model/useWallStore";
 
 export const AddPostForm = () => {
   const [modalOpened, setModalOpened] = useState(false);
-  const [inputFocused, setInputFocused] = useState(false);
   const setInputPost = useWallStore((state) => state.setInputPost);
   const inputPost = useWallStore((state) => state.inputPost);
   const sendPost = useWallStore((state) => state.sendPost);
@@ -39,31 +38,24 @@ export const AddPostForm = () => {
           className="post-add-form"
           autoComplete="off"
           onSubmit={handleSubmit}
-          onBlur={(e) => {
-            if (!e.currentTarget.contains(e.relatedTarget)) {
-              e.preventDefault();
-              setInputFocused(false);
-            }
-          }}
         >
           <Input
+            containerClass=""
+            classInput=""
             id="input-post"
-            className="hidden"
+            className="visuallyHidden"
             type="text"
             placeholder="Что у вас нового?"
             label="Введите новый пост"
-            onFocus={() => setInputFocused(true)}
             value={inputPost}
             onChange={setInputPost}
           />
           <AnimatePresence>
-            {inputFocused && (
-              <Attachments
-                setCanvasOpen={() => {
-                  if (modalOpened === false) setModalOpened(true);
-                }}
-              />
-            )}
+          <Attachments
+              setCanvasOpen={() => {
+                if (modalOpened === false) setModalOpened(true);
+              }}
+          />
           </AnimatePresence>
         </motion.form>
       </div>

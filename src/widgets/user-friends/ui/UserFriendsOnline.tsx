@@ -1,4 +1,4 @@
-import { userInfoFetch } from "../../../UserProfileFetch";
+import { userInfoFetch } from "../../../entities/user/model/useFetchPage";
 import { FriendsWindowFriends } from "../../../entities/user/ui/AccountFriendContainer/FriendsWindowFriends";
 import { Micro_header } from "@/entities/posts";
 

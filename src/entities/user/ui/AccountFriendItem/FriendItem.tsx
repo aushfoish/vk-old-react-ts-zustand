@@ -1,3 +1,5 @@
+import styles from './FriendItem.module.scss'
+
 interface FriendItemProps {
     name: string,
     src: string,
@@ -11,12 +13,12 @@ export const FriendItem = (props:FriendItemProps) => {
     } = props
 
     return (
-        <div className="friend">
-            <img src={src}></img>
-            <a className="name">
+        <li className={styles.friend}>
+            <img src={src} alt={`фотография пользователя ${name}`}></img>
+            <a className={styles.friendName}>
             {name}
             </a>
-        </div>
+        </li>
     )
 }
 

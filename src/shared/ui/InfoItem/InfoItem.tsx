@@ -1,16 +1,16 @@
-import type React from "react"
+import styles from './InfoItem.module.scss'
 
 interface InfoItemProps {
-    children: React.ReactNode
+    label: string
 }
 
 export const InfoItem = (props: InfoItemProps) => {
 
     const {
-        children
+        label
     } = props
 
     return (
-        <a href="#" className="language">{children}</a>
+        <p className={styles.contentData}>{label}</p>
     )
 }

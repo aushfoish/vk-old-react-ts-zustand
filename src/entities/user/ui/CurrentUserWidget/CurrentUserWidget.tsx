@@ -1,4 +1,5 @@
 import { useAuthStore } from "@/entities/user/model/useAuthStore";
+import styles from './CurrentUserWidget.module.scss'
 
 export const CurrentUserWidget = () => {
   const currentUserName = useAuthStore((state) => state.userName);
@@ -6,14 +7,15 @@ export const CurrentUserWidget = () => {
   const userIsLogged = useAuthStore((state) => state.userIsLogged);
 
   return (
-    <div className="current-user">
+    <div className={styles.currentUser}>
       <img
-        className="header-userpic"
+        className={styles.headerUserpic}
         src={currentUserPic}
+        alt={`Это ваша фотография: ${currentUserName}`}
       ></img>
-      <div className="header-username">
-        <p className="header-username">{currentUserName}</p>
-        {userIsLogged && <p className="header-subscriptio">(это вы)</p>}
+      <div className={styles.headerUsername}>
+        <p className={styles.headerUsername}>{currentUserName}</p>
+        {userIsLogged && <p className={styles.headerSubscriptio}>(это вы)</p>}
       </div>
     </div>
   );

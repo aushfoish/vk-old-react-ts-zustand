@@ -1,0 +1,15 @@
+.navBtn {
+  display: block;
+  padding: 4px 6px;
+  font-size: 13px;
+  color: #2b587a;
+  text-decoration: none;
+  border-style: none;
+  background-color: transparent;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--color-sidebar-hover);
+  }
+}

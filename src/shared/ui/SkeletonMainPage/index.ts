@@ -1,0 +1,1 @@
+export { SkeletonMainPage } from "./SkeletonMainPage";

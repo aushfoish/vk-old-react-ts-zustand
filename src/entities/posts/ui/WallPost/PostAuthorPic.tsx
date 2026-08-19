@@ -1,16 +1,16 @@
+import styles from './WallPost.module.scss'
 interface postAuthorPic {
     src: string
+    alt: string
 }
 
 export const PostAuthorPic = (props:postAuthorPic) => {
 
     const {
-        src
+        src, alt
     } = props
 
     return (
-        <div className="userpic">
-                  <img className="userpic-post" src={src}></img>
-        </div>
+        <img className={styles.userpicPost} src={src} alt={alt}></img>
     )
 }

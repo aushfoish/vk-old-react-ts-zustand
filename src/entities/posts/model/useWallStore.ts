@@ -25,13 +25,11 @@ interface WallStore {
   setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isSending: boolean;
   isPostSend: boolean;
-
   contentText: string;
   contentPicture: string;
   postIsEmpty: boolean;
   isTyping: boolean;
   inputPost: string;
-
   resetSendStatus: () => void;
   updatedPosts: (newPost: UserPosts) => void;
   filterUpdatedPosts: (oldPost: number) => void;
@@ -75,9 +73,9 @@ export const useWallStore = create<WallStore>((set, get) => ({
   },
 
   sendPost: async () => {
-    const {contentPicture, inputPost } = get();
-    const userName = useAuthStore.getState().userName
-    const userPic = useAuthStore.getState().userPic
+    const { contentPicture, inputPost } = get();
+    const userName = useAuthStore.getState().userName;
+    const userPic = useAuthStore.getState().userPic;
     const newPost: PostToSend = {
       content: inputPost,
       username: userName,

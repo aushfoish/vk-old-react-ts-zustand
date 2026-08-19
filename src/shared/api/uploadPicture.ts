@@ -1,5 +1,5 @@
 import { prepareBlobData } from "@/shared/lib/file/prepareBlobData";
-import { useAuthStore } from "@/entities/user/model/useAuthStore";
+// import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { useWallStore } from "@/entities/posts/model/useWallStore";
 
 export const uploadPicture = async (
@@ -26,8 +26,7 @@ export const uploadPicture = async (
       }
       if (response.ok) {
         if (scenario === "userpic") {
-          useAuthStore.setState({ userPic: blobUrl });
-          return true;
+          return blobUrl
         }
         if (scenario === "graffity") {
           useWallStore.setState({ contentPicture: blobUrl });

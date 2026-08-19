@@ -1,6 +1,6 @@
 import { Mp3ListItem } from "@/entities/mp3-player/ui/Mp3ListItem/Mp3ListItem";
 import { Mp3Aside } from "../../mp3-aside/ui/Mp3Aside";
-import { userMusicFetch } from "@/UserMusicFetch";
+import { userMusicFetch } from "@/entities/mp3-player/model/useMusicStore";
 
 export const Mp3AudioList = () => {
   const playlist = userMusicFetch((state) => state.playlist);

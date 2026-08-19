@@ -1,20 +1,26 @@
 import type React from "react";
+import styles from "./Spoiler.module.scss";
+import type { ButtonHTMLAttributes } from "react";
 
-interface AccountPersonalSpoilerButtonProps {
+interface SpoilerBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  onClick: (isShowed: boolean) => void;
+  onClick: () => void;
+  isOpen: boolean;
+  ariaControls: string;
 }
 
-export const AccountPersonalSpoilerButton = (
-  props: AccountPersonalSpoilerButtonProps,
-) => {
-  const { children, onClick } = props;
+export const AccountPersonalSpoilerButton = (props: SpoilerBtnProps) => {
+  const { children, onClick, isOpen, ariaControls, ...otherProps } = props;
 
   return (
-    <div className="hidden-info-spoiler">
-      <a className="info-spoiler-button" onClick={() => onClick(false)}>
-        {children}
-      </a>
-    </div>
+    <button
+      className={styles.spoilerBtn}
+      onClick={() => onClick()}
+      aria-expanded={isOpen}
+      aria-controls={ariaControls}
+      {...otherProps}
+    >
+      {children}
+    </button>
   );
 };

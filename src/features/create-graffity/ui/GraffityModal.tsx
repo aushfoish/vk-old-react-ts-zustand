@@ -17,7 +17,7 @@ export const GraffityModal = (props: GraffityModalProps) => {
 
   const resetSendStatus = useWallStore((state) => state.resetSendStatus)
 
-
+  const [sending, setSending] = useState(false)
   const [strokeStyle, setStrokeStyle] = useState("#3498db");
   const [lineWidth, setLinewidth] = useState(50);
   const [globalAlpha, setGlobalAlpha] = useState(0.7);
@@ -40,6 +40,7 @@ export const GraffityModal = (props: GraffityModalProps) => {
       "https://tyekwqioulapfagzpswr.supabase.co/storage/v1/object/pictures";
     canvas.toBlob(
       async (readyBlob) => {
+        setSending(true)
         const success = await uploadPicture(
           readyBlob,
           bucket,
@@ -50,6 +51,7 @@ export const GraffityModal = (props: GraffityModalProps) => {
           ctxClear();
           onCloseModal(false);
           resetSendStatus();
+          setSending(false)
         } else {
           alert("ошибка при отправке граффити");
         }
@@ -78,6 +80,7 @@ export const GraffityModal = (props: GraffityModalProps) => {
         <ModalFooter
           footer={
             <Button
+              isLoading={sending}
               className="post"
               children="Отправить"
               onClick={() => {

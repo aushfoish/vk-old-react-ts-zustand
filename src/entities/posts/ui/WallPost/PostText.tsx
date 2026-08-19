@@ -1,3 +1,4 @@
+import styles from './WallPost.module.scss'
 interface PostTextProps {
     text: string
     id: number
@@ -9,8 +10,8 @@ export const PostText = (props:PostTextProps) => {
         text, id
     } = props
     return (
-        <div className="text-content" id={String(id)}>
-                    <p className="user-content">
+        <div className={styles.textContent} id={String(id)}>
+                    <p className={styles.userContent}>
                       {text}
                     </p>
         </div>

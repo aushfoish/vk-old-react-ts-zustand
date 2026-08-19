@@ -11,7 +11,7 @@ export const ColorItem = (props: ColorItemProps) => {
     } = props
 
     return (
-        <span className="color-item" style={{width: '20px', height: '20px', backgroundColor: `${color}`}} onClick={onClick}>
-        </span>
+        <button className="color-item" aria-label={`выбрать цвет ${color}`} style={{width: '20px', height: '20px', backgroundColor: `${color}`, borderStyle: 'none'}} onClick={onClick}>
+        </button>
     )
 }

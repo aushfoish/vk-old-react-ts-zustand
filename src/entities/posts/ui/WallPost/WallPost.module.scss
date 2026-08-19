@@ -1,0 +1,78 @@
+.postGenuinely {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  max-width: 365px;
+  .userpicPost {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+  }
+  .contentPost {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    flex-wrap: wrap;
+    .postHead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .userName {
+        display: flex;
+        width: 100%;
+        font-size: 12px;
+        font-weight: bold;
+        color: var(--color-blue-500);
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 0;
+      }
+    }
+    .contentPicture {
+        max-width: 298px;
+    }
+    .textContent {
+      display: flex;
+      font-size: 12px;
+      flex-direction: column;
+      gap: 10px;
+      .userContent {
+        display: flex;
+        text-align: left;
+        font-size: 12px;
+        flex-wrap: wrap;
+        max-width: 520px;
+        margin: 0;
+        gap: 10px;
+      }
+    }
+    .likeShareDate {
+      display: flex;
+      font-size: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+      color: var(--color-blue-500);
+      .dateTime {
+        display: block;
+        unicode-bidi: isolate;
+        .time {
+          color: var(--color-blue-500info-label);
+          margin: 0;
+        }
+      }
+      .likeShareContainer {
+        display: flex;
+        gap: 15px;
+      }
+      .like {
+        color: var(--color-blue-500)
+      }
+    }
+  }
+}

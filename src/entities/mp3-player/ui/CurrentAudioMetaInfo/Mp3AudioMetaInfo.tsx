@@ -1,9 +1,9 @@
-import { userMusicFetch } from "@/UserMusicFetch";
+import { userMusicFetch} from "@/entities/mp3-player/model/useMusicStore";
 
 export const Mp3AudioMetaInfo = () => {
   const currentTrack = userMusicFetch((state) => state.currentTrack);
-  const currentTimeFormat = userMusicFetch((state) => state.currentTimeFormat);
-
+  const timer = userMusicFetch((state) => state.currentTimeFormat);
+  const time = userMusicFetch((state) => state.currentAudioTime)
   if (currentTrack !== null) {
     return (
       <div className="track-info">
@@ -13,8 +13,8 @@ export const Mp3AudioMetaInfo = () => {
           <p className="music-name">{currentTrack.title}</p>
         </div>
         <div className="mp3-duration">
-          <div className="mp3-track-time">{currentTimeFormat}/</div>
-          <div className="mp3-track-length">{currentTrack.duration}</div>
+          <div className="mp3-track-time">{timer}/</div>
+          <div className="mp3-track-length">{time}</div>
         </div>
       </div>
     );

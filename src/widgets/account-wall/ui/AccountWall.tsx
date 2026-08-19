@@ -34,6 +34,7 @@ export const AccountWall = () => {
               }}
             >
               <AccountWallPost
+                alt={post.username}
                 userPicSrc={post?.userPictureSrc}
                 id={post.id}
                 text={post?.content}

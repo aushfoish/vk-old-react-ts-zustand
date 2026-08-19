@@ -1,7 +1,7 @@
 import { useAuthStore } from "@/entities/user/model/useAuthStore";
-import { uploadPicture } from "@/shared/api/uploadPicture";
-import { Button, CanvasItself, ErrorMessage, Input } from "@/shared/ui";
-import { useEffect, useRef, useState } from "react";
+import { Button, ErrorMessage, Input, Loader } from "@/shared/ui";
+import { useEffect, useState } from "react";
+import { handleFileReader } from "@/shared/lib/file/useFileReader";
 
 interface AuthorizationModuleProps {
   onClose: () => void;
@@ -12,10 +12,10 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
 
   const [username, setUsername] = useState("");
   const [userpic, setUserpic] = useState("");
+  const [picUploading, setPicUploading] = useState(false);
   const [error, setError] = useState(false);
 
   const authorization = useAuthStore((state) => state.authorization);
-  const userPic = useAuthStore((state) => state.userPic);
   const authCheck = useAuthStore((state) => state.authCheck);
   const anonymous = useAuthStore((state) => state.anonymous);
 
@@ -25,55 +25,15 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
       authCheck();
       onClose();
     }
-  }, []);
+  }, [authCheck, onClose]);
 
-  useEffect(() => {
-    if (userPic !== "") {
-      setUserpic(userPic);
+  const onUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPicUploading(true);
+    const userpicUrl = await handleFileReader(e, "userpic", "jpg", 40, 40);
+    if (typeof userpicUrl === "string") {
+      setUserpic(userpicUrl);
     }
-  }, [userPic]);
-
-  const handleFileReader = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.currentTarget.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        if (typeof reader.result === "string") {
-          const picToCompress = reader.result;
-          imageCompression(picToCompress);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imageCompression = (userpic: string) => {
-    const canvas = canvasRef.current;
-
-    if (!canvas) return;
-    if (canvas) {
-      const ctx = canvas.getContext("2d");
-      const img = new Image();
-      img.src = userpic;
-
-      img.onload = () => {
-        ctx?.drawImage(img, 0, 0, 40, 40);
-        const scenario = "userpic";
-        const imageExt = "jpg";
-        const bucket =
-          "https://tyekwqioulapfagzpswr.supabase.co/storage/v1/object/pictures";
-        canvas.toBlob(
-          (readyBlob) => {
-            uploadPicture(readyBlob, bucket, imageExt, scenario);
-          },
-          "image/jpeg",
-          0.8,
-        );
-      };
-    }
+    setPicUploading(false);
   };
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -94,12 +54,6 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
   return (
     <>
       <form className="authorization-inputs-container" onSubmit={handleSubmit}>
-        <CanvasItself
-          className="hidden"
-          width={40}
-          height={40}
-          ref={canvasRef}
-        />
         <Input
           maxLength={25}
           id="username"
@@ -113,7 +67,7 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
         />
 
         <ErrorMessage
-          classname={error === true ? "is-error" : ""}
+          classname={error === true ? "isError" : ""}
           children="Добавьте имя и фото, либо нажмите в самый низ"
           id="auth-error"
         />
@@ -124,20 +78,22 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
           label="Добавьте ваше фото"
           className="default-label"
           classInput="auth-file"
-          onChange={handleFileReader}
+          onChange={onUploadFile}
         />
         <div className="auth-buttons">
           <Button
+            isLoading={picUploading}
             type="submit"
             className="post"
-            children="Зарегистрироваться"
+            children={picUploading ? <Loader /> : "Зарегистрироваться"}
           />
 
           <button
             type="button"
             className="modal-close-button option"
             onClick={() => {
-              (anonymous(), onClose());
+              anonymous();
+              onClose();
             }}
           >
             Не буду регаться

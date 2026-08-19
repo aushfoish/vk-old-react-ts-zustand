@@ -1,3 +1,5 @@
+import styles from './ErrorMessage.module.scss'
+
 interface ErrorMessage {
     children: React.ReactNode
     id: string
@@ -9,9 +11,7 @@ export const ErrorMessage = (props:ErrorMessage) => {
     const {children, id, classname} = props
 
     return (
-        <>
-            <div className={`error-message ${classname}`} id={id}>{children}</div>
-        </>
+            <p className={`${styles.errorMessage} ${classname}`} id={id}>{children}</p>
         
     )
 }

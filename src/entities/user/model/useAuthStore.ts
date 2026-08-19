@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import placeholder from "@/shared/assets/currentuser-placeholders-array/exited.png"
+import placeholder from "@/shared/assets/currentuser-placeholders-array/exited.png";
 
 interface useAuthStore {
   userName: string;
