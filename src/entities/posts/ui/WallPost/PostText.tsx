@@ -9,7 +9,6 @@ export const PostText = (props:PostTextProps) => {
     const {
         text, id
     } = props
-    const lol = 'facepalm'
     return (
         <div className={styles.textContent} id={String(id)}>
                     <p className={styles.userContent}>
