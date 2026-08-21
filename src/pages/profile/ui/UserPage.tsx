@@ -1,4 +1,3 @@
-import { MainPageAuthorization } from "@/widgets/authorization-window/ui/MainPageAuthorization";
 import { AccountSection } from "./AccountSection";
 import { AccountTitle } from "@/entities/user";
 import { useFetchProfile } from "@/entities/user/model/useFetchProfile";
@@ -10,8 +9,6 @@ export const UserPage = () => {
   if (isLoading || !profile) return <SkeletonMainPage />;
   return (
     <>
-      <MainPageAuthorization />
-
       <AccountTitle />
 
       <AccountSection />

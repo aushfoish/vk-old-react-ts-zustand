@@ -1,0 +1,14 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageRow {
+  display: flex;
+  flex-direction: row;
+  column-gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-block: 6px;
+  flex-wrap: wrap;
+}

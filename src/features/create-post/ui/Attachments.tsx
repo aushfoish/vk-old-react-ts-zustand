@@ -38,6 +38,7 @@ export const Attachments = (props: AttachmentsProps) => {
             </svg>
           }
           onClick={setCanvasOpen}
+          ariaLabel="Открыть холст для рисования"
         />
         <AudioButton
           id="picture"
@@ -55,6 +56,7 @@ export const Attachments = (props: AttachmentsProps) => {
               />
             </svg>
           }
+          ariaLabel="Отправить фотографию к посту"
         />
       </div>
     </motion.div>

@@ -1,0 +1,13 @@
+.microHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #DEE5EB;
+    margin-top: 5px;
+    .headerLink {
+    font-size: 12px;
+    font-weight: bold;
+    color: #4c617a;
+    padding: 5px;
+}
+}

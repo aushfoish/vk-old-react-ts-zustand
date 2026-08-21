@@ -1,0 +1,79 @@
+@keyframes running-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// .skeleton {
+//   border-radius: 4px;
+//   background: linear-gradient(90deg, #e1e4e6 25%, #f0f2f5 50%, #e1e4e6 75%);
+//   background-size: 200% 100%;
+//   animation: running-shimmer 1.5s infinite linear;
+// }
+
+.audioItemSkeleton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 10px;
+  padding-block: 3px;
+  height: 26.66px;
+  align-items: center;
+  .span {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    .audioButton {
+      width: 20.33px;
+      height: 20.66px;
+      background-color: var(--color-sidebar-hover);
+      border-radius: 2px;
+      background: linear-gradient(90deg, #94c3fc 25%, #87b2e6 50%, #8db8ee 75%);
+      background-size: 200% 100%;
+      animation: running-shimmer 1.5s infinite linear;
+    }
+    .audioName {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      .name {
+        width: 120px;
+        height: 10px;
+        background-color: var(--color-gray-100);
+        border-radius: 2px;
+        background: linear-gradient(
+          90deg,
+          #e1e4e6 25%,
+          #f0f2f5 50%,
+          #e1e4e6 75%
+        );
+        background-size: 200% 100%;
+        animation: running-shimmer 1.5s infinite linear;
+      }
+      .band {
+        width: 95px;
+        height: 10px;
+        background-color: #a8bdd7;
+        border-radius: 2px;
+        background: linear-gradient(
+          90deg,
+          #b4cbe7 25%,
+          rgb(140, 184, 239) 50%,
+          #a8bdd7 75%
+        );
+        background-size: 200% 100%;
+        animation: running-shimmer 1.5s infinite linear;
+      }
+    }
+  }
+  .duration {
+    width: 19px;
+    height: 11px;
+    background-color: var(--color-gray-100);
+  }
+}

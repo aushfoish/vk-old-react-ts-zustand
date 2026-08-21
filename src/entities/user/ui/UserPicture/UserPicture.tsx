@@ -1,3 +1,4 @@
+import styles from './UserPicture.module.scss'
 import { selectAvatar, selectFirstname, selectLastname, userInfoFetch } from "@/entities/user/model/useFetchPage"
 import placeholder from "@/shared/assets/currentuser-placeholders-array/exited.png"
 
@@ -16,8 +17,8 @@ export const UserPicture = () => {
     const userpic = avatar || placeholder
 
     return (
-        <div className="user-picture">
-              <img alt={`фотография пользователя ${fullname}`} className="user-profile-picture" src={userpic}></img>
+        <div className={styles.userPicture}>
+              <img alt={`фотография пользователя ${fullname}`} className={styles.profilePicture} src={userpic}></img>
         </div>
     )
 }

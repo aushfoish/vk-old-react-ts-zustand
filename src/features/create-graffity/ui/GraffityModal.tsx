@@ -6,6 +6,7 @@ import { uploadPicture } from "@/shared/api/uploadPicture";
 import { useCanvasDrawing } from "@/shared/lib/hooks/useCanvasDrawing";
 import { Button, ModalFooter } from "@/shared/ui";
 import { useState } from "react";
+import styles from './GraffityUI.module.scss'
 
 
 interface GraffityModalProps {
@@ -63,7 +64,7 @@ export const GraffityModal = (props: GraffityModalProps) => {
 
   return (
     <>
-      <div className="canvas-ui">
+      <div className={styles.canvasUI}>
         <CanvasOptionsBlock onClick={ctxClear} />
 
         <CanvasItselfContainer canvasRef={canvasRef} width={600} height={300} />

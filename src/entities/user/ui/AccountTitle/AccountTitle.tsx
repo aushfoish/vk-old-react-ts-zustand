@@ -1,3 +1,4 @@
+import styles from './AccountTitle.module.scss'
 import { selectFirstname, selectLastname, userInfoFetch } from "@/entities/user/model/useFetchPage"
 
 export const AccountTitle = () => {
@@ -11,8 +12,8 @@ export const AccountTitle = () => {
     const fullname = combinedName || "страница пользователя"
 
     return (
-        <div className="account-title">
-          <h2 className="h2-title">{fullname}</h2>
+        <div className={styles.accountTitle}>
+          <h2 className={styles.pageTitle}>{fullname}</h2>
         </div>
     )
 }

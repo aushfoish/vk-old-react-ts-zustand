@@ -1,5 +1,5 @@
 import { create } from "zustand";
-
+import { formatTime } from "@/entities/mp3-player/lib/formatTime";
 const audio = new Audio();
 
 interface userMusic {
@@ -28,6 +28,7 @@ export interface userPlaylistState {
   currentTrackIndex: number | null;
   // indexCheck: () => void
   nextTrack: () => void;
+  currentAudioTime: string;
 }
 
 export const userMusicFetch = create<userPlaylistState>((set, get) => ({
@@ -40,6 +41,7 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
   volume: 0.2,
   currentTrackTime: null,
   currentTotalSeconds: null,
+  currentAudioTime: "--/--",
 
   fetchPlaylist: async () => {
     try {
@@ -78,18 +80,11 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
 
     audio.ontimeupdate = () => {
       const totalSeconds = audio.currentTime;
-      let zero = "";
-      const minutes = Math.floor(totalSeconds / 60);
-      const sec = Math.floor(totalSeconds % 60);
-
-      if (sec < 10) {
-        zero = "0";
-      } else if (sec > 9) {
-        zero = "";
-      }
-      const time = `${minutes}:${zero}${sec}`;
+      const time = String(formatTime(audio.duration))
+      const timer = formatTime(totalSeconds)
       set({
-        currentTimeFormat: time,
+        currentTimeFormat: timer,
+        currentAudioTime: time,
         currentTotalSeconds: audio.duration,
         currentTrackTime: audio.currentTime,
       });
@@ -139,16 +134,7 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
 
     const fullList = (playlist || []).map((track, index) => {
       const totalSeconds = durations[index];
-      let zero = "";
-      const minutes = Math.floor(totalSeconds / 60);
-      const sec = Math.floor(totalSeconds % 60);
-
-      if (sec < 10) {
-        zero = "0";
-      } else if (sec > 9) {
-        zero = "";
-      }
-      const time = `${minutes}:${zero}${sec}`;
+      const time = formatTime(totalSeconds)
 
       return {
         ...track,

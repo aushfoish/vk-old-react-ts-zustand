@@ -1,6 +1,7 @@
 import { Mp3ListItem } from "@/entities/mp3-player/ui/Mp3ListItem/Mp3ListItem";
 import { Mp3Aside } from "../../mp3-aside/ui/Mp3Aside";
 import { userMusicFetch } from "@/entities/mp3-player/model/useMusicStore";
+import { AudioItemSkeleton } from "@/shared/ui/SkeletonAudioList/SkeletonAudioItem";
 
 export const Mp3AudioList = () => {
   const playlist = userMusicFetch((state) => state.playlist);
@@ -11,7 +12,8 @@ export const Mp3AudioList = () => {
   return (
     <div className="mp3-track-list">
       <div className="mp3-track-list-items">
-        {
+        
+        { playlist ? 
           playlist?.map((track, index) => (
             <Mp3ListItem
               index={index}
@@ -24,7 +26,9 @@ export const Mp3AudioList = () => {
               playOnClick={() => trackPlay(track)}
               time={track.duration ?? "--/--"}
             />
-          ))}
+            
+          )) : <AudioItemSkeleton />}
+          
       </div>
 
       <Mp3Aside />

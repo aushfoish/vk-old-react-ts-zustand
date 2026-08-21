@@ -1,9 +1,12 @@
 import type React from "react"
+import styles from './IconBtn.module.scss'
+import type { ButtonHTMLAttributes } from "react"
 
-interface AudioButton {
+interface AudioButton extends ButtonHTMLAttributes<HTMLButtonElement>{
     children: React.ReactNode
     id: string
     onClick?: () => void
+    ariaLabel: string
 }
 
 export const AudioButton = (props:AudioButton) => {
@@ -11,11 +14,12 @@ export const AudioButton = (props:AudioButton) => {
     const {
         children,
         id,
-        onClick
+        onClick,
+        ariaLabel
     } = props
 
     return (
-        <button className="mp3-control" id={id} onClick={onClick} type='button'>
+        <button className={styles.iconBtn} id={id} onClick={onClick} type='button' aria-label={ariaLabel}>
                       {children}
         </button> 
     )

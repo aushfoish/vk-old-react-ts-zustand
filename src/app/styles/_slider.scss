@@ -1,0 +1,33 @@
+@mixin mp3Input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  background-color: transparent;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 5px;
+    width: 5px;
+    border-radius: 5px;
+    background: #557aa8;
+    margin-top: -2px;
+  }
+}
+
+&::-moz-range-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  background-color: transparent;
+}
+
+.timeline {
+  @include mp3Input;
+  width: 100%;
+}
+
+.volume {
+  @include mp3Input;
+  width: 59px;
+}

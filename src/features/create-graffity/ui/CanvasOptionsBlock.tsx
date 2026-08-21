@@ -1,3 +1,4 @@
+import styles from './GraffityUI.module.scss'
 import { Modal_button } from "@/shared/ui";
 
 interface CanvasOptionsBlockProps {
@@ -7,7 +8,7 @@ interface CanvasOptionsBlockProps {
 export const CanvasOptionsBlock = (props: CanvasOptionsBlockProps) => {
   const { onClick } = props;
   return (
-    <div className="canvas-options">
+    <div className={styles.canvasOptions}>
       <Modal_button
         className="option"
         btnLabel="Очистить холст"

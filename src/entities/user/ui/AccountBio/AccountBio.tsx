@@ -1,3 +1,4 @@
+import styles from './AccountBio.module.scss'
 import { selectBio, selectFirstname, selectLastname, userInfoFetch } from "@/entities/user/model/useFetchPage"
 
 export const AccountBio = () => {
@@ -17,9 +18,9 @@ export const AccountBio = () => {
     
     return (
         
-        <div className="user-name">
-              <h2 className="account-name">{fullname}</h2>
-              <p className="bio">{bio}</p>
+        <div className={styles.userName}>
+              <h2 className={styles.accountName}>{fullname}</h2>
+              <p className={styles.bio}>{bio}</p>
         </div>
         
         

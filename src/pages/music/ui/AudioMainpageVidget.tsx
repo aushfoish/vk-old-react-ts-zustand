@@ -13,11 +13,10 @@ export const AudioMainpageVidget = () => {
     }, [fetchPlaylist])
 
     return (
-        <div className="mp3-vidget">
-            <>
+            <div className="mp3-vidget">
                 <Mp3AudioHeader />
                 <Mp3AudioList />
-            </>
-        </div>
+            </div>
+
     )
 }

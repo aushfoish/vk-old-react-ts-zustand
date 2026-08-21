@@ -1,5 +1,7 @@
+import styles from './FollowersButton.module.scss'
 import { nameDeclension } from "@/entities/user/lib/nameDeclesion"
 import { selectFirstname, userInfoFetch } from "@/entities/user/model/useFetchPage"
+import { Button } from "@/shared/ui"
 
 export const FollowersButton = () => {
 
@@ -7,9 +9,9 @@ export const FollowersButton = () => {
     const name = firstname || "пользователь"
 
     return (
-        <div className="followers-button">
-                <a href='#' className="followers">{`Подписота ${nameDeclension(name)}`}</a>
-                <a href='#' className="followers" id="followers-counter">25</a>
-        </div>
+        <Button className={styles.followersButton}>
+                <p className={styles.followers}>{`Подписота ${nameDeclension(name)}`}</p>
+                <p className={styles.followers} id="followers-counter">25</p>
+        </Button>
     )
 }

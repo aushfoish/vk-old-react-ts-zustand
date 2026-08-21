@@ -1,4 +1,4 @@
-
+import styles from './WallPost.module.scss'
 interface PostAuthorProps {
     label: string
 }
@@ -10,8 +10,8 @@ export const PostAuthor = (props:PostAuthorProps) => {
     } = props
 
     return (
-        <div className="post-head">
-                <a className="username">{label}</a>
+        <div className={styles.postHead}>
+                <p className={styles.userName}>{label}</p>
         </div>
     )
 }

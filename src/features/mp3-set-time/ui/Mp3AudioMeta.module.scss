@@ -1,0 +1,50 @@
+.audioMetaData {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 550px;
+}
+
+.mp3Input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  background-color: white;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 7px;
+    width: 9px;
+    border-radius: 5px;
+    background: #557aa8;
+    margin-top: -2px;
+    cursor: pointer;
+    transition: linear;
+    transition-duration: 0.1s;
+    &:hover {
+        transform: scale(1.5);
+    }
+  }
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    background: #fefefe;
+    border-radius: 4px;
+    height: 2px;
+}
+}
+
+&::-moz-range-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  background-color: transparent;
+}
+
+.timeline {
+  width: 100%;
+}
+
+.volume {
+  width: 59px;
+}

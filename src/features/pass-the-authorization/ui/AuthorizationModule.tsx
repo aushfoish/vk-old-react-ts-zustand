@@ -67,7 +67,7 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
         />
 
         <ErrorMessage
-          classname={error === true ? "is-error" : ""}
+          classname={error === true ? "isError" : ""}
           children="Добавьте имя и фото, либо нажмите в самый низ"
           id="auth-error"
         />

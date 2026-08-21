@@ -1,4 +1,5 @@
 import type React from "react";
+import styles from './Input.module.scss'
 
 interface InputProps {
   placeholder?: string;
@@ -40,12 +41,12 @@ export const Input = (props: InputProps) => {
   } = props;
 
   return (
-    <div className={`classname${containerClass}`}>
-      <label className={`input-label ${className}`} htmlFor={id}>
+    <div className={`classname ${containerClass}`.trim()}>
+      <label className={`input-label ${className}`.trim()} htmlFor={id}>
         {label}
       </label>
       <input
-        className={`input-post ${classInput}`}
+        className={`${styles.input} ${classInput}`.trim()}
         type={type}
         onInput={onInput}
         id={id}

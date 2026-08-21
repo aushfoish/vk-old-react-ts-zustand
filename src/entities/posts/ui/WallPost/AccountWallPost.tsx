@@ -3,6 +3,7 @@ import { PostAuthor } from "./PostAuthor"
 import { PostAuthorPic } from "./PostAuthorPic"
 import { PostText } from "./PostText"
 import { PostShareAndDate } from "./PostShareDate"
+import styles from './WallPost.module.scss'
 
 
 
@@ -13,6 +14,7 @@ export interface AccountWallPostProps {
   imgSrc: string
   userPicSrc: string
   text: string
+  alt: string
 }
 
 export const AccountWallPost = React.memo((props:AccountWallPostProps) => {
@@ -23,15 +25,16 @@ export const AccountWallPost = React.memo((props:AccountWallPostProps) => {
       text,
       date,
       imgSrc,
-      userPicSrc
+      userPicSrc,
+      alt
     } = props
 
     return (
-        <div className="post-genuinely" id={String(id)}>
+        <div className={styles.postGenuinely} id={String(id)}>
 
-                <PostAuthorPic src={userPicSrc}/>
+                <PostAuthorPic src={userPicSrc} alt={`Фотография пользователя ${alt}`}/>
 
-                <div className="content-post">
+                <div className={styles.contentPost}>
 
                   <PostAuthor 
                   label={label}/>
@@ -41,7 +44,7 @@ export const AccountWallPost = React.memo((props:AccountWallPostProps) => {
                   id={id}
                   />)}
                   
-                  {imgSrc && (<img className="content-picture" src={imgSrc}>
+                  {imgSrc && (<img className={styles.contentPicture} src={imgSrc} alt={`Графическое изображение, опубликованное пользователем ${alt}`}>
                   </img>)}
 
                   <PostShareAndDate 

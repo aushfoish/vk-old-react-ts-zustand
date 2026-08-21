@@ -1,3 +1,4 @@
+import styles from './AccountPersonalHidden.module.scss'
 import { PersonalInfo } from "@/shared/ui";
 import {
   selectContacts,
@@ -6,21 +7,27 @@ import {
 } from "../../model/useFetchPage";
 import { motion } from "framer-motion";
 
-export const AccountPersonalHidden = () => {
+interface AccountInfoProps {
+  id: string
+}
+
+export const AccountPersonalHidden = (props:AccountInfoProps) => {
+  const {id} = props
   const personalInfo = userInfoFetch(selectPersonal);
   const contactsInfo = userInfoFetch(selectContacts);
 
   if (personalInfo) {
     return (
       <motion.div
-        className="user-info"
+        className={styles.userInfo}
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: "auto" }}
         exit={{ opacity: 0, height: 0 }}
         style={{ overflow: "hidden" }}
+        id={id}
       >
-        <div className="contacts-info">
-          <h3 className="info-header">Контактная информация</h3>
+        <div className={styles.contactsInfo}>
+          <h3 className={styles.infoHeader}>Контактная информация</h3>
 
           {contactsInfo?.map((item) => (
             <PersonalInfo
@@ -32,8 +39,8 @@ export const AccountPersonalHidden = () => {
           ))}
         </div>
 
-        <div className="personal-info">
-          <h3 className="info-header">Личная информация</h3>
+        <div className={styles.contactsInfo}>
+          <h3 className={styles.infoHeader}>Личная информация</h3>
 
           {personalInfo?.map((item) => (
             <PersonalInfo

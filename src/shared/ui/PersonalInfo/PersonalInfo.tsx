@@ -1,5 +1,7 @@
+import styles from './PersonalItem.module.scss'
+
 interface PersonalInfoProps {
-  children: string;
+  children: React.ReactNode;
   label: string;
   id: string;
 }
@@ -8,13 +10,13 @@ export const PersonalInfo = (props: PersonalInfoProps) => {
   const { children, label, id } = props;
 
   return (
-    <div className="info-row" key={id}>
-      <label className="label" htmlFor={id}>
+    <dl className={styles.infoRow} key={id}>
+      <dt className={styles.label}>
         {label}
-      </label>
-      <div className="content" id={id}>
+      </dt>
+      <dd className={styles.content} id={id}>
         {children}
-      </div>
-    </div>
+      </dd>
+    </dl>
   );
 };

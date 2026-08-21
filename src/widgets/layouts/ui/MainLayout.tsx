@@ -1,6 +1,7 @@
 import { AudioMainpageVidget } from "@/pages/music/ui/AudioMainpageVidget";
 import { AppAside } from "@/widgets/app-aside";
 import { AppHeader } from "@/widgets/app-header";
+import { MainPageAuthorization } from "@/widgets/authorization-window";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
@@ -22,6 +23,8 @@ export const MainLayout = () => {
           window.location.reload();
         }}
       />
+            <MainPageAuthorization />
+
       {vidgetOpened === true && <AudioMainpageVidget />}
 
       <div className="main-section">

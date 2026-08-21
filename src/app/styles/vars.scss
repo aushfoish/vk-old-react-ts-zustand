@@ -4,9 +4,11 @@
   --color-gray-100: #efefef;
   --color-blue-300: #4c617a;
   --color-blue-100: #13688c;
-  --color-gray-500: #546B87;
+  --color-blue-500: #546B87;
   --color-primary: #6383A9;
   --color-primary-hover: #6d8fb9;
+  --color-sidebar-hover: #DAE1E8;
+  --color-info-label: #867e7b;
   ;
 
   /* 1. Для текста */
@@ -24,3 +26,4 @@
   --ui-accent: var(--color-primary);
   --ui-accent-hover: var(--color-primary-hover);
 }
+

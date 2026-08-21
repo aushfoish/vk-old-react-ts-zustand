@@ -1,3 +1,4 @@
+import styles from './AsideNavBtn.module.scss'
 import { Link } from "react-router-dom";
 
 interface AsideNavBtnProps {
@@ -11,9 +12,9 @@ export const AsideNavBtn = (props: AsideNavBtnProps) => {
 
   return (
     <Link to={`/${id}`}>
-      <div className={`navigation-btn -- ${className || ""}`} id={id}>
+      <button className={`${styles.navBtn} ${className || ""}`.trim()} id={id}>
         {children}{" "}
-      </div>
+      </button>
     </Link>
   );
 };

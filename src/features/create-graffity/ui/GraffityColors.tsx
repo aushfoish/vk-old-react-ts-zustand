@@ -1,4 +1,5 @@
-import { ColorItem } from "../../../shared/ui/ColorItem/ColorItem";
+import { ColorItem } from "./ColorItem";
+import styles from './GraffityUI.module.scss'
 
 interface GraffityColors {
   changeColor: (value: string) => void;
@@ -22,7 +23,7 @@ export const GraffityColors = (props: GraffityColors) => {
   const { changeColor, id } = props;
 
   return (
-    <div className="colors-list" id={id}>
+    <div className={styles.colorList} id={id}>
       {palette.map((color) => (
         <ColorItem
           key={color.name}

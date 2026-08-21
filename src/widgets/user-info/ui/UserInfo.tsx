@@ -1,12 +1,16 @@
-
-import { useState } from "react";
+import { useId, useState } from "react";
 import {
   selectContacts,
   selectPersonal,
   userInfoFetch,
 } from "../../../entities/user/model/useFetchPage";
 import { AnimatePresence } from "framer-motion";
-import { AccountBio, AccountGallery, AccountPersonal, AccountPersonalHidden } from "@/entities/user";
+import {
+  AccountBio,
+  AccountGallery,
+  AccountPersonal,
+  AccountPersonalHidden,
+} from "@/entities/user";
 import { AccountWall } from "@/widgets/account-wall";
 import { AccountPersonalSpoilerButton } from "@/shared/ui/AccountSpoilerBtn";
 
@@ -16,7 +20,8 @@ export const UserInfo = () => {
   const isHiddenInfoExists =
     (personalInfo && personalInfo.length > 0) ||
     (contactsInfo && contactsInfo.length > 0);
-  const [infoHidden, setInfoHidden] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const infoID = useId();
 
   return (
     <div className="user-info">
@@ -26,23 +31,25 @@ export const UserInfo = () => {
 
       {isHiddenInfoExists && (
         <AccountPersonalSpoilerButton
+          isOpen={isOpen}
           children={
-            infoHidden
-              ? "Показать подробную информацию"
-              : "Скрыть подробную информацию"
+            isOpen
+              ? "Скрыть подробную информацию"
+              : "Показать подробную информацию"
           }
           onClick={() => {
-            if (infoHidden) {
-              setInfoHidden(false);
-            } else if (!infoHidden) {
-              setInfoHidden(true);
+            if (!isOpen) {
+              setIsOpen(true);
+            } else if (isOpen) {
+              setIsOpen(false);
             }
           }}
+          ariaControls={infoID}
         />
       )}
 
       <AnimatePresence>
-        {infoHidden === false && <AccountPersonalHidden />}
+        {isOpen === true && <AccountPersonalHidden id={infoID} />}
       </AnimatePresence>
 
       <AccountGallery />

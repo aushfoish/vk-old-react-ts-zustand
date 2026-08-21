@@ -1,3 +1,4 @@
+import styles from './AccountPersonalHidden.module.scss'
 import React from "react";
 import {
   birthDay,
@@ -7,8 +8,7 @@ import {
   selectWorkplace,
   userInfoFetch,
 } from "../../model/useFetchPage";
-import { InfoItem } from "@/shared/ui";
-import { AccountPersonalItem } from "@/shared/ui/PersonalInfoMain";
+import { InfoItem, PersonalInfo } from "@/shared/ui";
 
 export const AccountPersonal = () => {
   const birthday = userInfoFetch(birthDay);
@@ -27,20 +27,21 @@ export const AccountPersonal = () => {
   const languagesList =
     languages?.map((lang, index) => (
       <React.Fragment key={lang.id}>
-        <InfoItem children={lang.language}></InfoItem>
+        <InfoItem label={lang.language}></InfoItem>
         {index !== languages.length && ", "}
       </React.Fragment>
     )) || "поди и языков никаких не знает";
 
   return (
-    <div className="info-place">
-      <AccountPersonalItem label="Дно рождения" children={formatedBirthday} />
+    <div className={styles.contactsInfo}>
+      <PersonalInfo label="Дно рождения" children={formatedBirthday} id="birthday"/>
 
-      <AccountPersonalItem label="Место рабства" children={formatedWorkplace} />
+      <PersonalInfo label="Место рабства" children={formatedWorkplace} id="job"/>
 
-      <AccountPersonalItem
+      <PersonalInfo
         label="Языки (типо на каких говоришь)"
         children={languagesList}
+        id="languages"
       />
     </div>
   );
