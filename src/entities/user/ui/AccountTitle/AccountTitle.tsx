@@ -12,9 +12,7 @@ export const AccountTitle = () => {
     const fullname = combinedName || "страница пользователя"
 
     return (
-        <div className={styles.accountTitle}>
           <h2 className={styles.pageTitle}>{fullname}</h2>
-        </div>
     )
 }
 

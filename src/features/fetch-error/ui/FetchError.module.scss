@@ -1,0 +1,26 @@
+
+.connectionError {
+    max-width: 500px;
+}
+.message {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    h2 {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--color-blue-100);
+    }
+    p {
+        font-size: 10px;
+        width: 100%;
+    }
+    .refresh {
+        font-size: 10px;
+        font-weight: 600;
+        height: 30px;
+    }
+    
+}

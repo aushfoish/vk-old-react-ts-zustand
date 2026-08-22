@@ -5,6 +5,7 @@ import { AddPostForm } from "@/features/create-post/ui/AddPostForm";
 import { AccountWallPost, Micro_header } from "@/entities/posts";
 import { ContainerPlaceholder } from "@/shared/ui/ContainerPlaceholder/ContainerPlaceholder";
 import { useWallStore } from "@/entities/posts/model/useWallStore";
+import  styles from './AccountWall.module.scss'
 
 export const AccountWall = () => {
   const posts = useWallStore((state) => state.posts);
@@ -13,13 +14,13 @@ export const AccountWall = () => {
 
   return (
     <>
-      <div className="user-wall">
+      <div className={styles.wallForm}>
         <Micro_header children={postsHeaderLastSignCheck(posts)} />
 
         <AddPostForm />
       </div>
 
-      <div className="wall-content">
+      <div className={styles.wallContent}>
         {posts.length > 0 ? (
           posts.map((post) => (
             <motion.div

@@ -1,10 +1,14 @@
 .errorMessage {
   display: flex;
-      flex-wrap: wrap;
-      opacity: 0;
-      color: red;
-      font-size: 10px;
-      margin-block: 1px;
-      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-      
+  position: absolute;
+  transform: translateY(43px);
+  flex-wrap: wrap;
+  opacity: 0;
+  color: red;
+  font-size: 10px;
+  margin-block: 1px;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s;
 }

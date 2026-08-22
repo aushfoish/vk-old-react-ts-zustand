@@ -2,6 +2,7 @@ import { useWallStore } from "@/entities/posts/model/useWallStore";
 import { Button } from "@/shared/ui";
 import { AudioButton } from "@/shared/ui/IconBtn";
 import { motion } from "framer-motion";
+import styles from './CreatePost.module.scss'
 
 interface AttachmentsProps {
   setCanvasOpen: () => void;
@@ -13,15 +14,16 @@ export const Attachments = (props: AttachmentsProps) => {
 
   return (
     <motion.div
-      className="post-attachments-add-button"
+      className={styles.postAttachmentsButtons}
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}
       style={{ overflow: "hidden" }}
     >
-      <Button type="submit" className="post" isLoading={isSending} children="Опубликовать" />
-      <div className="post-attachments">
+      <Button type="submit" className={styles.post} isLoading={isSending} children="Опубликовать" />
+      <fieldset className={styles.postAttachments} aria-label="Вложения к посту">
         <AudioButton
+          type="button"
           id="canvas"
           children={
             <svg
@@ -41,6 +43,7 @@ export const Attachments = (props: AttachmentsProps) => {
           ariaLabel="Открыть холст для рисования"
         />
         <AudioButton
+          type="button"
           id="picture"
           children={
             <svg
@@ -58,7 +61,7 @@ export const Attachments = (props: AttachmentsProps) => {
           }
           ariaLabel="Отправить фотографию к посту"
         />
-      </div>
+      </fieldset>
     </motion.div>
   );
 };

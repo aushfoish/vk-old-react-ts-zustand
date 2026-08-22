@@ -295,28 +295,7 @@
 
 
 
-   #volume-range {
-        -webkit-appearance: none;
-        -moz-appearance: none;  
-        appearance: none;
-        width: 59px;
-        background-color: transparent;
-    }
-
-   #volume-range::-webkit-slider-runnable-track{
-        width: 100%;
-        background: #fefefe;
-        border-radius: 4px;
-        height: 2px;
-    }
-
-    #volume-range::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        height: 5px;
-        width: 20px;
-        background: #557aa8;
-        margin-top: -2px; /* Центрирование относительно трека */
-    }
+  
 
     .mp3-track-list-aside {
         padding: 10px;

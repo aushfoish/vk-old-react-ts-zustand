@@ -1,8 +1,8 @@
 .audioMetaData {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: 100%;
-    max-width: 550px;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 550px;
 }
 
 .mp3Input {
@@ -22,7 +22,7 @@
     transition: linear;
     transition-duration: 0.1s;
     &:hover {
-        transform: scale(1.5);
+      transform: scale(1.5);
     }
   }
   &::-webkit-slider-runnable-track {
@@ -30,7 +30,7 @@
     background: #fefefe;
     border-radius: 4px;
     height: 2px;
-}
+  }
 }
 
 &::-moz-range-thumb {

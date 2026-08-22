@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Attachments } from "./Attachments";
 import { ModalWindow } from "@/shared/ui/ModalWindow/ModalWindow";
 import { useWallStore } from "@/entities/posts/model/useWallStore";
+import styles from './CreatePost.module.scss'
 
 export const AddPostForm = () => {
   const [modalOpened, setModalOpened] = useState(false);
@@ -33,15 +34,14 @@ export const AddPostForm = () => {
         )}
       </AnimatePresence>
 
-      <div className="add-post">
         <motion.form
-          className="post-add-form"
+          className={styles.postForm}
           autoComplete="off"
           onSubmit={handleSubmit}
         >
           <Input
-            containerClass=""
-            classInput=""
+            containerClass={styles.postInput}
+            classInput={styles.inputField}
             id="input-post"
             className="visuallyHidden"
             type="text"
@@ -58,7 +58,6 @@ export const AddPostForm = () => {
           />
           </AnimatePresence>
         </motion.form>
-      </div>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import { userMusicFetch } from "@/entities/mp3-player/model/useMusicStore"
 import { AudioButton } from "@/shared/ui"
+import styles from './Mp3Controls.module.scss'
 
 
 export const PlayerControls = () => {
@@ -7,7 +8,7 @@ export const PlayerControls = () => {
     const nextTrack = userMusicFetch((state) => state.nextTrack)
 
     return (
-        <div className="mp3-control-buttons"> 
+        <div className={styles.controlButtons}> 
                   <AudioButton 
                     ariaLabel="воспроизведение/пауза"
                     children={<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">

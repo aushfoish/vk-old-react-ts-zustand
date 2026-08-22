@@ -3,6 +3,7 @@
     color: var(--text-button);
     border-style: none;
     user-select: none;
+    cursor: pointer;
     &:hover {
         background-color: var(--color-primary-hover);
     }

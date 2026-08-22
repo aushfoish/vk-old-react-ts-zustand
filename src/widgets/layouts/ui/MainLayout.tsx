@@ -4,6 +4,7 @@ import { AppHeader } from "@/widgets/app-header";
 import { MainPageAuthorization } from "@/widgets/authorization-window";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import styles from './MainLayout.module.scss'
 
 export const MainLayout = () => {
   const [vidgetOpened, setVidgetOpened] = useState(false);
@@ -27,9 +28,9 @@ export const MainLayout = () => {
 
       {vidgetOpened === true && <AudioMainpageVidget />}
 
-      <div className="main-section">
+      <div className={styles.mainSection}>
         <AppAside />
-        <main className="app-work-space">
+        <main className={styles.appWorkSpace}>
           <Outlet />
         </main>
       </div>

@@ -1,12 +1,14 @@
-import { userInfoFetch } from "../../../entities/user/model/useFetchPage";
-import { FriendsWindowFriends } from "../../../entities/user/ui/AccountFriendContainer/FriendsWindowFriends";
+
 import { Micro_header } from "@/entities/posts";
+import { FriendsWindowFriends } from "@/entities/user";
+import { userInfoFetch } from "@/entities/user/model/useFetchPage";
+import styles from './userFriends.module.scss'
 
 export const UserFriendsOnline = () => {
   const friendsCount = userInfoFetch((state) => state.friendsCount);
 
   return (
-    <div className="friends-block">
+    <div className={styles.friendsBlock}>
       <Micro_header children="Друзья" count={`${friendsCount} друзей`} />
 
       <FriendsWindowFriends />

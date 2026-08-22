@@ -13,6 +13,7 @@ import {
 } from "@/entities/user";
 import { AccountWall } from "@/widgets/account-wall";
 import { AccountPersonalSpoilerButton } from "@/shared/ui/AccountSpoilerBtn";
+import styles from './UserInfo.module.scss'
 
 export const UserInfo = () => {
   const personalInfo = userInfoFetch(selectPersonal);
@@ -24,7 +25,7 @@ export const UserInfo = () => {
   const infoID = useId();
 
   return (
-    <div className="user-info">
+    <div className={styles.userInfo}>
       <AccountBio />
 
       <AccountPersonal />
