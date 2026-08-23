@@ -1,13 +1,13 @@
 import styles from './UserPicture.module.scss'
-import { selectAvatar, selectFirstname, selectLastname, userInfoFetch } from "@/entities/user/model/useFetchPage"
+import { useSelectAvatar, useSelectFirstname, useSelectLastname } from "@/entities/user/model/useFetchPage"
 import placeholder from "@/shared/assets/currentuser-placeholders-array/exited.png"
 
 
 export const UserPicture = () => {
 
-    const avatar = userInfoFetch(selectAvatar)
-    const firstname = userInfoFetch(selectFirstname)
-    const lastname = userInfoFetch(selectLastname)
+    const avatar = useSelectAvatar()
+    const firstname = useSelectFirstname()
+    const lastname = useSelectLastname()
 
     const fname = firstname || ''
     const lname = lastname || ''

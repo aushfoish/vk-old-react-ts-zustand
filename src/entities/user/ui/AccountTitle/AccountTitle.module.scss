@@ -1,7 +1,3 @@
-.accountTitle {
-  background-color: var(--color-sidebar-hover);
-}
-
 .pageTitle {
   display: flex;
   padding-left: 10.5px;
@@ -12,4 +8,7 @@
   margin-top: 0;
   margin-bottom: 0;
   width: 100%;
+  background-color: var(--color-sidebar-hover);
+  background-color: var(--color-sidebar-hover);
+  max-width: 589px;
 }

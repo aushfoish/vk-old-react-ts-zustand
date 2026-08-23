@@ -1,0 +1,24 @@
+.mp3TrackList {
+    display: flex;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.178) inset;
+    .mp3ListItems {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    height: 100%;
+    gap: 10px;
+    .mp3ListAside { //скрытый блок, оставлю на будущее
+    padding: 10px;
+    background-color: #f6f6f6;
+    border-top: 1.5px solid #d1d1d1;
+    border-left: 1.5px solid #d1d1d1;
+}
+}
+}

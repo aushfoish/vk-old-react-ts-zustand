@@ -1,4 +1,5 @@
 import { CurrentUserWidget } from "../../../entities/user/ui/CurrentUserWidget/CurrentUserWidget";
+import styles from './Header.module.scss'
 
 interface AppHeaderProps {
   onToggleMp3: (isShowed: boolean) => void;
@@ -10,17 +11,17 @@ export const AppHeader = (props: AppHeaderProps) => {
 
 
   return (
-    <header className="header-panel">
-      <div className="vklogo-input">
+    <header className={styles.header}>
+      <div className={styles.headerWidget}>
         <a>
-          <span className="header-logo">В</span>КОННЕКТЕ
+          <span className={styles.headerBSign}>В</span>КОННЕКТЕ
         </a>
           <CurrentUserWidget />
       </div>
-      <nav className="header-buttons">
-        <ul className="header-options">
-          <li onClick={() => onToggleMp3(false)}>музыка</li>
-          <li onClick={() => onUnauthorize()}>выйти</li>
+      <nav className={styles.headerNav}>
+        <ul className={styles.headerButtonsList}>
+          <li className={styles.headerButtons} role="button" onClick={() => onToggleMp3(false)}>музыка</li>
+          <li className={styles.headerButtons} role="button" onClick={() => onUnauthorize()}>выйти</li>
         </ul>
       </nav>
     </header>

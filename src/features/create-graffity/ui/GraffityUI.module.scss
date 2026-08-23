@@ -1,0 +1,130 @@
+.canvasUI {
+  max-width: 610px;
+  background-color: var(--color-gray-100);
+  .canvasOptions {
+    padding: 5px 5px 0px 5px;
+    background-color: white;
+  }
+  .canvasContainer {
+    max-width: 600px;
+    padding: 10px 5px 10px 5px;
+    .graffityWorkspace {
+      border: 1px solid rgba(162, 162, 162, 0.771);
+      background-color: white;
+    }
+  }
+  .brushSettings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-height: 60px;
+    max-height: 60px;
+    width: 100%;
+    background-color: white;
+    .graffityRangeContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      column-gap: 15px;
+      justify-content: space-between;
+      .colorSettings {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: row;
+        width: 100%;
+        gap: 20px;
+
+        .colorList {
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: row;
+          column-gap: 10px;
+          width: 150px;
+          height: 50px;
+          gap: 10px;
+          .colorItem {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+          }
+        }
+      }
+      .penPrintContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(20px);
+        .penPrint {
+          display: flex;
+          position: absolute;
+          border-radius: 50%;
+          background-color: black;
+        }
+      }
+    }
+    .graffityRangeSettings {
+      display: flex;
+      flex-direction: column;
+      column-gap: 50px;
+      justify-content: center;
+      .sliderWrapper {
+        position: relative;
+        padding-bottom: 5px;
+        .sliderTicks {
+          position: absolute;
+          left: 10px;
+          right: 4px;
+          height: 6px;
+          background: repeating-linear-gradient(
+            90deg,
+            #939aa2,
+            #ccd6e0 1px,
+            transparent 1px,
+            transparent 13px
+          );
+        }
+      }
+    }
+  }
+}
+
+.canvasSettingLabel {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 100;
+}
+
+.color {
+  margin-top: 18px;
+}
+
+.canvasSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+  
+}
+.canvasSlider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    background: #d8e1e6; /* Тот самый серо-голубой цвет полосы */
+    border: 0.5px solid #9fb1c5;
+  }
+
+  .canvasSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 12px;
+  width: 8px;
+  background: #babfc5; /* Цвет ползунка */
+  border: 1px solid #9fb1c5; /* Тонкая обводка */
+  border-radius: 1px;
+  cursor: pointer;
+  margin-top: -4px; /* Выравнивание по центру трека */
+}

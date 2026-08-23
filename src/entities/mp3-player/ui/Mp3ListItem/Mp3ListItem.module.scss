@@ -1,0 +1,71 @@
+.track {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1px;
+  width: 100%;
+  gap: 20px;
+  padding-inline: 10px;
+  border-style: none;
+  background-color: transparent;
+  padding-block: 3px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--color-sidebar-hover);
+  }
+  .play {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    font-size: 12px;
+    border: none;
+    color: white;
+    background-color: #517398;
+    border-radius: 2px;
+    padding-inline: 5px;
+    padding-block: 2px;
+  }
+  .mp3NameCont {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 287px;
+    .bandName {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      color: #557aa8;
+      font-size: 12px;
+      margin: 0;
+      font-weight: 700;
+    }
+    .hyphen {
+      display: flex;
+      align-items: center;
+      margin-inline: 5px;
+      color: black;
+    }
+    .musicName {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      color: #949494;
+      font-size: 12px;
+      font-weight: 300;
+      margin: 0;
+    }
+  }
+  .mp3Duration {
+    display: flex;
+    flex-direction: row;
+    font-size: 10px;
+    color: #949494;
+  }
+}
+
+.name {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}

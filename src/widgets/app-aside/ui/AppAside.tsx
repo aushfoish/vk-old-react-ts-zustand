@@ -1,4 +1,5 @@
-import {AsideNavBtn} from "../../../shared/ui/AsideNavBtn/AsideNavBtn";
+import { AsideNavBtn } from "@/shared/ui";
+import styles from './Aside.module.scss'
 
 const NAV_ITEMS = [
   { id: "my-page", label: "Моя Страница" },
@@ -7,9 +8,8 @@ const NAV_ITEMS = [
 
 export const AppAside = () => {
   return (
-    <aside className="side-navigation">
-      <nav className="side-bar">
-        <ul className="navigation-main">
+    <aside className={styles.sideNavigation}>
+      <nav className={styles.navigationMain}>
           {NAV_ITEMS.map((item) => (
             <AsideNavBtn
               className=""
@@ -18,7 +18,6 @@ export const AppAside = () => {
               key={item.id}
             />
           ))}
-        </ul>
       </nav>
     </aside>
   );

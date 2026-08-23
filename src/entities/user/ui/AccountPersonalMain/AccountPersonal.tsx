@@ -1,21 +1,21 @@
 import styles from './AccountPersonalHidden.module.scss'
 import React from "react";
 import {
-  birthDay,
-  birthMonth,
-  birthYear,
-  selectLanguages,
-  selectWorkplace,
-  userInfoFetch,
+  
+  useBirthDay,
+  useBirthMonth,
+  useBirthYear,
+  useSelectLanguages,
+  useSelectWorkplace,
 } from "../../model/useFetchPage";
 import { InfoItem, PersonalInfo } from "@/shared/ui";
 
 export const AccountPersonal = () => {
-  const birthday = userInfoFetch(birthDay);
-  const birthmonth = userInfoFetch(birthMonth);
-  const birthyear = userInfoFetch(birthYear);
-  const workplace = userInfoFetch(selectWorkplace);
-  const languages = userInfoFetch(selectLanguages);
+  const birthday = useBirthDay()
+  const birthmonth = useBirthMonth()
+  const birthyear = useBirthYear()
+  const workplace = useSelectWorkplace()
+  const languages = useSelectLanguages()
 
   const hasFullBirthday = birthday && birthmonth && birthyear;
   const formatedBirthday = hasFullBirthday

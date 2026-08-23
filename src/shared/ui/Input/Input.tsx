@@ -1,7 +1,8 @@
 import type React from "react";
-import styles from './Input.module.scss'
+import styles from "./Input.module.scss";
+import type { InputHTMLAttributes } from "react";
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
   placeholder?: string;
   id: string;
   label: string;
@@ -18,6 +19,7 @@ interface InputProps {
   max?: number;
   step?: number;
   containerClass?: string;
+  accept?: string;
 }
 
 export const Input = (props: InputProps) => {
@@ -37,11 +39,13 @@ export const Input = (props: InputProps) => {
     min,
     max,
     step,
-    containerClass
+    containerClass,
+    accept,
+    ...otherProps
   } = props;
 
   return (
-    <div className={`classname ${containerClass}`.trim()}>
+    <div className={`${containerClass}`.trim()}>
       <label className={`input-label ${className}`.trim()} htmlFor={id}>
         {label}
       </label>
@@ -59,6 +63,8 @@ export const Input = (props: InputProps) => {
         min={min}
         max={max}
         step={step}
+        accept={accept}
+        {...otherProps}
       ></input>
     </div>
   );

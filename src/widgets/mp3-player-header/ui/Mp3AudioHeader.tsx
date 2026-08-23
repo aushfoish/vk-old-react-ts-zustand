@@ -1,10 +1,12 @@
-import {Mp3AudioMeta} from "../../../features/mp3-set-time/ui/Mp3AudioMeta"
-import {PlayerControls} from "../../../features/mp3-play-options/ui/PlayerControls"
-import {PlayerOptions} from "../../../features/mp3-set-volume/ui/PlayerOptions"
+import { PlayerControls } from "@/features/mp3-play-options"
+import { Mp3AudioMeta } from "@/features/mp3-set-time"
+import { PlayerOptions } from "@/features/mp3-set-volume"
+import styles from './Mp3Header.module.scss'
+
 
 export const Mp3AudioHeader = () => {
     return (
-        <div className="mp3-header">
+        <div className={styles.mp3Header}>
                 <PlayerControls />
                 <Mp3AudioMeta />
                 <PlayerOptions />

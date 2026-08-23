@@ -1,7 +1,8 @@
 import { useAuthStore } from "@/entities/user/model/useAuthStore";
-import { Button, ErrorMessage, Input, Loader } from "@/shared/ui";
+import { Button, ErrorMessage, Input, Loader, Modal_button } from "@/shared/ui";
 import { useEffect, useState } from "react";
 import { handleFileReader } from "@/shared/lib/file/useFileReader";
+import styles from './Auth.module.scss'
 
 interface AuthorizationModuleProps {
   onClose: () => void;
@@ -13,6 +14,7 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
   const [username, setUsername] = useState("");
   const [userpic, setUserpic] = useState("");
   const [picUploading, setPicUploading] = useState(false);
+  const [nameError] = useState('Добавьте имя и фото, или выберите вариант "Не регистрироваться"')
   const [error, setError] = useState(false);
 
   const authorization = useAuthStore((state) => state.authorization);
@@ -32,18 +34,24 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
     const userpicUrl = await handleFileReader(e, "userpic", "jpg", 40, 40);
     if (typeof userpicUrl === "string") {
       setUserpic(userpicUrl);
+      if (error) setError(false)
     }
     setPicUploading(false);
   };
+
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.currentTarget.value);
+    if (error) {
+      setError(false)
+    }
+  }
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const inputsCheck = username !== "" && userpic !== "";
     if (inputsCheck === false) {
       setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 3000);
+      
     } else if (inputsCheck === true) {
       authorization(username, userpic);
       console.log("шнурки в стакане", username, userpic);
@@ -52,54 +60,61 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
   };
 
   return (
-    <>
-      <form className="authorization-inputs-container" onSubmit={handleSubmit}>
+    <form className={styles.authForm} onSubmit={handleSubmit}>
+      <div className={styles.inputsContainer}>
         <Input
           maxLength={25}
           id="username"
           placeholder="введите ваше имя.."
           type="text"
           label="Введите имя"
-          className="default-label"
+          className={styles.authInputLabel}
           value={username}
-          classInput="auth-input"
-          onChange={(e) => setUsername(e.currentTarget.value)}
+          classInput={styles.authInput}
+          onChange={handleUsernameChange}
+          containerClass={styles.authInput}
+          aria-invalid={!!nameError}
+          aria-describedby={nameError ? "auth-error" : undefined}
         />
 
-        <ErrorMessage
-          classname={error === true ? "isError" : ""}
-          children="Добавьте имя и фото, либо нажмите в самый низ"
+        {error && <ErrorMessage
+          classname="isError"
+          children={nameError}
           id="auth-error"
-        />
+          role="alert"
+        />}
+        
         <Input
           id="userpic"
           placeholder="добавьте ваше фото.."
           type="file"
           label="Добавьте ваше фото"
-          className="default-label"
-          classInput="auth-file"
+          className={styles.authInputLabel}
+          classInput={styles.authInput}
+          containerClass={styles.authInput}
           onChange={onUploadFile}
+          accept="image/*"
         />
-        <div className="auth-buttons">
+        <div className={styles.authButtons}>
           <Button
             isLoading={picUploading}
             type="submit"
-            className="post"
+            className={styles.auth}
             children={picUploading ? <Loader /> : "Зарегистрироваться"}
           />
 
-          <button
+          <Modal_button
             type="button"
-            className="modal-close-button option"
+            className={styles.option}
             onClick={() => {
               anonymous();
               onClose();
             }}
-          >
-            Не буду регаться
-          </button>
+            btnLabel="Не регистрироваться"
+          />
+            
         </div>
-      </form>
-    </>
+      </div>
+    </form>
   );
 };

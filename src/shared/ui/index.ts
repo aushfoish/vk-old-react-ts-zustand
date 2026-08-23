@@ -3,7 +3,7 @@ export * from "./ModalButton/Modal_button";
 export * from "./Input/Input";
 export * from "./ErrorMessage/ErrorMessage";
 export * from "./CanvasItself/CanvasItself";
-export * from "./ColorItem/ColorItem";
+export * from "../../features/create-graffity/ui/ColorItem";
 export * from "./AsideNavBtn/AsideNavBtn";
 export * from "./PersonalInfo/PersonalInfo";
 export * from "./InfoItem/InfoItem";

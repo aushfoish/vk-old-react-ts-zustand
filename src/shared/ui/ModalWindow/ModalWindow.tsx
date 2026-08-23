@@ -9,10 +9,11 @@ interface ModalWindowProps {
   id: string;
   onCloseModal?: () => void;
   classname?: string;
+  classContent?: string
 }
 
 export const ModalWindow = (props: ModalWindowProps) => {
-  const { children, label, id, onCloseModal, classname } = props;
+  const { children, label, id, onCloseModal, classname, classContent } = props;
 
   return (
       <motion.div
@@ -21,10 +22,11 @@ export const ModalWindow = (props: ModalWindowProps) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        role="dialog"
       >
         <div className={styles.modalWrapper}>
           <motion.div
-            className={styles.modalContent}
+            className={`${styles.modalContent} ${classContent}`}
             initial={{ scale: 0.93, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.93, opacity: 0 }}
@@ -35,7 +37,6 @@ export const ModalWindow = (props: ModalWindowProps) => {
               <p className={styles.windowLabel}>{label}</p>
               {onCloseModal && (
                 <Modal_button
-                  className=""
                   onClick={() => onCloseModal()}
                   btnLabel="Закрыть"
                 >

@@ -1,13 +1,15 @@
 .followersButton {
-    background-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  margin-block: 5px;
-  padding-inline: 8px;
-  padding-block: 5px;
-  width: 100%;
-  cursor: pointer;
-  &:hover {
+  &.followersButton {
+    background-color: var(--color-white);
+    display: flex;
+    justify-content: space-between;
+    margin-block: 5px;
+    padding-inline: 8px;
+    padding-block: 5px;
+    width: 100%;
+    cursor: pointer;
+  }
+  &.followersButton:hover {
     background-color: var(--color-sidebar-hover);
   }
   .followers {

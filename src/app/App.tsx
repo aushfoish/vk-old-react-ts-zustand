@@ -9,6 +9,7 @@ import {
 import { UserPage } from "@/pages/profile";
 import { AudioPage } from "@/pages/music";
 import { MainLayout } from "@/widgets/layouts";
+import { SkeletonMainPage } from "@/shared/ui";
 
 
 
@@ -20,6 +21,7 @@ const router = createHashRouter([
       { index: true, element: <Navigate to="my-page" replace /> },
       { path: "my-page", element: <UserPage /> },
       { path: "my-audio", element: <AudioPage /> },
+      { path: "test", element: <SkeletonMainPage /> },
     ],
   },
 ]);

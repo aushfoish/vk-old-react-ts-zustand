@@ -1,0 +1,34 @@
+.volumeSettings {
+  display: flex;
+  align-self: flex-end;
+  margin-right: 20px;
+  .volumeRange {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 59px;
+    height: 2px;
+    background-color: var(--color-white);
+    cursor: pointer;
+    margin-bottom: 3px;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 7px;
+      width: 6px;
+      border-radius: 5px;
+      background: #557aa8;
+      transition: linear;
+      transition-duration: 0.1s;
+      &:hover {
+        transform: scale(1.5);
+      }
+    }
+    &::-moz-range-thumb {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 100%;
+      background-color: transparent;
+    }
+  }
+}

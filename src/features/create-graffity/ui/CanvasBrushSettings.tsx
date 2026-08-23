@@ -1,5 +1,6 @@
 import { Input } from "../../../shared/ui"
 import { GraffityColors } from "./GraffityColors"
+import styles from './GraffityUI.module.scss'
 
 interface CanvasBrushSettingsProps {
 strokeStyle: string,
@@ -13,13 +14,13 @@ setGlobalAlpha: (alpla: number) => void,
 export const CanvasBrushSettings = (props: CanvasBrushSettingsProps) => {
     const {strokeStyle, setStrokeStyle, lineWidth, setLinewidth, globalAlpha, setGlobalAlpha} = props
     return (
-        <div className="canvas-paint-settings">
+        <div className={styles.brushSettings}>
                   {/* заменил как мог, сильнее это можно порезать, но будет очень много пропдриллинга */}
-                  <div className="graffity-range-cnt">
-                    <div className="color-settings">
+                  <div className={styles.graffityRangeContainer}>
+                    <div className={styles.colorSettings}>
                       <label
-                        id="color-label"
-                        className="cavnas-settings-label"
+                        id={styles.color}
+                        className={`${styles.canvasSettingLabel} ${styles.color}`}
                         htmlFor="colors"
                       >
                         Цвет:
@@ -27,9 +28,9 @@ export const CanvasBrushSettings = (props: CanvasBrushSettingsProps) => {
                       <GraffityColors id="colors" changeColor={setStrokeStyle} />
                     </div>
         
-                    <div className="pen-round-container">
+                    <div className={styles.penPrintContainer}>
                       <span
-                        className="pen-print"
+                        className={styles.penPrint}
                         style={{
                           width: lineWidth,
                           height: lineWidth,
@@ -40,9 +41,9 @@ export const CanvasBrushSettings = (props: CanvasBrushSettingsProps) => {
                     </div>
                   </div>
         
-                  <div className="graffity-range-settings">
-                    <div className="graffity-range-cnt">
-                      <label className="cavnas-settings-label" htmlFor="intencity">
+                  <div className={styles.graffityRangeSettings}>
+                    <div className={styles.graffityRangeContainer}>
+                      <label className={styles.canvasSettingLabel} htmlFor="intencity">
                         Прозрачность:
                       </label>
                       <span className="slider-wrapper" id="intencity">
@@ -50,8 +51,8 @@ export const CanvasBrushSettings = (props: CanvasBrushSettingsProps) => {
         
                         <Input
                           containerClass="slider-wrapper"
-                          className="hidden"
-                          classInput="canvas-slider"
+                          className="visuallyHidden"
+                          classInput={styles.canvasSlider}
                           label="настройте интенсивность цвета кисти"
                           id="canvas-intencity"
                           type="range"
@@ -64,15 +65,15 @@ export const CanvasBrushSettings = (props: CanvasBrushSettingsProps) => {
                       </span>
                     </div>
         
-                    <div className="graffity-range-cnt">
-                      <label className="cavnas-settings-label" htmlFor="weight">
+                    <div className={styles.graffityRangeContainer}>
+                      <label className={styles.canvasSettingLabel} htmlFor="weight">
                         Толщина:
                       </label>
-                      <span className="slider-wrapper" id="weight">
-                        <div className="slider-ticks"></div>
+                      <span className={styles.sliderWrapper} id="weight">
+                        <div className={styles.sliderTicks}></div>
                         <Input
-                          className="hidden"
-                          classInput="canvas-slider"
+                          className="visuallyHidden"
+                          classInput={styles.canvasSlider}
                           label="настройте толщину кисти"
                           id="canvas-weight"
                           type="range"

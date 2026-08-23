@@ -4,7 +4,6 @@ interface PostAuthorProps {
 }
 
 export const PostAuthor = (props:PostAuthorProps) => {
-
     const {
         label
     } = props

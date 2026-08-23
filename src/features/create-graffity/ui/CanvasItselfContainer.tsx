@@ -1,5 +1,6 @@
 import type { Ref } from "react"
 import { CanvasItself } from "../../../shared/ui"
+import styles from './GraffityUI.module.scss'
 
 interface CanvasItselfContainerProps {
     canvasRef: Ref<HTMLCanvasElement>
@@ -10,8 +11,8 @@ interface CanvasItselfContainerProps {
 export const CanvasItselfContainer = (props: CanvasItselfContainerProps) => {
     const {canvasRef, width, height} = props
     return (
-        <div className="canvas-container">
-                  <CanvasItself className="canvas-graffity-workspace" width={width} height={height} ref={canvasRef}/>
+        <div className={styles.canvasContainer}>
+                  <CanvasItself className={styles.graffityWorkspace} width={width} height={height} ref={canvasRef}/>
         </div>
     )
 }
