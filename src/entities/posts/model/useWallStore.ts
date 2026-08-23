@@ -18,7 +18,7 @@ interface PostToSend {
 }
 
 interface WallStore {
-  posts: UserPosts[] | [];
+  posts: UserPosts[]
   isLoading: boolean;
   pagePostsFetch: () => Promise<void>;
   sendPost: () => Promise<boolean>;
@@ -36,7 +36,7 @@ interface WallStore {
 }
 
 export const useWallStore = create<WallStore>((set, get) => ({
-  posts: [],
+  posts: [] as UserPosts[],
   isLoading: false,
   isSending: false,
   isPostSend: false,
@@ -149,7 +149,7 @@ export const useWallStore = create<WallStore>((set, get) => ({
       posts: [newPost, ...state.posts],
     })),
 
-  filterUpdatedPosts: (id) =>
+  filterUpdatedPosts: (id: number) =>
     set((state) => ({
       posts: state.posts.filter((post) => post.id !== id),
     })),
