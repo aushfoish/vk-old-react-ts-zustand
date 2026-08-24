@@ -1,9 +1,9 @@
 import styles from './FriendList.module.scss'
-import { userInfoFetch } from "@/entities/user/model/useFetchPage";
 import { FriendItem } from "../AccountFriendItem/FriendItem";
+import { useFetchProfile } from '@/entities/user/model/useFetchProfile';
 
 export const FriendsWindowFriends = () => {
-  const friendsArray = userInfoFetch((state) => state.friendsArray);
+  const {friendsArray} = useFetchProfile()
   return (
     <ul className={styles.friendlist}>
       {friendsArray?.map((friend) => (

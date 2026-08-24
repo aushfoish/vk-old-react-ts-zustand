@@ -9,27 +9,34 @@ export const handleFileReader = (
 ): Promise<string | boolean> => {
   return new Promise((resolve) => {
     const files = e.currentTarget.files;
-    if (files && files.length > 0) {      
+
+    const maxSize = 2 * 1024 * 1024;
+
+    if (files && files.length > 0) {
       const file = files[0];
-      const reader = new FileReader();
 
-
-      reader.onloadend = async () => {
-        if (typeof reader.result === "string") {
-          const picToCompress = reader.result;
-          const result = await imageCompression(
-            picToCompress,
-            useScenario,
-            extesnion,
-            width,
-            height,
-          );
-          resolve(result);
-        } else {
-          resolve(false);
-        }
-      };
-      reader.readAsDataURL(file);
+      if (file.size > maxSize) {
+        e.currentTarget.value = ""
+        resolve(false)
+      } else {
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          if (typeof reader.result === "string") {
+            const picToCompress = reader.result;
+            const result = await imageCompression(
+              picToCompress,
+              useScenario,
+              extesnion,
+              width,
+              height,
+            );
+            resolve(result);
+          } else {
+            resolve(false);
+          }
+        };
+        reader.readAsDataURL(file);
+      }
     }
   });
 };

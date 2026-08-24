@@ -1,14 +1,14 @@
 import styles from './AccountGallery.module.scss'
 import { Micro_header } from "@/entities/posts";
 import {
-  selectFirstname,
-  userInfoFetch,
+
+  useSelectFirstname,
 } from "@/entities/user/model/useFetchPage";
 import { GalleryItem } from "@/shared/ui/GalleryImgItem/GalleryItem";
 import { nameDeclension } from "@/entities/user/lib/nameDeclesion";
 
 export const AccountGallery = () => {
-  const firstName = userInfoFetch(selectFirstname);
+  const firstName = useSelectFirstname()
   const pageOwnerDeclensed =
     firstName !== undefined ? nameDeclension(firstName) : "пользователь";
   const nyanCatArray = [

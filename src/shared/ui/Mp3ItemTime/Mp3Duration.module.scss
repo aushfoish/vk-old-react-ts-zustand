@@ -1,0 +1,11 @@
+.mp3Duration {
+  display: flex;
+  flex-direction: row;
+  font-size: 10px;
+  color: #949494;
+  .mp3Length {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+}

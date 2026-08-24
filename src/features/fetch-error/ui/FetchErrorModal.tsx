@@ -1,7 +1,12 @@
 import { Button, ModalFooter, ModalWindow } from "@/shared/ui";
 import styles from "./FetchError.module.scss";
 
-export const FetchErrorModal = () => {
+interface FetchError {
+onClick: () => void
+}
+
+export const FetchErrorModal = (props: FetchError) => {
+  const {onClick} = props
   return (
       <ModalWindow
         classContent={styles.connectionError}
@@ -13,7 +18,7 @@ export const FetchErrorModal = () => {
               Проверьте подключение к интернету и обновите страницу, либо
               повторите попытку позже.
             </p>
-            <ModalFooter footer={<Button children="Обновить" className={styles.refresh}/>} />
+            {onClick && (<ModalFooter footer={<Button children="Обновить" onClick={onClick} className={styles.refresh}/>} />)}
           </div>
         }
         label="Ошибка"

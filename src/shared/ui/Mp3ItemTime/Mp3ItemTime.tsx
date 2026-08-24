@@ -1,4 +1,4 @@
-
+import styles from './Mp3Duration.module.scss'
 
 interface currentAudioDurationProps {
     label: string
@@ -13,8 +13,8 @@ export const Mp3ItemTime = (props:currentAudioDurationProps) => {
     
     
     return (
-        <div className="mp3-duration">
-            <div className="mp3-track-length">{label}</div>
+        <div className={styles.mp3Duration}>
+            <div className={styles.mp3Length}>{label}</div>
         </div>
     )
 }

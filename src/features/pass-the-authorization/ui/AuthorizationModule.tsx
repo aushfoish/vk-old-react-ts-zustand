@@ -2,7 +2,7 @@ import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { Button, ErrorMessage, Input, Loader, Modal_button } from "@/shared/ui";
 import { useEffect, useState } from "react";
 import { handleFileReader } from "@/shared/lib/file/useFileReader";
-import styles from './Auth.module.scss'
+import styles from "./Auth.module.scss";
 
 interface AuthorizationModuleProps {
   onClose: () => void;
@@ -14,7 +14,9 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
   const [username, setUsername] = useState("");
   const [userpic, setUserpic] = useState("");
   const [picUploading, setPicUploading] = useState(false);
-  const [nameError] = useState('Добавьте имя и фото, или выберите вариант "Не регистрироваться"')
+  const [nameError, setNameError] = useState(
+    'Добавьте имя и фото, или выберите вариант "Не регистрироваться"',
+  );
   const [error, setError] = useState(false);
 
   const authorization = useAuthStore((state) => state.authorization);
@@ -34,7 +36,12 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
     const userpicUrl = await handleFileReader(e, "userpic", "jpg", 40, 40);
     if (typeof userpicUrl === "string") {
       setUserpic(userpicUrl);
-      if (error) setError(false)
+      if (error) setError(false);
+    } else if (userpicUrl === false) {
+      setError(true)
+      setNameError('Недопустимый формат или размер. Допустимы только jpg/png файлы не более 2 мб')
+      setPicUploading(false);
+      setUserpic('')
     }
     setPicUploading(false);
   };
@@ -42,16 +49,16 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.currentTarget.value);
     if (error) {
-      setError(false)
+      setError(false);
+      setNameError('Добавьте имя и фото, или выберите вариант "Не регистрироваться"')
     }
-  }
+  };
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const inputsCheck = username !== "" && userpic !== "";
     if (inputsCheck === false) {
       setError(true);
-      
     } else if (inputsCheck === true) {
       authorization(username, userpic);
       console.log("шнурки в стакане", username, userpic);
@@ -77,13 +84,15 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
           aria-describedby={nameError ? "auth-error" : undefined}
         />
 
-        {error && <ErrorMessage
-          classname="isError"
-          children={nameError}
-          id="auth-error"
-          role="alert"
-        />}
-        
+        {error && (
+          <ErrorMessage
+            classname="isError"
+            children={nameError}
+            id="auth-error"
+            role="alert"
+          />
+        )}
+
         <Input
           id="userpic"
           placeholder="добавьте ваше фото.."
@@ -112,7 +121,6 @@ export const AuthorizationModule = (props: AuthorizationModuleProps) => {
             }}
             btnLabel="Не регистрироваться"
           />
-            
         </div>
       </div>
     </form>

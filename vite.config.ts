@@ -10,4 +10,16 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'), 
     },
   },
+  build: {
+    rolldownOptions: {
+      output: {
+        manualChunks(id) {
+          // Если код из папки node_modules, выносим его в отдельный чанк vendor
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        }
+      }
+    }
+  }
 });

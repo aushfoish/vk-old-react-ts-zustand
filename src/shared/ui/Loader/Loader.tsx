@@ -6,7 +6,7 @@ interface LoaderProps {
 export const Loader = (props:LoaderProps) => {
     const {className} = props
     return (
-        <div className={`${styles.loader} ${className || ''}`}>
+        <div className={`${styles.loader} ${className || ''}`} aria-label='Загрузка..'>
             <span />
             <span />
             <span />

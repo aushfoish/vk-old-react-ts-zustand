@@ -1,11 +1,11 @@
 import styles from './AccountBio.module.scss'
-import { selectBio, selectFirstname, selectLastname, userInfoFetch } from "@/entities/user/model/useFetchPage"
+import {  useSelectBio, useSelectFirstname, useSelectLastname } from "@/entities/user/model/useFetchPage"
 
 export const AccountBio = () => {
 
-    const firstname = userInfoFetch(selectFirstname)
-    const lastname = userInfoFetch(selectLastname)
-    const bioSelector = userInfoFetch(selectBio)
+    const firstname = useSelectFirstname()
+    const lastname = useSelectLastname()
+    const bioSelector = useSelectBio()
 
     const fname = firstname || ''
     const lname = lastname || ''

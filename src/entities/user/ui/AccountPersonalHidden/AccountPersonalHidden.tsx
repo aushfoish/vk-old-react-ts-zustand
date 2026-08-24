@@ -1,9 +1,9 @@
 import styles from './AccountPersonalHidden.module.scss'
 import { PersonalInfo } from "@/shared/ui";
 import {
-  selectContacts,
-  selectPersonal,
-  userInfoFetch,
+
+  useSelectContacts,
+  useSelectPersonal,
 } from "../../model/useFetchPage";
 import { motion } from "framer-motion";
 
@@ -13,8 +13,8 @@ interface AccountInfoProps {
 
 export const AccountPersonalHidden = (props:AccountInfoProps) => {
   const {id} = props
-  const personalInfo = userInfoFetch(selectPersonal);
-  const contactsInfo = userInfoFetch(selectContacts);
+  const personalInfo = useSelectPersonal()
+  const contactsInfo = useSelectContacts()
 
   if (personalInfo) {
     return (

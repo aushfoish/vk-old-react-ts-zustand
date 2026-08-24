@@ -1,8 +1,8 @@
 import { useId, useState } from "react";
 import {
-  selectContacts,
-  selectPersonal,
-  userInfoFetch,
+
+  useSelectContacts,
+  useSelectPersonal,
 } from "../../../entities/user/model/useFetchPage";
 import { AnimatePresence } from "framer-motion";
 import {
@@ -16,8 +16,8 @@ import { AccountPersonalSpoilerButton } from "@/shared/ui/AccountSpoilerBtn";
 import styles from './UserInfo.module.scss'
 
 export const UserInfo = () => {
-  const personalInfo = userInfoFetch(selectPersonal);
-  const contactsInfo = userInfoFetch(selectContacts);
+  const personalInfo = useSelectPersonal();
+  const contactsInfo = useSelectContacts();
   const isHiddenInfoExists =
     (personalInfo && personalInfo.length > 0) ||
     (contactsInfo && contactsInfo.length > 0);

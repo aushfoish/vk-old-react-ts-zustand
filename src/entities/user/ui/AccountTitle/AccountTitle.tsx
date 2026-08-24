@@ -1,10 +1,10 @@
 import styles from './AccountTitle.module.scss'
-import { selectFirstname, selectLastname, userInfoFetch } from "@/entities/user/model/useFetchPage"
+import { useSelectFirstname, useSelectLastname } from "@/entities/user/model/useFetchPage"
 
 export const AccountTitle = () => {
 
-    const firstname = userInfoFetch(selectFirstname)
-    const lastname = userInfoFetch(selectLastname)
+    const firstname = useSelectFirstname()
+    const lastname = useSelectLastname()
     const fname = firstname || ''
     const lname = lastname || ''
     const combinedName = `${fname} ${lname}`.trim()

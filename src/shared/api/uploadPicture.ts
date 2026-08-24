@@ -1,5 +1,4 @@
 import { prepareBlobData } from "@/shared/lib/file/prepareBlobData";
-// import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { useWallStore } from "@/entities/posts/model/useWallStore";
 
 export const uploadPicture = async (

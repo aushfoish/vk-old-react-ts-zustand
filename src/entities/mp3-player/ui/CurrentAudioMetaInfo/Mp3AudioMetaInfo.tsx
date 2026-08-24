@@ -11,7 +11,7 @@ export const Mp3AudioMetaInfo = () => {
         <div className={styles.mp3NameCont}>
           <p className={styles.bandName}>{currentTrack.band}</p>{" "}
           <div className={styles.hyphen}> - </div>{" "}
-          <p className="music-name">{currentTrack.title}</p>
+          <p className={styles.musicName}>{currentTrack.title}</p>
         </div>
         <div className={styles.mp3Duration}>
           <div className={styles.mp3TrackTimer}>{timer}/</div>

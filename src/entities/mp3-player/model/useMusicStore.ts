@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { formatTime } from "@/entities/mp3-player/lib/formatTime";
 const audio = new Audio();
 
-interface userMusic {
+export interface userMusic {
   id: string;
   band: string;
   title: string;
@@ -13,7 +13,6 @@ interface userMusic {
 export interface userPlaylistState {
   playlist: userMusic[] | [];
   isLoading: boolean;
-  fetchPlaylist: () => Promise<void>;
   trackPlay: (track: userMusic) => void;
   isPlaying: boolean;
   currentTrack: userMusic | null;
@@ -29,6 +28,7 @@ export interface userPlaylistState {
   // indexCheck: () => void
   nextTrack: () => void;
   currentAudioTime: string;
+  setPlaylist: (tracks: userMusic[]) => void
 }
 
 export const userMusicFetch = create<userPlaylistState>((set, get) => ({
@@ -43,32 +43,8 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
   currentTotalSeconds: null,
   currentAudioTime: "--/--",
 
-  fetchPlaylist: async () => {
-    try {
-      const { currentAudioDuration } = get();
-      set({ isLoading: true });
-      const response = await fetch(
-        "https://tyekwqioulapfagzpswr.supabase.co/rest/v1/tracks",
-        {
-          method: "GET",
-          headers: {
-            apikey: "sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-            Authorization:
-              "Bearer sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-            "Content-Type": "application/json",
-          },
-        },
-      );
-      if (!response.ok) {
-        throw new Error("Ошибка: не удалось получить данные");
-      }
-      const data = await response.json();
-      set({ playlist: data, isLoading: false });
-      currentAudioDuration();
-    } catch (error) {
-      console.error("База данных недоступна:", error);
-      set({ playlist: [], isLoading: false });
-    }
+  setPlaylist: (tracks: userMusic[]) => { 
+    set({playlist: tracks})
   },
 
   trackPlay: (track) => {
@@ -169,9 +145,4 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
   },
 }));
 
-export const band = (state: userPlaylistState) => state.currentTrack?.band;
-export const title = (state: userMusic) => state.title;
-export const currentTime = (state: userPlaylistState) =>
-  state.currentTimeFormat;
-export const duration = (state: userPlaylistState) =>
-  state.currentTrack?.duration;
+

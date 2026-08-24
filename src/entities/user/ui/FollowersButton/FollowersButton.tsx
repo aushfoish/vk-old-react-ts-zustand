@@ -1,11 +1,11 @@
 import styles from './FollowersButton.module.scss'
 import { nameDeclension } from "@/entities/user/lib/nameDeclesion"
-import { selectFirstname, userInfoFetch } from "@/entities/user/model/useFetchPage"
+import { useSelectFirstname } from "@/entities/user/model/useFetchPage"
 import { Button } from "@/shared/ui"
 
 export const FollowersButton = () => {
 
-    const firstname = userInfoFetch(selectFirstname)
+    const firstname = useSelectFirstname()
     const name = firstname || "пользователь"
 
     return (
