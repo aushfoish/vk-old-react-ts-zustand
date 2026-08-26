@@ -25,7 +25,7 @@ export const uploadPicture = async (
       }
       if (response.ok) {
         if (scenario === "userpic") {
-          return blobUrl
+          return blobUrl;
         }
         if (scenario === "graffity") {
           useWallStore.setState({ contentPicture: blobUrl });
@@ -34,7 +34,11 @@ export const uploadPicture = async (
         }
       }
     } catch (error) {
-      console.error("Ошибка в uploadPicture:", error);
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.log(error)
+      }
       return false;
     }
   }
