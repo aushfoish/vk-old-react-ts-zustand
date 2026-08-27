@@ -9,6 +9,14 @@ export const Mp3ListSkeleton = () => {
             <AudioItemSkeleton />
             <AudioItemSkeleton />
             <AudioItemSkeleton />
+            <AudioItemSkeleton />
+            <AudioItemSkeleton />
+            <AudioItemSkeleton />
+            <AudioItemSkeleton />
+            <AudioItemSkeleton />
+            <AudioItemSkeleton />
+            <AudioItemSkeleton />
+            <AudioItemSkeleton />
         </>
     )
 }
