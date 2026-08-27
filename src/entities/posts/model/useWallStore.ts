@@ -18,9 +18,7 @@ interface PostToSend {
 }
 
 interface WallStore {
-  posts: UserPosts[]
   isLoading: boolean;
-  pagePostsFetch: () => Promise<void>;
   sendPost: () => Promise<boolean>;
   setInputPost: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isSending: boolean;
@@ -31,12 +29,9 @@ interface WallStore {
   isTyping: boolean;
   inputPost: string;
   resetSendStatus: () => void;
-  updatedPosts: (newPost: UserPosts) => void;
-  filterUpdatedPosts: (oldPost: number) => void;
 }
 
 export const useWallStore = create<WallStore>((set, get) => ({
-  posts: [] as UserPosts[],
   isLoading: false,
   isSending: false,
   isPostSend: false,
@@ -45,32 +40,6 @@ export const useWallStore = create<WallStore>((set, get) => ({
   postIsEmpty: true,
   isTyping: false,
   inputPost: "",
-
-  pagePostsFetch: async () => {
-    try {
-      set({ isLoading: true });
-      const response = await fetch(
-        "https://tyekwqioulapfagzpswr.supabase.co/rest/v1/posts?order=date.desc",
-        {
-          method: "GET",
-          headers: {
-            apikey: "sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-            Authorization:
-              "Bearer sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-            "Content-Type": "application/json",
-          },
-        },
-      );
-      if (response.ok !== true) {
-        throw new Error("Ошибка: не удалось получить данные о постах");
-      }
-      const data = await response.json();
-      set({ posts: data, isLoading: false });
-    } catch (error) {
-      console.error("Ошибка при получении данных:", error);
-      set({ posts: [], isLoading: false });
-    }
-  },
 
   sendPost: async () => {
     const { contentPicture, inputPost } = get();
@@ -125,7 +94,9 @@ export const useWallStore = create<WallStore>((set, get) => ({
         }
       } catch (error) {
         console.error(
-          "Иосиф Виссарионович, произошла ЧУДОВИЩНАЯ ошибка!!!:",
+          error instanceof Error
+            ? error.message
+            : "Иосиф Виссарионович, произошла ЧУДОВИЩНАЯ ошибка!!!",
           error,
         );
         set({ isSending: false });
@@ -143,14 +114,4 @@ export const useWallStore = create<WallStore>((set, get) => ({
     const postText = e.target.value;
     set({ contentText: postText, inputPost: postText });
   },
-
-  updatedPosts: (newPost) =>
-    set((state) => ({
-      posts: [newPost, ...state.posts],
-    })),
-
-  filterUpdatedPosts: (id: number) =>
-    set((state) => ({
-      posts: state.posts.filter((post) => post.id !== id),
-    })),
 }));

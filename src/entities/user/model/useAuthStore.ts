@@ -1,6 +1,12 @@
 import { create } from "zustand";
 import placeholder from "@/shared/assets/currentuser-placeholders-array/exited.png";
 
+interface UserData {
+  userName?: string;
+  userPic?: string;
+  userIsLogged?: boolean;
+}
+
 interface useAuthStore {
   userName: string;
   uploadedUserpic: string;
@@ -20,12 +26,19 @@ export const useAuthStore = create<useAuthStore>((set) => ({
 
   authorization: (username, userpic) => {
     set({ userName: username, userPic: userpic, userIsLogged: true });
-    const userAuthorization = {
+    const userAuthorization: UserData = {
       userName: username,
       userPic: userpic,
       userIsLogged: true,
     };
-    localStorage.setItem("userdata", JSON.stringify(userAuthorization));
+
+    try {
+      localStorage.setItem("userdata", JSON.stringify(userAuthorization));
+    } catch (error) {
+      console.error(
+        error instanceof Error ? error.message : "localStorage is full",
+      );
+    }
   },
 
   setUserpic: (url) => {
@@ -34,16 +47,24 @@ export const useAuthStore = create<useAuthStore>((set) => ({
 
   authCheck: () => {
     const savedData = localStorage.getItem("userdata");
-    if (savedData) {
-      const dataParse = JSON.parse(savedData);
+    if (!savedData) return false;
+
+    try {
+      const dataParse = JSON.parse(savedData) as UserData;
       set({
-        userName: dataParse.userName,
-        userPic: dataParse.userPic,
+        userName: dataParse.userName || "",
+        userPic: dataParse.userPic || "",
         userIsLogged: dataParse.userIsLogged,
       });
       return true;
+    } catch (error) {
+      console.error(
+        error instanceof Error ? error.message : "invalid JSON"
+      )
+      localStorage.removeItem("userdata")
+      return false;
     }
-    return false;
+    
   },
 
   anonymous: () => {

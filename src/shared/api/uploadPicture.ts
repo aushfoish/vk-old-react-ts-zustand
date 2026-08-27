@@ -1,5 +1,4 @@
 import { prepareBlobData } from "@/shared/lib/file/prepareBlobData";
-// import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { useWallStore } from "@/entities/posts/model/useWallStore";
 
 export const uploadPicture = async (
@@ -26,7 +25,7 @@ export const uploadPicture = async (
       }
       if (response.ok) {
         if (scenario === "userpic") {
-          return blobUrl
+          return blobUrl;
         }
         if (scenario === "graffity") {
           useWallStore.setState({ contentPicture: blobUrl });
@@ -35,7 +34,11 @@ export const uploadPicture = async (
         }
       }
     } catch (error) {
-      console.error("Ошибка в uploadPicture:", error);
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.log(error)
+      }
       return false;
     }
   }

@@ -28,7 +28,7 @@ export interface userPlaylistState {
   // indexCheck: () => void
   nextTrack: () => void;
   currentAudioTime: string;
-  setPlaylist: (tracks: userMusic[]) => void
+  setPlaylist: (tracks: userMusic[]) => void;
 }
 
 export const userMusicFetch = create<userPlaylistState>((set, get) => ({
@@ -43,8 +43,8 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
   currentTotalSeconds: null,
   currentAudioTime: "--/--",
 
-  setPlaylist: (tracks: userMusic[]) => { 
-    set({playlist: tracks})
+  setPlaylist: (tracks: userMusic[]) => {
+    set({ playlist: tracks });
   },
 
   trackPlay: (track) => {
@@ -56,8 +56,8 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
 
     audio.ontimeupdate = () => {
       const totalSeconds = audio.currentTime;
-      const time = String(formatTime(audio.duration))
-      const timer = formatTime(totalSeconds)
+      const time = String(formatTime(audio.duration));
+      const timer = formatTime(totalSeconds);
       set({
         currentTimeFormat: timer,
         currentAudioTime: time,
@@ -100,9 +100,23 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
           const audio = new Audio();
           audio.src = track.src;
           audio.preload = "metadata";
+
           audio.onloadeddata = () => {
-            resolve(audio.duration);
+            try {
+              resolve(audio.duration);
+            } catch (error) {
+              console.error(
+                error instanceof Error
+                  ? error.message
+                  : "не удалось загрузить метаданные плейлиста",
+              );
+            }
           };
+
+          audio.onerror = () => {
+            console.error(`не удалось загрузить метаданные трека: ${track.title}`)
+            resolve(0)
+          }
         });
         durations.push(duration);
       }
@@ -110,7 +124,7 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
 
     const fullList = (playlist || []).map((track, index) => {
       const totalSeconds = durations[index];
-      const time = formatTime(totalSeconds)
+      const time = formatTime(totalSeconds);
 
       return {
         ...track,
@@ -144,5 +158,3 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
     }
   },
 }));
-
-

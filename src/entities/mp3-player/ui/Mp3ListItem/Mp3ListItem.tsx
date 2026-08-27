@@ -1,6 +1,5 @@
 import type React from "react";
-import { Mp3ItemTime } from "../../../../shared/ui/Mp3ItemTime/Mp3ItemTime";
-import { Button } from "@/shared/ui";
+import { Button, Mp3ItemTime } from "@/shared/ui";
 import styles from './Mp3ListItem.module.scss'
 
 interface Mp3ListItemProps {
