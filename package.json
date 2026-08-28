@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "lint-staged": {
-    "src/**/*.{ts,tsx,js,jsx}": ["npx eslint --fix", "vitest related --run --passWithNoTests"]
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "npx eslint --fix",
+      "vitest related --run --passWithNoTests"
+    ]
   },
   "scripts": {
     "dev": "vite",

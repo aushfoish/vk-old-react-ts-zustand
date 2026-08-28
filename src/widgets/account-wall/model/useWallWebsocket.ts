@@ -1,24 +1,21 @@
-import { useWallStore } from "@/entities/posts/model/useWallStore";
+import type { UserPosts } from "@/entities/posts/model/useWallStore";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 export const useWallWebsocket = () => {
-  const pagePostsFetch = useWallStore((state) => state.pagePostsFetch);
-  const updatedPosts = useWallStore((state) => state.updatedPosts);
-  const filterUpdatedPosts = useWallStore(
-    (state) => state.filterUpdatedPosts,
-  );
-
-  useEffect(() => {
-    pagePostsFetch();
-  }, [pagePostsFetch]);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     let isCancelled = false;
     let ws: WebSocket | null = null;
     let heartbeatInterval: ReturnType<typeof setInterval> | undefined;
-    ws = new WebSocket(
-      "wss://tyekwqioulapfagzpswr.supabase.co/realtime/v1/websocket?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5ZWt3cWlvdWxhcGZhZ3pwc3dyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzODI1NDQsImV4cCI6MjA5OTk1ODU0NH0.yCznoMTlwKslJoAYlYj5f36cC5ryXJ-JkaT-0e9Bi4E&vsn=1.0.0",
-    );
+
+    const API_KEY = import.meta.env.VITE_SUPABASE_WEBSOCKET;
+
+    // Возвращаем твой старый проверенный формат строки, только с новой переменной и протоколом v1, как было изначально!
+    const wsUrl = `wss://tyekwqioulapfagzpswr.supabase.co/realtime/v1/websocket?apikey=${API_KEY}&vsn=1.0.0`;
+
+    ws = new WebSocket(wsUrl);
 
     ws.onopen = () => {
       if (isCancelled) {
@@ -59,14 +56,29 @@ export const useWallWebsocket = () => {
       if (isCancelled) return;
       const response = JSON.parse(event.data);
       const payload = response.payload;
+
       if (response.event === "postgres_changes") {
         const type = response.payload?.data?.type || response.payload?.type;
+
         if (type === "INSERT" && payload?.data?.record) {
-          updatedPosts(payload.data.record);
+          const newPost = payload.data.record as UserPosts;
+          queryClient.setQueryData<UserPosts[]>(
+            ["profileWallPosts"],
+            (oldPosts) => {
+              if (!oldPosts) return [newPost];
+              return [newPost, ...oldPosts];
+            },
+          );
         } else if (type === "DELETE") {
           const oldRecordID = payload?.data?.old_record.id;
-          if (oldRecordID !== null) {
-            filterUpdatedPosts(oldRecordID);
+          if (oldRecordID !== undefined && oldRecordID !== null) {
+            queryClient.setQueryData<UserPosts[]>(
+              ["profileWallPosts"],
+              (oldpPosts) => {
+                if (!oldpPosts) return [];
+                return oldpPosts.filter((post) => post.id !== oldRecordID);
+              },
+            );
           }
         }
       }
@@ -86,5 +98,5 @@ export const useWallWebsocket = () => {
         }
       }
     };
-  }, [updatedPosts, filterUpdatedPosts]);
+  }, [queryClient]);
 };

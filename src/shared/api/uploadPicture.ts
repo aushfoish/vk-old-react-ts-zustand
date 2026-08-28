@@ -1,5 +1,6 @@
 import { prepareBlobData } from "@/shared/lib/file/prepareBlobData";
 import { useWallStore } from "@/entities/posts/model/useWallStore";
+import { supabaseFetch } from "./supabase";
 
 export const uploadPicture = async (
   blob: Blob | null,
@@ -10,12 +11,9 @@ export const uploadPicture = async (
   if (blob !== null) {
     try {
       const { blobUrl, mime } = prepareBlobData(extension, bucket);
-      const response = await fetch(blobUrl, {
+      const response = await supabaseFetch(blobUrl, {
         method: "POST",
         headers: {
-          apikey: "sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-          Authorization:
-            "Bearer sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
           "Content-Type": mime,
         },
         body: blob,

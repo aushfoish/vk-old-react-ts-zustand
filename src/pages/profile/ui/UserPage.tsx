@@ -7,7 +7,8 @@ import { SkeletonMainPage } from "@/shared/ui/SkeletonMainPage";
 export const UserPage = () => {
   const { isLoading, profile, isFetchPositive, refetch } = useFetchProfile();
 
-  if (!profile && isFetchPositive === false) return <FetchErrorModal onClick={refetch}/>
+  if (!profile && isFetchPositive === false) return <FetchErrorModal onClick={refetch} label="Не удалось подключиться к серверу" text="Проверьте подключение к интернету и обновите страницу, либо
+              повторите попытку позже."/>
 
   if (isLoading || !profile) return <SkeletonMainPage />;
   
