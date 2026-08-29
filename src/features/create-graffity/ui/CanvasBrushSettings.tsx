@@ -11,7 +11,9 @@ globalAlpha: number,
 setGlobalAlpha: (alpla: number) => void,
 }
 
+
 export const CanvasBrushSettings = (props: CanvasBrushSettingsProps) => {
+
     const {strokeStyle, setStrokeStyle, lineWidth, setLinewidth, globalAlpha, setGlobalAlpha} = props
     return (
         <div className={styles.brushSettings}>
