@@ -53,3 +53,13 @@
    
 
 После запуска приложение будет доступно по адресу **http://localhost:8080**
+
+
+## Скриншоты
+
+<img src="/src/assets/readme/image 166.jpg" width="859px" alt="Скриншот главной страницы">
+<img src="/src/assets/readme/image 167.jpg" width="859px" alt="Скриншот рисовалки">
+<img src="/src/assets/readme/image 168.jpg" width="859px" alt="Скриншот страницы с музыкой">
+<img src="/src/assets/readme/image 170.jpg" width="859px" alt="Скриншот модалки с авторизацией">
+<img src="/src/assets/readme/image 169.jpg" width="859px" alt="Скриншот скелетона страницы">
+<img src="/src/assets/readme/image 171.jpg" width="859px" alt="Скриншот примера обработки ошибки fetch'а">
