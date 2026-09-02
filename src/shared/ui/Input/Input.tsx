@@ -1,6 +1,6 @@
 import type React from "react";
 import styles from "./Input.module.scss";
-import type { InputHTMLAttributes } from "react";
+import type { ChangeEvent, InputHTMLAttributes } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
   placeholder?: string;
@@ -10,7 +10,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
   type: string;
   onFocus?: () => void;
   onBlur?: (e: React.FocusEvent) => void;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   value?: string | number;
   classInput?: string;
   maxLength?: number;
