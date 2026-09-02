@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { formatTime } from "@/entities/mp3-player/lib/formatTime";
+import type { ChangeEvent } from "react";
 
 export interface userMusic {
   id: string;
@@ -10,20 +11,22 @@ export interface userMusic {
 }
 
 export interface userPlaylistState {
-  isLoading: boolean;
+  nextTrack: () => void;
   trackPlay: (track: userMusic) => Promise<void>;
+  togglePlay: () => void;
+  setVolume: (e: ChangeEvent<HTMLInputElement>) => void;
+  currentTimeChanger: (e: ChangeEvent<HTMLInputElement>) => void;
+  initAudio: () => void
+
+  isLoading: boolean;
   isPlaying: boolean;
   currentTrack: userMusic | null;
-  togglePlay: () => void;
   volume: number;
-  setVolume: (e: React.InputEvent<HTMLInputElement>) => void;
   currentTimeFormat: string | null;
-  currentTimeChanger: (e: React.InputEvent<HTMLInputElement>) => void;
   currentTrackTime: number | null;
   currentTotalSeconds: number | null;
   currentTrackIndex: number | null;
   // indexCheck: () => void
-  nextTrack: () => void;
   currentAudioTime: string;
   audio: HTMLAudioElement | null;
 }
@@ -39,11 +42,29 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
   currentTotalSeconds: null,
   currentAudioTime: "--/--",
 
-  audio: typeof window !== "undefined" ? new Audio() : null,
+  audio: null,
 
-  
+  initAudio: () => {
+    if (typeof window === "undefined" || get().audio) return;
+
+    const audio = new Audio();
+
+    audio.addEventListener("timeupdate", () => {
+      set({
+        currentTrackTime: audio.currentTime,
+        currentTimeFormat: formatTime(audio.currentTime),
+        currentTotalSeconds: audio.duration || 0,
+        currentAudioTime: formatTime(audio.duration || 0),
+      });
+    });
+
+    set({audio})
+  },
 
   trackPlay: async (track) => {
+
+    if (!get().audio) get().initAudio();
+
     const { volume, togglePlay, currentTrack, audio } = get();
 
     if (currentTrack?.id === track.id) {
@@ -95,16 +116,15 @@ export const userMusicFetch = create<userPlaylistState>((set, get) => ({
   },
 
   setVolume: (e) => {
-    const audio = get().audio
-    if (!audio) return
+    const audio = get().audio;
+    if (!audio) return;
     audio.volume = Number(e.currentTarget.value) / 100;
     set({ volume: audio.volume });
   },
 
-
   currentTimeChanger: (e) => {
-    const audio = get().audio
-    if (!audio) return
+    const audio = get().audio;
+    if (!audio) return;
     audio.currentTime = Number(e.currentTarget.value);
     set({ currentTrackTime: audio.currentTime });
   },
