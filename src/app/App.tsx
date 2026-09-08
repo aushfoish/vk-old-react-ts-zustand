@@ -10,6 +10,7 @@ import { UserPage } from "@/pages/profile";
 import { AudioPage } from "@/pages/music";
 import { MainLayout } from "@/widgets/layouts";
 import { SkeletonMainPage } from "@/shared/ui";
+import { AdminPage } from "@/pages/admin";
 
 
 
@@ -22,6 +23,7 @@ const router = createHashRouter([
       { path: "my-page", element: <UserPage /> },
       { path: "my-audio", element: <AudioPage /> },
       { path: "test", element: <SkeletonMainPage /> },
+      { path: "adminPage", element: <AdminPage />}
     ],
   },
 ]);

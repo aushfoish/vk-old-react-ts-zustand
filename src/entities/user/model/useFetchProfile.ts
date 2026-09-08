@@ -1,33 +1,30 @@
 import type { Friend, user } from "@/entities/user/model/useFetchPage";
 import { useQuery } from "@tanstack/react-query";
+import { supabaseFetch } from "@/shared/api";
 
-const HEADERS = {
-  apikey: "sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-  Authorization: "Bearer sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-  "Content-Type": "application/json",
-};
+
 
 export const useFetchProfile = () => {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["profileOwner"],
     queryFn: async () => {
       const [profileRes, friendsRes, onlineRes] = await Promise.all([
-        fetch("https://tyekwqioulapfagzpswr.supabase.co/rest/v1/profile", {
+        supabaseFetch("/rest/v1/profile", {
           method: "GET",
-          headers: HEADERS,
+
         }),
-        fetch(
-          "https://tyekwqioulapfagzpswr.supabase.co/rest/v1/rpc/get_all_friends_widget",
+        supabaseFetch(
+          "/rest/v1/rpc/get_all_friends_widget",
           {
             method: "GET",
-            headers: HEADERS,
+
           },
         ),
-        fetch(
-          "https://tyekwqioulapfagzpswr.supabase.co/rest/v1/rpc/get_online_friends_widget",
+        supabaseFetch(
+          "/rest/v1/rpc/get_online_friends_widget",
           {
             method: "GET",
-            headers: HEADERS,
+
           },
         ),
       ]);

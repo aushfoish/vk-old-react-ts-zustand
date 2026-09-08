@@ -1,18 +1,22 @@
 import { useState } from "react";
 
 export const useSubscribe = () => {
-  const [subscribed, setSubscribed] = useState(false);
+  const [children, setChildren] = useState('Хочешь больше?')
+  const [count, setCount] = useState(5)
+  const [auth, setAuth] = useState(false)
+
+  
 
   const subscribe = () => {
-    if (subscribed === false) {
-      console.log("вы подписались");
-      setSubscribed(true);
-    }
-    if (subscribed === true) {
-      console.log("вы отписались");
-      setSubscribed(false);
+    setAuth(false)
+    setCount(count - 1)
+    setChildren(`ещё ${count}`)
+    if (count < 1) {
+      setCount(5)
+      setChildren('Хочешь больше?')
+      setAuth(true)
     }
   };
 
-  return { subscribe, subscribed };
+  return { subscribe, auth, children, setAuth };
 };

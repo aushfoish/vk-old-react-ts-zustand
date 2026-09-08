@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { formatTime } from "@/entities/mp3-player/lib/formatTime";
+import type { ChangeEvent } from "react";
 
 export interface userMusic {
   id: string;
@@ -16,9 +17,9 @@ export interface userPlaylistState {
   currentTrack: userMusic | null;
   togglePlay: () => void;
   volume: number;
-  setVolume: (e: React.InputEvent<HTMLInputElement>) => void;
+  setVolume: (e: ChangeEvent<HTMLInputElement>) => void;
   currentTimeFormat: string | null;
-  currentTimeChanger: (e: React.InputEvent<HTMLInputElement>) => void;
+  currentTimeChanger: (e: ChangeEvent<HTMLInputElement>) => void;
   currentTrackTime: number | null;
   currentTotalSeconds: number | null;
   currentTrackIndex: number | null;

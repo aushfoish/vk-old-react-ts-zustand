@@ -1,5 +1,6 @@
 import { useAuthStore } from "@/entities/user/model/useAuthStore";
 import { create } from "zustand";
+import { supabaseFetch } from "@/shared/api";
 
 export interface UserPosts {
   id: number;
@@ -63,15 +64,11 @@ export const useWallStore = create<WallStore>((set, get) => ({
     if (textOnly || pictureOnly) {
       try {
         set({ isSending: true });
-        const response = await fetch(
+        const response = await supabaseFetch(
           "https://tyekwqioulapfagzpswr.supabase.co/rest/v1/posts",
           {
             method: "POST",
             headers: {
-              apikey: "sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-              Authorization:
-                "Bearer sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-              "Content-Type": "application/json",
               Prefer: "return=representation",
             },
             body: JSON.stringify(newPost),

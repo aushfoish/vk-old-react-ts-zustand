@@ -41,7 +41,7 @@ export const useAuthStore = create<useAuthStore>((set) => ({
     }
   },
 
-  setUserpic: (url) => {
+  setUserpic: (url: string) => {
     set({ userPic: url });
   },
 

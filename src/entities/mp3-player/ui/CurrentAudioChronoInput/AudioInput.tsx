@@ -20,7 +20,7 @@ export const AudioInput = () => {
         id="mp3-chrono"
         label="координаты длительности текущей композиции"
         type="range"
-        onInput={currentTimeChanger}
+        onChange={currentTimeChanger}
         value={currentTrackTime || 0}
         min={0}
         max={currentTotalSeconds || 0}

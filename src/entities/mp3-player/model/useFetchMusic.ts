@@ -1,22 +1,17 @@
 import { formatTime } from "@/entities/mp3-player/lib/formatTime";
 import { type userMusic } from "@/entities/mp3-player/model/useMusicStore";
 import { useQuery } from "@tanstack/react-query";
+import { supabaseFetch } from "@/shared/api";
 
-const HEADERS = {
-  apikey: "sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-  Authorization: "Bearer sb_publishable_eBXbMbfxyIM6KTA3AP0oaQ_QKJT8Y-y",
-  "Content-Type": "application/json",
-};
 
 export const useFetchMusic = () => {
   return useQuery<userMusic[]>({
     queryKey: ["profilePlaylist"],
     queryFn: async () => {
-      const playlistRes = await fetch(
+      const playlistRes = await supabaseFetch(
         "https://tyekwqioulapfagzpswr.supabase.co/rest/v1/tracks",
         {
           method: "GET",
-          headers: HEADERS,
         },
       );
       if (!playlistRes.ok) {

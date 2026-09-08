@@ -10,9 +10,12 @@ export const useWallWebsocket = () => {
     let ws: WebSocket | null = null;
     let heartbeatInterval: ReturnType<typeof setInterval> | undefined;
 
-    ws = new WebSocket(
-      "wss://tyekwqioulapfagzpswr.supabase.co/realtime/v1/websocket?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5ZWt3cWlvdWxhcGZhZ3pwc3dyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzODI1NDQsImV4cCI6MjA5OTk1ODU0NH0.yCznoMTlwKslJoAYlYj5f36cC5ryXJ-JkaT-0e9Bi4E&vsn=1.0.0",
-    );
+    const API_KEY = import.meta.env.VITE_SUPABASE_WEBSOCKET;
+
+    // Возвращаем твой старый проверенный формат строки, только с новой переменной и протоколом v1, как было изначально!
+    const wsUrl = `wss://tyekwqioulapfagzpswr.supabase.co/realtime/v1/websocket?apikey=${API_KEY}&vsn=1.0.0`;
+
+    ws = new WebSocket(wsUrl);
 
     ws.onopen = () => {
       if (isCancelled) {
@@ -70,14 +73,13 @@ export const useWallWebsocket = () => {
           const oldRecordID = payload?.data?.old_record.id;
           if (oldRecordID !== undefined && oldRecordID !== null) {
             queryClient.setQueryData<UserPosts[]>(
-            ["profileWallPosts"],
-            (oldpPosts) => {
-              if (!oldpPosts) return [];
-              return oldpPosts.filter((post) => post.id !== oldRecordID);
-            },
-          );
+              ["profileWallPosts"],
+              (oldpPosts) => {
+                if (!oldpPosts) return [];
+                return oldpPosts.filter((post) => post.id !== oldRecordID);
+              },
+            );
           }
-          
         }
       }
     };
