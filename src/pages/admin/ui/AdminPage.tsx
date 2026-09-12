@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const AdminPage = () => {
-  const jopa = 'diryavaya-huesoska'
   const [isAdmin] = useState(true);
   const nav = useNavigate();
 
