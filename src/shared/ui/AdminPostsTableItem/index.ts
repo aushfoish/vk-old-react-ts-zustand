@@ -1,0 +1,1 @@
+export { AdminPostsTableItem } from "@/shared/ui/AdminPostsTableItem/AdminPostsTableItem";

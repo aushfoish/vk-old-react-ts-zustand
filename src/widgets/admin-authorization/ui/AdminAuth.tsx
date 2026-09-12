@@ -2,13 +2,12 @@ import { ModalWindow } from "@/shared/ui/ModalWindow/ModalWindow";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { AdminAuthModule } from "@/features/pass-the-authorization/ui/AdminAuthModule";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 
 export const AdminAuth = () => {
   const [modalClosed, setModalClosed] = useState(false);
-  const [isAdmin] = useState(false);
-  const nav = useNavigate()
+  const [isAdmin] = useState(true);
 
   if (!isAdmin)
     return (
@@ -24,6 +23,7 @@ export const AdminAuth = () => {
     );
 
   if (isAdmin) {
-    nav('/admin');
+    return <Navigate to="/admin" replace />;
   }
+  
 };

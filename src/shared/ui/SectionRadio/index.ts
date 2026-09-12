@@ -1,0 +1,1 @@
+export { SectionRadio } from "@/shared/ui/SectionRadio/SectionRadio";

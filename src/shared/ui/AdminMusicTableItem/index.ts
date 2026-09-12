@@ -1,0 +1,1 @@
+export { AdminMusicTableItem } from "@/shared/ui/AdminMusicTableItem/AdminMusicTableItem";
