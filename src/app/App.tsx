@@ -23,7 +23,7 @@ const router = createHashRouter([
       { path: "my-page", element: <UserPage /> },
       { path: "my-audio", element: <AudioPage /> },
       { path: "test", element: <SkeletonMainPage /> },
-      { path: "adminPage", element: <AdminPage />}
+      { path: "admin", element: <AdminPage />}
     ],
   },
 ]);

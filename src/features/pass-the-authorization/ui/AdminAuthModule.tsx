@@ -2,6 +2,7 @@ import { Button, Input, Loader, Modal_button } from "@/shared/ui";
 import styles from "./Auth.module.scss";
 import { useState } from "react";
 
+
 interface AdminAuthModule {
     onClose: () => void
 }

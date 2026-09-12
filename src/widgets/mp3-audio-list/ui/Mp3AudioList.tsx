@@ -29,12 +29,15 @@ export const Mp3AudioList = () => {
     return (
       <div className={styles.mp3TrackList}>
         <div className={styles.mp3ListItems}>
-          <ContainerPlaceholder label="Не удалось загрузить плейлист"/>
-          <Button children="Перезагрузить плейлист" className="refetch" onClick={refetch} />
+          <ContainerPlaceholder label="Не удалось загрузить плейлист" />
+          <Button
+            children="Перезагрузить плейлист"
+            className="refetch"
+            onClick={refetch}
+          />
         </div>
       </div>
-      
-    )
+    );
   }
 
   return (

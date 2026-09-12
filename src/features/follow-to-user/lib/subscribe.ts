@@ -4,7 +4,6 @@ export const useSubscribe = () => {
   const [children, setChildren] = useState('Хочешь больше?')
   const [count, setCount] = useState(5)
   const [auth, setAuth] = useState(false)
-
   
 
   const subscribe = () => {
